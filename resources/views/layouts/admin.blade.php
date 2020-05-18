@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href="{{ asset('css/black-route.css') }}" rel="stylesheet">
+  
 </head>
 
 <body class="">
@@ -33,6 +34,8 @@
   @include('layouts.components.sidebar-config')
   @include('layouts.components.js-plugins')
 </body>
+
+@yield('scripts_after_body')
 
 
 </html>

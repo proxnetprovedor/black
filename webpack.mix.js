@@ -18,6 +18,7 @@ mix.js('resources/js/app.js', 'public/js')
 mix.styles(
     [
         "resources/assets/css/material-dashboard.min.css",
+        "resources/assets/demo/demo.css"
         //"resources/assets/demo/demo.css",
         //"resources/css/style.css",
     ],
