@@ -11038,6 +11038,12 @@ thead.thead-inverse th,
   .card.card-rotate.bg-rose .front,
   .card.card-rotate.bg-rose .back {
     background: linear-gradient(60deg, #ec407a, #d81b60); }
+  .card .card-header-purple .card-icon,
+  .card .card-header-purple .card-text,
+  .card .card-header-purple:not(.card-header-icon):not(.card-header-text), .card.bg-purple,
+  .card.card-rotate.bg-purple .front,
+  .card.card-rotate.bg-purple .back {
+    background: linear-gradient(60deg, #9c27b0, #9c27b0); }
   .card .card-header-primary .card-icon,
   .card .card-header-primary:not(.card-header-icon):not(.card-header-text),
   .card .card-header-primary .card-text {
@@ -11049,6 +11055,10 @@ thead.thead-inverse th,
   .card .card-header-rose .card-icon,
   .card .card-header-rose:not(.card-header-icon):not(.card-header-text),
   .card .card-header-rose .card-text {
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(233, 30, 99, 0.4); }
+  .card .card-header-purple .card-icon,
+  .card .card-header-purple:not(.card-header-icon):not(.card-header-text),
+  .card .card-header-purple .card-text {
     box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(233, 30, 99, 0.4); }
   .card .card-header-warning .card-icon,
   .card .card-header-warning:not(.card-header-icon):not(.card-header-text),

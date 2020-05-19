@@ -20,3 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/profile/settings', function () {
+    return view('pages.profile.settings');
+})->name('profile-settings');

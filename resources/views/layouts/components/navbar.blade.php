@@ -55,8 +55,8 @@
               </p>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-              <a class="dropdown-item" href="#">Profile</a>
-              <a class="dropdown-item" href="#">Settings</a>
+              <a class="dropdown-item" href="#">Perfil</a>
+              <a class="dropdown-item" href="{{route('profile-settings')}}">Configuração</a>
               <div class="dropdown-divider"></div>
               @guest
               @else

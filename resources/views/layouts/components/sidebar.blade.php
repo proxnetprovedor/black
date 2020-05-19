@@ -1,11 +1,11 @@
-<div class="sidebar" data-color="azure" data-background-color="black" data-image="#">
+<div class="sidebar" data-color="purple" data-background-color="black" data-image="#">
     <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
         Tip 2: you can also add an image using data-image tag
     -->
-    <div class="logo"><a href="#" class="simple-text logo-mini">{{ config('app.name', 'Laravel') }}</a>
-        <a href="#" class="simple-text logo-normal">{{ config('app.name', 'Laravel') }}</a>
+    <div class="logo"><a href="#" class="simple-text logo-mini">{{ config('app.name', 'B-R') }}</a>
+        <a href="#" class="simple-text logo-normal">{{ config('app.name', 'Bla') }}</a>
     </div>
     <div class="sidebar-wrapper">
         <div class="user">
@@ -45,7 +45,7 @@
         </div>
         <ul class="nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/home">
                     <i class="material-icons">dashboard</i>
                     <p> Dashboard </p>
                 </a>
