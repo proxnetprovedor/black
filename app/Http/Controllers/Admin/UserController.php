@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Http\Requests\UserRequest;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -16,6 +17,6 @@ class UserController extends Controller
      */
     public function index(User $model)
     {
-        return view('users.index');
+        return view('admin.users.index');
     }
 }
