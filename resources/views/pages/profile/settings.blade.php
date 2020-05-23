@@ -19,7 +19,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#link2" role="tablist">
+                <a class="nav-link" data-toggle="tab" href="#financeiro" role="tablist">
                     Financeiro
                 </a>
             </li>
@@ -38,8 +38,8 @@
             <div class="tab-pane active" id="empresa">
                 @include('pages.profile._form-empresa')
             </div>
-            <div class="tab-pane" id="link2">
-                @include('pages.profile._form-empresa')
+            <div class="tab-pane" id="financeiro">
+                @include('pages.profile._form-financeiro')
             </div>
             <div class="tab-pane" id="link3">
                 @include('pages.profile._form-empresa')
