@@ -13,17 +13,15 @@ class CreateDetailPlansTable extends Migration
      */
     public function up()
     {
-        Schema::create('detail_plans', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('plan_id');
+        Schema::create('acl_plans.detail_plans', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->uuid('plan_id');
             $table->string('name');
             $table->timestamps();
 
-            $table->foreign('plan_id')
-                    ->references('id')
-                    ->on('plans')
-                    ->onDelete('cascade');
+            $table->foreign('plan_id')->references('id')->on('acl_plans.plans');
         });
+        DB::statement('ALTER TABLE users ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
     }
 
     /**
@@ -33,6 +31,6 @@ class CreateDetailPlansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detail_plans');
+        Schema::dropIfExists('acl_plans.detail_plans');
     }
 }

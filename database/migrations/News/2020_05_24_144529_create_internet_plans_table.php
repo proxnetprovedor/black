@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProfilesTable extends Migration
+class CreateInternetPlansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateProfilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('acl_plans.profiles', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+        Schema::create('internet_plans', function (Blueprint $table) {
+            $table->uuid('id');
             $table->timestamps();
         });
-        DB::statement('ALTER TABLE users ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
     }
 
     /**
@@ -27,6 +26,6 @@ class CreateProfilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('acl_plans.profiles');
+        Schema::dropIfExists('internet_plans');
     }
 }

@@ -13,14 +13,15 @@ class CreatePlansTable extends Migration
      */
     public function up()
     {
-        Schema::create('plans', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('acl_plans.plans', function (Blueprint $table) {
+            $table->uuid('id')->primary();
             $table->string('name')->unique();
             $table->string('url')->unique();
             $table->double('price', 10, 2);
             $table->string('description')->nullable();
             $table->timestamps();
         });
+        DB::statement('ALTER TABLE users ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
     }
 
     /**
@@ -30,6 +31,6 @@ class CreatePlansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('plans');
+        Schema::dropIfExists('acl_plans.plans');
     }
 }
