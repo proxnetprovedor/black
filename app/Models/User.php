@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\Access\Authorizable;
 use Spatie\Permission\Traits\HasRoles;
+use App\Traits\UuidTrait;
 
 class User extends Authenticatable implements Authorizable
 {
@@ -21,6 +22,10 @@ class User extends Authenticatable implements Authorizable
     protected $fillable = [
         'name', 'email', 'password',
     ];
+    // public function getIdStrAttribute()
+    // {
+    //     return "{$this->id}";
+    // }
 
     /**
      * The attributes that should be hidden for arrays.

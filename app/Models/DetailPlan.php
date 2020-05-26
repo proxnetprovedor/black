@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class DetailPlan extends Model
 {
     use Blameable, SoftDeletes;
-    protected $table = 'acl_plans.plans';
+    protected $table = 'acl_plans.detail_plans';
 
     protected $fillable = ['name','created_by', 'updated_by', 'deleted_by'];
 

@@ -1,12 +1,14 @@
 <?php
 
 use App\Traits\Blameable;
+use App\Traits\TenantTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+
 class AccesPoint extends Model
 {
-    use Blameable, SoftDeletes;
+    use Blameable, SoftDeletes, TenantTrait;
 
     protected $table = 'providers.acces_points';
     protected $fillable = [
@@ -18,6 +20,8 @@ class AccesPoint extends Model
         'deleted_by',
         'tenant_id',
     ];
-    protected $dates = ['created_at', 'updated_at', 'deleted_at',];
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+
+    
 }
 
