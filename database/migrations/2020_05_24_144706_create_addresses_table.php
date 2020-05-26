@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateServersTable extends Migration
+class CreateAddressesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,22 @@ class CreateServersTable extends Migration
      */
     public function up()
     {
-        Schema::create('providers.servers', function (Blueprint $table) {
+        Schema::create('addresses', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name', 200);
-            $table->string('ip_address', 200);
-            $table->string('port', 8);
-            $table->string('login', 100)->unique();
-            $table->string('password', 200);
-            $table->string('interface', 100)->nullable();
-            $table->string('image', 100)->nullable();
-
             $table->string('lat', 200)->nullable();
             $table->string('lng', 200)->nullable();
+
+            $table->string('cep', 11);
+            $table->string('neighborthood', 200);
+            $table->string('address', 200);
+            $table->string('number', 10);
+            $table->string('state', 200);
+            $table->string('city', 200)->nullable();
+            $table->string('complement', 200)->nullable();
+            $table->string('condominium', 200)->nullable();
+            $table->string('block', 200)->nullable();
+            $table->string('apartment', 200)->nullable();
+            $table->uuidMorphs('addressable');
 
             $table->uuid('created_by');
             $table->uuid('updated_by')->nullable();
@@ -35,10 +39,10 @@ class CreateServersTable extends Migration
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('deleted_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('tenant_id')->references('id')->on('providers.tenants')->onDelete('cascade');
-
+            
             $table->timestamps();
         });
-        DB::statement('ALTER TABLE providers.servers ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
+        DB::statement('ALTER TABLE addresses ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
     }
 
     /**
@@ -48,7 +52,6 @@ class CreateServersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('providers.servers');
+        Schema::dropIfExists('addresses');
     }
 }
-

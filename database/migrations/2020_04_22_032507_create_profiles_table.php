@@ -17,7 +17,7 @@ class CreateProfilesTable extends Migration
             $table->uuid('id')->primary();
             $table->timestamps();
         });
-        DB::statement('ALTER TABLE users ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
+        DB::statement('ALTER TABLE acl_plans.profiles ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
     }
 
     /**

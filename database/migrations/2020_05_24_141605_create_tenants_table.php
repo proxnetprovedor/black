@@ -37,7 +37,7 @@ class CreateTenantsTable extends Migration
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('deleted_by')->references('id')->on('users')->onDelete('cascade');
         });
-        DB::statement('ALTER TABLE users ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
+        DB::statement('ALTER TABLE providers.tenants ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
     }
 
     /**

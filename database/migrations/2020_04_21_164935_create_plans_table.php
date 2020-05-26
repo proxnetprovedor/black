@@ -21,7 +21,7 @@ class CreatePlansTable extends Migration
             $table->string('description')->nullable();
             $table->timestamps();
         });
-        DB::statement('ALTER TABLE users ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
+        DB::statement('ALTER TABLE acl_plans.plans ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
     }
 
     /**
