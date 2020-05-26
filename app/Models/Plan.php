@@ -8,8 +8,15 @@ use App\Traits\UuidTrait;
 
 class Plan extends Model
 {
+    use Blameable, SoftDeletes;
 
-    protected $fillable = ['name', 'url', 'price', 'description'];
+    protected $fillable = ['name', 'url', 'price', 'description',
+            'updated_by',
+            'deleted_by',
+        ];
+    protected $dates = [
+        'created_at', 'updated_at', 'deleted_at',
+    ];
 
     public function details()
     {
