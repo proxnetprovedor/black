@@ -29,13 +29,13 @@ Route::prefix('admin')
 		Route::delete('permissions_mass_destroy', 'PermissionsController@massDestroy')->name('permissions.mass_destroy');
 		Route::resource('roles', 'RolesController');
 		Route::delete('roles_mass_destroy', 'RolesController@massDestroy')->name('roles.mass_destroy');
-		
+
 		/**
 		 * Users
 		 */
 		Route::resource('users', 'UserController');
 		Route::delete('users_mass_destroy', 'UsersController@massDestroy')->name('users.mass_destroy');
-		
+
 		/**
 		 * Routes Details Plans
 		 */
@@ -54,6 +54,8 @@ Route::prefix('admin')
 		Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 		Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 	});
+
+
 
 
 Route::get('/home', 'HomeController@index')->name('home');

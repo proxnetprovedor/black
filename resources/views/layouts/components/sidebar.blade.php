@@ -53,16 +53,22 @@
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#formsExamples" aria-expanded="true">
                     <i class="material-icons">content_paste</i>
-                    <p> Forms
+                    <p> Admin
                     <b class="caret"></b>
                     </p>
                 </a>
                 <div class="collapse" id="formsExamples">
                     <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('plans.index') }}">
                         <span class="sidebar-mini"> RF </span>
-                        <span class="sidebar-normal"> Regular Forms </span>
+                        <span class="sidebar-normal"> Planos </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('roles.index') }}">
+                        <span class="sidebar-mini"> RF </span>
+                        <span class="sidebar-normal"> Perfil de acesso </span>
                         </a>
                     </li>
                     </ul>

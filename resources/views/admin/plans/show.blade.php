@@ -4,13 +4,16 @@
 
 
 @section('content')
-<div class="container-fluid mt--6">
+<div class="col-md-12">
     @include('_flash_messages')
     <div class="card">
-        <div class="card-header">
+        <div class="card-header card-header-rose card-header-icon">
+            <div class="card-icon">
+                <i class="material-icons">assignment</i>
+            </div>
             <div class="row align-items-center">
                 <div class="col-8">
-                    <h3> Detalhes o <strong> {{$plan->name}} </strong></h3>
+                    <h3 class="card-title"> Detalhes do plano <strong> {{$plan->name}} </strong></h3>
                 </div>
                 <div class="col-4 text-right">
                     <a href="{{route('plans.index')}}" class="btn btn-sm btn-primary">Voltar
@@ -31,12 +34,12 @@
                 </li>
                 <hr>
                 <li>
-                    <strong>Restaurantes :</strong> Total de ... estabelecimentos
+                    <strong>Provedoras :</strong> Total de ... estabelecimentos
                 </li>
                 <hr>
                 <strong>Detalhes vinculados:</strong>
                 @foreach ($plan->details as $detail)
-                    <li> {{$detail->name}} </li>
+                <li> {{$detail->name}} </li>
                 @endforeach
             </ul>
         </div>

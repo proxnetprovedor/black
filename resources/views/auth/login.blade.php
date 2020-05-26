@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -12,7 +11,8 @@
   </title>
   <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href="{{ asset('css/black-route.css') }}" rel="stylesheet">
@@ -62,17 +62,18 @@
   </nav> --}}
   <!-- End Navbar -->
   <div class="wrapper wrapper-full-page">
-    <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('../../assets/img/login.jpg'); background-size: cover; background-position: top center;">
+    <div class="page-header login-page header-filter" filter-color="black"
+      style="background-image: url('../../assets/img/login.jpg'); background-size: cover; background-position: top center;">
       <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
       <div class="container">
         <div class="row">
           <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
             <form class="form" method="POST" action="{{ route('login') }}">
-                @csrf
+              @csrf
               <div class="card card-login card-hidden">
                 <div class="card-header card-header-primary text-center">
                   <h4 class="card-title">
-                      <img src="/img/logo_proxnet.png" alt="" height="100px">
+                    <img src="/img/logo_proxnet.png" alt="" height="100px">
                   </h4>
                   {{-- <div class="social-line">
                     <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
@@ -88,7 +89,7 @@
                 </div>
                 <div class="card-body ">
                   <p class="card-description text-center"></p>
-                  
+
                   <span class="bmd-form-group">
                     <div class="input-group">
                       <div class="input-group-prepend">
@@ -97,11 +98,11 @@
                         </span>
                       </div>
                       <input type="email" class="form-control" name="email" placeholder="Email...">
-                      @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                      @if ($errors->has('email'))
+                      <span class="invalid-feedback" style="display: block;" role="alert">
+                        <strong>{{ $errors->first('email') }}</strong>
+                      </span>
+                      @endif
                     </div>
                   </span>
                   <span class="bmd-form-group">
@@ -112,20 +113,21 @@
                         </span>
                       </div>
                       <input type="password" class="form-control" name="password" placeholder="Password...">
-                      @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+
+                      @if ($errors->has('password'))
+                      <span class="invalid-feedback" style="display: block;" role="alert">
+                        <strong>{{ $errors->first('password') }}</strong>
+                      </span>
+                      @endif
                     </div>
                   </span>
-                    
+
                 </div>
-                
+
                 <div class="card-footer justify-content-center">
-                    <button type="submit" class="btn btn-rose btn-link btn-lg" style="color: #9c27b0">
-                        {{ __('Login') }}
-                    </button>
+                  <button type="submit" class="btn btn-rose btn-link btn-lg" style="color: #9c27b0">
+                    {{ __('Login') }}
+                  </button>
                 </div>
               </div>
             </form>
@@ -171,7 +173,7 @@
   </div>
   <!--   Core JS Files   -->
   @include('layouts.components.js-plugins')
-  
+
   <script>
     $(document).ready(function() {
       $().ready(function() {
