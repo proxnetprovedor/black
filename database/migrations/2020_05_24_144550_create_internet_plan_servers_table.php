@@ -19,7 +19,7 @@ class CreateInternetPlanServersTable extends Migration
             $table->uuid('internet_plan_id');
             $table->foreign('server_id')->references('id')->on('providers.servers')->onDelete('cascade');
             $table->foreign('internet_plan_id')->references('id')->on('providers.tenants')->onDelete('cascade');
-            
+            $table->softDeletes();
             $table->timestamps();
         });
         DB::statement('ALTER TABLE providers.internet_plan_servers ALTER COLUMN id SET DEFAULT uuid_generate_v4();');

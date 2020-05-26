@@ -36,7 +36,7 @@ class CreateCostumersTable extends Migration
             $table->foreign('deleted_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('tenant_id')->references('id')->on('providers.tenants')->onDelete('cascade');
             $table->foreign('person_id')->references('id')->on('people')->onDelete('cascade');
-
+            $table->softDeletes();
             $table->timestamps();
             
             

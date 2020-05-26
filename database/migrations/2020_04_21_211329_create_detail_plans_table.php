@@ -20,6 +20,7 @@ class CreateDetailPlansTable extends Migration
             $table->timestamps();
 
             $table->foreign('plan_id')->references('id')->on('acl_plans.plans');
+            $table->softDeletes();
         });
         DB::statement('ALTER TABLE acl_plans.detail_plans ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
     }

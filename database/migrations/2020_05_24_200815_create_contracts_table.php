@@ -22,7 +22,7 @@ class CreateContractsTable extends Migration
             $table->uuid('updated_by')->nullable();
             $table->uuid('deleted_by')->nullable();
             
-
+            $table->softDeletes();
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('deleted_by')->references('id')->on('users')->onDelete('cascade');

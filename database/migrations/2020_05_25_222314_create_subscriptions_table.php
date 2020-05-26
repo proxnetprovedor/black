@@ -49,7 +49,7 @@ class CreateSubscriptionsTable extends Migration
             $table->foreign('server_id')->references('id')->on('providers.servers')->onDelete('cascade');
             $table->foreign('costumer_id')->references('id')->on('subscription.costumers')->onDelete('cascade');
             $table->foreign('employee_id')->references('id')->on('providers.employees')->onDelete('cascade');
-
+            $table->softDeletes();
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('deleted_by')->references('id')->on('users')->onDelete('cascade');

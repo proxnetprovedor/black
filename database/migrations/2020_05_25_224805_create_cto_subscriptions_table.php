@@ -21,7 +21,7 @@ class CreateCtoSubscriptionsTable extends Migration
 
             $table->foreign('subscription_id')->references('id')->on('subscription.subscriptions')->onDelete('cascade');
             $table->foreign('cto_id')->references('id')->on('providers.ctos')->onDelete('cascade');
-
+            $table->softDeletes();
             $table->timestamps();
         });
         DB::statement('ALTER TABLE providers.cto_subscriptions ALTER COLUMN id SET DEFAULT uuid_generate_v4();');

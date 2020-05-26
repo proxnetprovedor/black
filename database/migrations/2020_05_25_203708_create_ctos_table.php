@@ -31,7 +31,7 @@ class CreateCtosTable extends Migration
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('deleted_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('tenant_id')->references('id')->on('providers.tenants')->onDelete('cascade');
-
+            $table->softDeletes();
             $table->timestamps();
         });
         DB::statement('ALTER TABLE providers.ctos ALTER COLUMN id SET DEFAULT uuid_generate_v4();');

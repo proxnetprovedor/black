@@ -27,7 +27,7 @@ class CreateTenantsTable extends Migration
             $table->boolean('subscription_suspende')->nullable()->default(true);
             $table->string('lat', 200)->nullable();
             $table->string('lng', 200)->nullable();
-
+            $table->softDeletes();
             $table->timestamps();
 
             $table->uuid('created_by');

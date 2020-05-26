@@ -14,6 +14,7 @@ class CreateStatusesTable extends Migration
             $table->text('reason')->nullable();
             $table->morphs('model');
             $table->timestamps();
+            $table->softDeletes();
         });
         //DB::statement('ALTER TABLE users ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
     }

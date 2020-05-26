@@ -16,6 +16,7 @@ class CreateProfilesTable extends Migration
         Schema::create('acl_plans.profiles', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->timestamps();
+            $table->softDeletes();
         });
         DB::statement('ALTER TABLE acl_plans.profiles ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
     }
