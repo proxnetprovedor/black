@@ -9,12 +9,14 @@ class CreateStatusesTable extends Migration
     public function up()
     {
         Schema::create('statuses', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id('id');
             $table->string('name');
             $table->text('reason')->nullable();
             $table->morphs('model');
             $table->timestamps();
+            $table->softDeletes();
         });
+        //DB::statement('ALTER TABLE users ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
     }
 
     public function down()

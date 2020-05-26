@@ -13,10 +13,12 @@ class CreateProfilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('profiles', function (Blueprint $table) {
-            $table->id();
+        Schema::create('acl_plans.profiles', function (Blueprint $table) {
+            $table->uuid('id')->primary();
             $table->timestamps();
+            $table->softDeletes();
         });
+        DB::statement('ALTER TABLE acl_plans.profiles ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
     }
 
     /**
@@ -26,6 +28,6 @@ class CreateProfilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profiles');
+        Schema::dropIfExists('acl_plans.profiles');
     }
 }
