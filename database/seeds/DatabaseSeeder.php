@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Tenants;
+//use App\Models\Employer;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,5 +17,12 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         $this->call(PlanSeeder::class);
         $this->call(UsersSeeder::class);
+        factory(Tenants::class, 5)->create();
+        factory(App\Models\Employer::class, 50)->create();
+        factory(App\Models\InternetPlanServer::class, 50)->create();
+        //factory(App\Models\Server::class, 100)->create();
+
+        factory(App\Models\Ctos::class, 100)->create();
+        
     }
 }

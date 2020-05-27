@@ -7,7 +7,7 @@ use App\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Server extends Model
+class InternetPlanServer extends Model
 {
     use Blameable, SoftDeletes, UuidTrait;
 
@@ -15,25 +15,14 @@ class Server extends Model
 
     protected $keyType = 'string';
 
-    protected $table = 'providers.servers';
+    protected $table = 'providers.internet_plan_servers';
     
     protected $fillable = [
-        'name',
-        'ip_address',
-        'port',
-        'login',
-        'password',
-        'interface',
-        'image',
-        'lat',
-        'lng',
+        'server_id',
+        'internet_plan_id',
         'created_by',
         'updated_by',
-        'deleted_by',
-        'tenant_id',
+        'deleted_by'
     ];
-    
-    protected $dates = [
-        'created_at', 'updated_at', 'deleted_at',
-    ];
+    protected $dates = ['created_at', 'updated_at', 'deleted_at',];
 }

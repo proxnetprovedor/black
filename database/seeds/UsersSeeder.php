@@ -27,16 +27,17 @@ class UsersSeeder extends Seeder
 
         $user->assignRole('administrator');
         
-        // $user2 = User::create([
-        //     'name' => 'Fabricio',
-        //     'email' => 'fabriciolpu2@gmail.com',
-        //     'email_verified_at' => now(),
-        //     'password' => Hash::make('password'),
-        //     'created_at' => now(),
-        //     'updated_at' => now()
-        // ]);
+        $user2 = User::create([
+            'id' => Uuid::uuid4()->toString(),
+            'name' => 'Fabricio',
+            'email' => 'fabriciolpu2@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
 
 
-        // $user2->assignRole('administrator');
+        $user2->assignRole('administrator');
     }
 }

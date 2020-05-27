@@ -18,8 +18,8 @@ class CreateInternetPlansTable extends Migration
             $table->double('price', 8, 2)->nullable()->default(100.00);
             $table->double('download_rate', 5, 2)->nullable()->default(100.00);
             $table->double('upload_rate', 5, 2)->nullable()->default(100.00);
-            $table->string('is_ppoe')->nullable();
-            $table->string('is_hotpost')->nullable();
+            $table->boolean('is_ppoe')->nullable();
+            $table->boolean('is_hotpost')->nullable();
 
             $table->uuid('created_by');
             $table->uuid('updated_by')->nullable();
