@@ -11,8 +11,12 @@ use App\Traits\UuidTrait;
 
 class User extends Authenticatable implements Authorizable
 {
-    use Notifiable,  HasRoles;
+    use Notifiable,  HasRoles, UuidTrait;
 
+    public $incrementing = false;
+
+    protected $keyType = 'string';
+    
     protected $guard_name = 'web';
     /**
      * The attributes that are mass assignable.
@@ -26,7 +30,7 @@ class User extends Authenticatable implements Authorizable
     // {
     //     return "{$this->id}";
     // }
-
+    
     /**
      * The attributes that should be hidden for arrays.
      *

@@ -1,14 +1,20 @@
 <?php
 
 use App\Traits\Blameable;
+use App\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Address extends Model
 {
-    use Blameable, SoftDeletes;
+    use Blameable, SoftDeletes, UuidTrait;
+
+    public $incrementing = false;
+
+    protected $keyType = 'string';
 
     protected $table = 'addresses';
+
     protected $fillable = [
         'lat',
         'lng',

@@ -18,7 +18,7 @@ class CreateProfilesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
-        DB::statement('ALTER TABLE acl_plans.profiles ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
+        // DB::statement('ALTER TABLE acl_plans.profiles ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
     }
 
     /**

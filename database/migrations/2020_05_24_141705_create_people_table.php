@@ -33,7 +33,7 @@ class CreatePeopleTable extends Migration
             $table->foreign('deleted_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('tenant_id')->references('id')->on('providers.tenants')->onDelete('cascade');
         });
-        DB::statement('ALTER TABLE people ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
+        // DB::statement('ALTER TABLE people ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
     }
 
     /**

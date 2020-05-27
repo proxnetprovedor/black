@@ -3,6 +3,7 @@
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Ramsey\Uuid\Uuid;
 
 class UsersSeeder extends Seeder
 {
@@ -14,6 +15,7 @@ class UsersSeeder extends Seeder
     public function run()
     {
         $user = User::create([
+            'id' => Uuid::uuid4()->toString(),
             'name' => 'Igor',
             'email' => 'igor.alexander.silva@gmail.com',
             'email_verified_at' => now(),
@@ -21,7 +23,7 @@ class UsersSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        dd($user->id);
+        // dd($user->id);
 
         $user->assignRole('administrator');
         

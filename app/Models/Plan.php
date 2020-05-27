@@ -10,13 +10,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Plan extends Model
 {
-    use Blameable, SoftDeletes;
+    use Blameable, SoftDeletes, UuidTrait;
+
+    public $incrementing = false;
+
+    protected $keyType = 'string';
 
     protected $table = 'acl_plans.plans';
-    protected $fillable = ['name', 'url', 'price', 'description',
-            'updated_by',
-            'deleted_by',
-        ];
+
+    protected $fillable = [
+        'name', 'url', 'price', 'description',
+        'updated_by',
+        'deleted_by',
+    ];
+    
     protected $dates = [
         'created_at', 'updated_at', 'deleted_at',
     ];

@@ -57,7 +57,7 @@ class CreateSubscriptionsTable extends Migration
 
             $table->timestamps();
         });
-        DB::statement('ALTER TABLE subscription.subscriptions ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
+        // DB::statement('ALTER TABLE subscription.subscriptions ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
     }
 
     /**

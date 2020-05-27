@@ -30,7 +30,7 @@ class CreateInstalatioonTypesTable extends Migration
             $table->foreign('tenant_id')->references('id')->on('providers.tenants')->onDelete('cascade');
             $table->timestamps();
         });
-        DB::statement('ALTER TABLE providers.instalation_types ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
+        // DB::statement('ALTER TABLE providers.instalation_types ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
     }
 
     /**

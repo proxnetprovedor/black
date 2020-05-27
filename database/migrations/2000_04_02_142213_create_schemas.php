@@ -12,7 +12,7 @@ class CreateSchemas extends Migration
         DB::unprepared('CREATE SCHEMA acl_plans');
         DB::unprepared('CREATE SCHEMA subscription');
         DB::unprepared('CREATE SCHEMA providers');
-        DB::statement('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";');
+        // DB::statement('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";');
     }
 
     public function down()
@@ -20,6 +20,6 @@ class CreateSchemas extends Migration
         DB::unprepared('DROP SCHEMA acl_plans CASCADE');
         DB::unprepared('DROP SCHEMA subscription CASCADE');
         DB::unprepared('DROP SCHEMA providers CASCADE');
-        DB::statement('DROP EXTENSION IF EXISTS "uuid-ossp";');
+        // DB::statement('DROP EXTENSION IF EXISTS "uuid-ossp";');
     }
 }

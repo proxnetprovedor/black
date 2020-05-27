@@ -30,7 +30,7 @@ class CreateContractsTable extends Migration
             $table->foreign('person_id')->references('id')->on('people')->onDelete('cascade');
             $table->timestamps();
         });
-        DB::statement('ALTER TABLE subscription.contracts ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
+        // DB::statement('ALTER TABLE subscription.contracts ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
     }
 
     /**

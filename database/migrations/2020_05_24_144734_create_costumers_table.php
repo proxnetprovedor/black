@@ -41,7 +41,7 @@ class CreateCostumersTable extends Migration
             
             
         });
-        DB::statement('ALTER TABLE subscription.costumers ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
+        // DB::statement('ALTER TABLE subscription.costumers ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
     }
 
     /**

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Moldes;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CtoSubscription extends Model
+class InternetPlan extends Model
 {
     //
 }

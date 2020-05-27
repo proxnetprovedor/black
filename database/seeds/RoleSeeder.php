@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
+use Ramsey\Uuid\Uuid;
+use App\Models\Role;
 
 class RoleSeeder extends Seeder
 {
@@ -12,7 +13,9 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $role = Role::create(['name' => 'administrator', 'guard_name'=>'web']);
+        Artisan::call('cache:clear');
+
+        $role = Role::create(['id' => Uuid::uuid4()->toString(), 'name' => 'administrator', 'guard_name'=>'web']);
         $role->givePermissionTo('users_manage');
     }
 }
