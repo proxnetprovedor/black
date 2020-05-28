@@ -1,6 +1,6 @@
 <?php
 
-//namespace App\Models;
+namespace App\Models;
 
 use App\Traits\Blameable;
 use App\Traits\UuidTrait;

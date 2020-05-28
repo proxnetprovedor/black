@@ -23,6 +23,10 @@ class DatabaseSeeder extends Seeder
         //factory(App\Models\Server::class, 100)->create();
 
         factory(App\Models\Ctos::class, 100)->create();
+        factory(App\Models\AccesPoint::class, 100)->create();
+        factory(App\Models\Instalation::class, 100)->create();
+        factory(App\Models\Subscription::class, 100)->create();
+        
         
     }
 }
