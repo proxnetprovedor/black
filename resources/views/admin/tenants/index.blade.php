@@ -8,19 +8,20 @@
 <div class="container-fluid mt--6">
     @include('_flash_messages')
     <div class="col-md-12">
-        <div class="card">
-          <div class="card-header card-header-primary card-header-icon">
-            <div class="card-icon">
-              <i class="material-icons">assignment</i>
-              <h6 class="card-title">Provedoras</h6>
-            </div>
-            
+      <div class="card">
+        
+        <div class="card-header card-header-primary card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">home</i>PROVEDORAS
           </div>
-          <div class="card-body">
-            <div class="toolbar">
-            </div>
-            <div class="material-datatables">
-              <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+          <div class="col-12 text-right"><a href="{{route('plans.create')}}" class="btn btn-sm btn-primary"> + Novo Plano</a></div>  
+          
+        </div>
+        
+        <div class="card-body">
+          
+          <div class="table-responsive">
+            <table class="table">
                   <thead>
                     <tr style="">
                       <th>Nome</th>
