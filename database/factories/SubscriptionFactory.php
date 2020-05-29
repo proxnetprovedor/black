@@ -12,8 +12,11 @@ $factory->define(Subscription::class, function (Faker $faker) {
     $person = factory(Person::class)->create(['tenant_id' => $tenant[0]->id]);
     $costumer = factory(Costumer::class)->create(['tenant_id' => $tenant[0]->id, 'person_id' => $person->id]);
     $contract = factory(Contract::class)->create(['tenant_id' => $tenant[0]->id, 'person_id' => $person->id]);
+    $id = Uuid::uuid4()->toString();
+    $address = factory(Address::class)->create(['tenant_id' =>  $tenant[0]->id, 'addressable_id' => $id, 'addressable_type' => 'App\Models\Subscription']);
+
     return [
-        'id' => Uuid::uuid4()->toString(),
+        'id' => $id,
         //'person_id' => $person->id,
         'created_by' => $user,
         'tenant_id' => $tenant[0]->id,

@@ -59,20 +59,28 @@
                 </a>
                 <div class="collapse" id="formsExamples">
                     <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('plans.index') }}">
-                        <span class="sidebar-mini"> RF </span>
-                        <span class="sidebar-normal"> Planos </span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('roles.index') }}">
-                        <span class="sidebar-mini"> RF </span>
-                        <span class="sidebar-normal"> Perfil de acesso </span>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('plans.index') }}">
+                            <span class="sidebar-mini"> RF </span>
+                            <span class="sidebar-normal"> Planos </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('roles.index') }}">
+                            <span class="sidebar-mini"> RF </span>
+                            <span class="sidebar-normal"> Perfil de acesso </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('tenants.index') }}">
+                            <span class="sidebar-mini"> PV </span>
+                            <span class="sidebar-normal"> Provedoras </span>
+                            </a>
+                        </li>
                     </ul>
+                    
                 </div>
+
             </li>
         </ul>
     </div>

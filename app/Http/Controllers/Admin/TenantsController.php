@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Model\Tenants;
+use App\Models\Tenants;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 
 class TenantsController extends Controller
 {
@@ -14,7 +16,8 @@ class TenantsController extends Controller
      */
     public function index()
     {
-        //
+        $tenants = Tenants::paginate();
+        return view('admin.tenants.index', compact('tenants'));
     }
 
     /**

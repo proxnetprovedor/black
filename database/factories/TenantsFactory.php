@@ -9,8 +9,10 @@ use Ramsey\Uuid\Uuid;
 
 $factory->define(Tenants::class, function (Faker $faker) {
     $user = User::all()->first()->id;
+    $id = Uuid::uuid4()->toString();
+    //$address = factory(Address::class)->create(['tenant_id' =>  null, 'addressable_id' => $id, 'addressable_type' => 'App\Models\Tenants']);
     return [
-        'id' => Uuid::uuid4()->toString(),
+        'id' => $id,
         'name' => $faker->company,
         'cnpj' => $faker->cnpj(false),
         'url' => $faker->url,

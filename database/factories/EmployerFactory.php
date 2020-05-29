@@ -15,8 +15,10 @@ $factory->define(Employer::class, function (Faker $faker) {
     //dd($tenant_id);
     $person = factory(Person::class)->create(['tenant_id' => $tenant_id]);
     //dd($person);
+    $id = Uuid::uuid4()->toString();
+    $address = factory(Address::class)->create(['tenant_id' =>  $tenant_id, 'addressable_id' => $id, 'addressable_type' => 'App\Models\Employer']);
     return [
-        'id' => Uuid::uuid4()->toString(),
+        'id' => $id,
         'name' => $faker->name,
         'function' => $faker->randomElement($array = array ('Administrativo', 'Tec. Informática', 'Analista de Sistemas', 'Gerente')),
         'working_hours' => 8,
