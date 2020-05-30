@@ -14,7 +14,7 @@
           <div class="card-icon">
             <i class="material-icons">home</i>PROVEDORAS
           </div>
-          <div class="col-12 text-right"><a href="{{route('plans.create')}}" class="btn btn-sm btn-primary"> + Novo Plano</a></div>  
+          <div class="col-12 text-right"><a href="{{route('tenants.create')}}" class="btn btn-sm btn-primary"> Nova Provedora</a></div>
           
         </div>
         

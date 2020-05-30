@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Tenants;
+use App\Models\Address;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests\TenantRequest;
+use Illuminate\Support\Facades\DB;
+use Auth;
 
 class TenantsController extends Controller
 {
@@ -27,7 +31,7 @@ class TenantsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.tenants.create');
     }
 
     /**
@@ -36,9 +40,36 @@ class TenantsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TenantRequest $request)
     {
-        //
+        $validated = $request->validated();
+        // $validator = Validator::make($request, [
+        //     'nome' => 'bail|required|min:3|max:120',
+        //     'cpf' => 'required|max:11|unique:pessoas',
+        //     'email' => 'required|max:150|unique:users',
+        // ]);
+        
+        // if ($validator->fails()) {
+        //     return redirect()->back()->withErrors($validator)->withInput();
+        // }
+        $user = Auth::user()->id;
+        $inputs = $request->all();
+        $inputs['created_by'] = $user;
+        DB::beginTransaction();
+        try {
+            $tenant = Tenants::create($inputs);
+            $inputs['addressable_type'] = 'App\Models\Tenants';
+            $inputs['addressable_id'] = $tenant->id;
+            $address = Address::create($inputs);
+
+            //DB::commit();
+            return view('admin.tenants.index');
+        } catch (\Throwable $th) {
+            throw $th;
+			DB::rollback();
+            return view('admin.empresas.create', compact('representante'));
+        }
+        
     }
 
     /**

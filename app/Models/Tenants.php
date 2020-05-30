@@ -38,4 +38,10 @@ class Tenants extends Model
         'created_at', 'updated_at',
         'deleted_at', 'subscription_date', 'expires_at'
     ];
+
+
+    public function address() {
+        $address = Address::where('addressable_type', 'App\Models\Tenants')->where('addressable_id', $this->id)->get();
+        return $address;
+    }
 }
