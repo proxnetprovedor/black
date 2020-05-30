@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Models;
+
 use App\Traits\Blameable;
 use App\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +15,7 @@ class Server extends Model
 
     protected $keyType = 'string';
 
-    protected $table = 'subscription.subscriptions';
+    protected $table = 'providers.servers';
     
     protected $fillable = [
         'name',

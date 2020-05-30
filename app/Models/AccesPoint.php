@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Models;
+
 use App\Traits\Blameable;
 use App\Traits\TenantTrait;
 use App\Traits\UuidTrait;

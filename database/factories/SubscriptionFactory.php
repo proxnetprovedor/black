@@ -1,12 +1,47 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace App\Models;
 
-use App\Models\Subscription;
 use Faker\Generator as Faker;
+use Ramsey\Uuid\Uuid;
 
 $factory->define(Subscription::class, function (Faker $faker) {
+    $user = User::all()->first()->id;
+    $tenant = Tenants::all()->random(1);
+    $person = factory(Person::class)->create(['tenant_id' => $tenant[0]->id]);
+    $costumer = factory(Costumer::class)->create(['tenant_id' => $tenant[0]->id, 'person_id' => $person->id]);
+    $contract = factory(Contract::class)->create(['tenant_id' => $tenant[0]->id, 'person_id' => $person->id]);
+    $id = Uuid::uuid4()->toString();
+    $address = factory(Address::class)->create(['tenant_id' =>  $tenant[0]->id, 'addressable_id' => $id, 'addressable_type' => 'App\Models\Subscription']);
+
     return [
-        //
+        'id' => $id,
+        //'person_id' => $person->id,
+        'created_by' => $user,
+        'tenant_id' => $tenant[0]->id,
+        'auto_block' => true,
+        'costumer_id' => $costumer->id,
+        'contract_id' => $contract->id
+        // 'pay_day' = ,
+        // 'pay_discount',
+        // 'pay_exta',
+        // 'has_to_pay'
+        // 'days_to_block'
+        // 'auth_type',
+        // 'login',
+        // 'password', 
+        // 'ip_address',
+        // 'mac_address',
+        
+        // 'instalation_id'
+        // 'server_id'
+        
+        // 'employee_id'
+        
+        // 'internet_plan_id'
+        
+        
+        // 'address_charge_id'
     ];
 });

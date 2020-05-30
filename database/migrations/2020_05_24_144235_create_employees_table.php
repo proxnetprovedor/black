@@ -19,20 +19,21 @@ class CreateEmployeesTable extends Migration
             $table->string('function', 100);
             $table->integer('working_hours')->unsigned()->nullable()->default(8);
             $table->double('salary', 6, 2)->nullable()->default(1070.45);
-            $table->uuid('plan_id');
+            $table->uuid('plan_id')->nullable();
 
             $table->uuid('created_by');
             $table->uuid('updated_by')->nullable();
             $table->uuid('deleted_by')->nullable();
 
             $table->uuid('person_id');
-            $table->uuid('user_id')->nullable(); // Acho q nao precisa
+            $table->uuid('user_id')->nullable();
             $table->uuid('tenant_id')->nullable();
 
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');
             $table->foreign('deleted_by')->references('id')->on('users');
             
+            $table->foreign('plan_id')->references('id')->on('acl_plans.plans')->onDelete('cascade');
             $table->foreign('person_id')->references('id')->on('people')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('tenant_id')->references('id')->on('providers.tenants')->onDelete('cascade');

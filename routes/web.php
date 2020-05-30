@@ -21,7 +21,6 @@ Route::prefix('admin')
 	->namespace('Admin')
 	->middleware('auth')
 	->group(function () {
-
 		/**
 		 * Roles de Plano e Permission
 		 */
@@ -53,7 +52,15 @@ Route::prefix('admin')
 		Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 		Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 		Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
-	});
+
+
+
+		/**
+		 * Routes Tenants
+		 */
+		Route::resource('/tenants', 'TenantsController');
+	}
+);
 
 
 
