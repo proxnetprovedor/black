@@ -88,7 +88,7 @@ class RolesController extends Controller
 
         $role->load('permissions');
 
-        return view('roles.show', compact('role'));
+        return view('admin.roles.show', compact('role'));
     }
 
 

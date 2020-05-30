@@ -3,9 +3,9 @@
         @csrf
         <div class="col-md-6">
             <div class="form-group {{ $errors->has('name') ? 'is-invalid' : '' }}">
-                <label class="form-control-label" for="name">Nome </label> <span style="color:#f5365c ">*</span>
+                <label class="bmd-label-floating" for="name">Nome </label> <span style="color:#f5365c ">*</span>
                 <input type="text" name="name" id="name"
-                    class="form-control form-control-sm {{ $errors->has('name') ? 'is-invalid' : '' }}"
+                    class="form-control  {{ $errors->has('name') ? 'is-invalid' : '' }}"
                     placeholder="Nome"
                     value="{{ isset($plan) && $plan->name && !old('name') != null ? $plan->name  : old('name')  }}"
                     autofocus>
@@ -19,10 +19,10 @@
 
         <div class="col-md-4">
             <div class="form-group {{ $errors->has('description') ? 'is-invalid' : '' }}">
-                <label class="form-control-label" for="description">Descrição</label> <span
+                <label class="bmd-label-floating" for="description">Descrição</label> <span
                     style="color:#f5365c ">*</span>
                 <input type="text" name="description" id="description"
-                    class="form-control form-control-sm {{ $errors->has('description') ? 'is-invalid' : '' }}"
+                    class="form-control  {{ $errors->has('description') ? 'is-invalid' : '' }}"
                     placeholder="Descrição"
                     value="{{ isset($plan) && $plan->description && !old('description') != null ? $plan->description  : old('description')  }}"
                     v-mask="'###.###.###-##'">
@@ -37,9 +37,9 @@
 
         <div class="col-md-6">
             <div class="form-group {{ $errors->has('price') ? 'is-invalid' : '' }}">
-                <label class="form-control-label" for="price">Preço </label> <span style="color:#f5365c ">*</span>
+                <label class="bmd-label-floating" for="price">Preço </label> <span style="color:#f5365c ">*</span>
                 <input type="text" name="price" id="price"
-                    class="form-control form-control-sm {{ $errors->has('price') ? 'is-invalid' : '' }}"
+                    class="form-control  {{ $errors->has('price') ? 'is-invalid' : '' }}"
                     placeholder="preço"
                     value="{{ isset($plan) && $plan->price && !old('price') != null ? $plan->price  : old('price')  }}"
                     autofocus>

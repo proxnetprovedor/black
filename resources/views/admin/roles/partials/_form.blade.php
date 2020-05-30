@@ -1,17 +1,21 @@
-<div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-    <label for="name">Perfil de Acesso *</label>
-    <input type="text" id="name" name="name" class="form-control"
-        value="{{ old('name', isset($role) ? $role->name : '') }}" required>
-    @if($errors->has('name'))
-    <em class="invalid-feedback">
-        {{ $errors->first('name') }}
-    </em>
-    @endif
+<div class="col-md-6">
+
+
+    <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
+        <label for="name" class="bmd-label-floating">Perfil de Acesso *</label>
+        <input type="text" id="name" name="name" class="form-control"
+            value="{{ old('name', isset($role) ? $role->name : '') }}" required>
+        @if($errors->has('name'))
+        <em class="invalid-feedback">
+            {{ $errors->first('name') }}
+        </em>
+        @endif
+
+    </div>
 
 </div>
-
 <div class="form-group">
-    <label for="permissions">Permissões *</label>
+    <label for="permissions" class="bmd-label-floating">Permissões *</label>
     <br>
     @foreach ($permissions as $id => $permissions)
     <div class="custom-control custom-checkbox custom-control-inline mb-2">
