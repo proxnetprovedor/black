@@ -5,10 +5,13 @@
 
 @section('content')
 
-<div class="container-fluid mt--6">
+<div class="col-md-12">
     @include('_flash_messages')
     <div class="card">
-        <div class="card-header">
+        <div class="card-header card-header-rose card-header-icon">
+            <div class="card-icon">
+                <i class="material-icons">assignment</i>
+            </div>
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <h3>Criar um <strong> Perfil de Acesso </strong></h3>
@@ -24,7 +27,7 @@
         <div class="card-body">
             <form action="{{ route("roles.store") }}" method="POST" enctype="multipart/form-data">
                 @csrf
-              @include('admin.roles.partials._form')
+                @include('admin.roles.partials._form')
                 <div>
                     <button class="btn btn-success mt-4" type="submit">Salvar</button>
                 </div>

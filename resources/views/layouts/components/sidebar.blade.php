@@ -53,7 +53,7 @@
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#formsExamples" aria-expanded="true">
                     <i class="material-icons">content_paste</i>
-                    <p> Admin
+                    <p> Controle de Acesso
                     <b class="caret"></b>
                     </p>
                 </a>
@@ -61,14 +61,20 @@
                     <ul class="nav">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('plans.index') }}">
-                        <span class="sidebar-mini"> RF </span>
+                        <span class="sidebar-mini"> PL </span>
                         <span class="sidebar-normal"> Planos </span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('roles.index') }}">
-                        <span class="sidebar-mini"> RF </span>
-                        <span class="sidebar-normal"> Perfil de acesso </span>
+                        <span class="sidebar-mini"> PA </span>
+                        <span class="sidebar-normal"> Perfil de acesso (usuários) </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('permissions.index') }}">
+                        <span class="sidebar-mini"> PE </span>
+                        <span class="sidebar-normal"> Permissões </span>
                         </a>
                     </li>
                     </ul>
