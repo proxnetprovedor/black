@@ -44,7 +44,7 @@
                         </p>
                       </a>
                       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                        <a class="dropdown-item" href="{{route('tenants.show', $item)}}">Detalhes</a>
+                        <a class="dropdown-item" href="{{route('tenants.show', $item->id)}}">Detalhes</a>
                         <a class="dropdown-item" href="{{route('tenants.edit', $item->id)}}">Editar</a>
                         <a class="dropdown-item" href="">Excluir</a>
                       </div>

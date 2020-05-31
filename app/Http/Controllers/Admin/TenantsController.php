@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Tenants;
 use App\Models\Address;
+use App\Models\Server;
+use App\Models\Ctos;
+use App\Models\Instalation;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -82,9 +85,14 @@ class TenantsController extends Controller
      * @param  \App\Model\Tenants  $tenants
      * @return \Illuminate\Http\Response
      */
-    public function show(Tenants $tenants)
+    public function show($id)
     {
-        //
+        $tenants = Tenants::find($id);
+        $servers = Server::where('tenant_id', $id)->paginate(5);
+        $ctos = Ctos::where('tenant_id', $id)->paginate(5);
+        $instalations = Instalation::where('tenant_id', $id)->paginate(5);
+        //dd($servers);
+        return view('admin.tenants.show', compact('servers', 'ctos', 'instalations'));
     }
 
     /**
