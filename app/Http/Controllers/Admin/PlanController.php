@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdatePlan;
 use App\Models\Plan;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 
 class PlanController extends Controller
@@ -35,7 +36,9 @@ class PlanController extends Controller
      */
     public function create()
     {
-        return view('admin.plans.create');
+        $profiles = Profile::latest()->get();
+
+        return view('admin.plans.create', compact('profiles'));
     }
 
     /**
@@ -46,7 +49,11 @@ class PlanController extends Controller
      */
     public function store(StoreUpdatePlan $request)
     {
-        $plan = $this->repository->create($request->all());
+        $plan = $this->repository->create($request->except('profile'));
+
+        $profiles = $request->input('profile') ? $request->input('profile') : [];
+
+        $plan->sync($profiles);
 
         return redirect()->route('plans.index')->with('succes', 'Plano ' . $plan->name . 'cadastrado com sucesso !');
     }
@@ -70,7 +77,9 @@ class PlanController extends Controller
      */
     public function edit(Plan $plan)
     {
-        return view('admin.plans.edit', compact('plan'));
+        $profiles = Profile::latest()->get();
+        
+        return view('admin.plans.edit', compact('plan', 'profiles'));
     }
 
     /**
@@ -82,7 +91,11 @@ class PlanController extends Controller
      */
     public function update(Plan $plan, StoreUpdatePlan $request)
     {
-        $plan->update($request->all());
+        $plan->update($request->except('profile'));
+
+        $profiles = $request->input('profile') ? $request->input('profile') : [];
+
+        $plan->sync($profiles);
 
         return redirect()->route('plans.index')->with('succes', 'Plano ' . $plan->name . 'editado com sucesso !');
     }

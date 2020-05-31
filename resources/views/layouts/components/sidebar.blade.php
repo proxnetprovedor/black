@@ -15,30 +15,30 @@
             <div class="user-info">
                 <a data-toggle="collapse" href="#collapseExample" class="username">
                     <span>
-                    Tania Andrew
-                    <b class="caret"></b>
+                        Tania Andrew
+                        <b class="caret"></b>
                     </span>
                 </a>
                 <div class="collapse" id="collapseExample">
                     <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                        <span class="sidebar-mini"> MP </span>
-                        <span class="sidebar-normal"> My Profile </span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                        <span class="sidebar-mini"> EP </span>
-                        <span class="sidebar-normal"> Edit Profile </span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                        <span class="sidebar-mini"> S </span>
-                        <span class="sidebar-normal"> Settings </span>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="sidebar-mini"> MP </span>
+                                <span class="sidebar-normal"> My Profile </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="sidebar-mini"> EP </span>
+                                <span class="sidebar-normal"> Edit Profile </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="sidebar-mini"> S </span>
+                                <span class="sidebar-normal"> Settings </span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -54,31 +54,41 @@
                 <a class="nav-link" data-toggle="collapse" href="#formsExamples" aria-expanded="true">
                     <i class="material-icons">content_paste</i>
                     <p> Controle de Acesso
-                    <b class="caret"></b>
+                        <b class="caret"></b>
                     </p>
                 </a>
                 <div class="collapse" id="formsExamples">
                     <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('plans.index') }}">
-                        <span class="sidebar-mini"> PL </span>
-                        <span class="sidebar-normal"> Planos </span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('roles.index') }}">
-                        <span class="sidebar-mini"> PA </span>
-                        <span class="sidebar-normal"> Perfil de acesso (usuários) </span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('permissions.index') }}">
-                        <span class="sidebar-mini"> PE </span>
-                        <span class="sidebar-normal"> Permissões </span>
-                        </a>
-                    </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('plans.index') }}">
+                                <span class="sidebar-mini"> PL </span>
+                                <span class="sidebar-normal"> Planos </span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('profiles.index') }}">
+                                <span class="sidebar-mini"> PP </span>
+                                <span class="sidebar-normal"> Perfil de acesso (provedores) </span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('roles.index') }}">
+                                <span class="sidebar-mini"> PA </span>
+                                <span class="sidebar-normal"> Perfil de acesso (usuários) </span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('permissions.index') }}">
+                                <span class="sidebar-mini"> PE </span>
+                                <span class="sidebar-normal"> Permissões </span>
+                            </a>
+                        </li>
                     </ul>
-                    
+
                 </div>
 
             </li>

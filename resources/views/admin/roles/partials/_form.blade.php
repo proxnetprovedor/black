@@ -1,7 +1,7 @@
 <div class="col-md-6">
 
 
-    <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
+    <div class="form-group {{ $errors->has('name') ? 'has-danger' : '' }}">
         <label for="name" class="bmd-label-floating">Perfil de Acesso *</label>
         <input type="text" id="name" name="name" class="form-control"
             value="{{ old('name', isset($role) ? $role->name : '') }}" required>

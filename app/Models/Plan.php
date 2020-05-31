@@ -23,7 +23,7 @@ class Plan extends Model
         'updated_by',
         'deleted_by',
     ];
-    
+
     protected $dates = [
         'created_at', 'updated_at', 'deleted_at',
     ];
@@ -31,5 +31,15 @@ class Plan extends Model
     public function details()
     {
         return $this->hasMany(DetailPlan::class);
+    }
+
+    public function profiles()
+    {
+        return $this->belongsToMany(Profile::class);
+    }
+
+    public function tenants()
+    {
+        return $this->hasMany(Tenant::class);
     }
 }

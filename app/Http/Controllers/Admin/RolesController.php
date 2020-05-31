@@ -75,9 +75,10 @@ class RolesController extends Controller
      */
     public function update(UpdateRolesRequest $request, Role $role)
     {
-        //dd($request->all());
+
         $role->update($request->except('permission'));
         $permissions = $request->input('permission') ? $request->input('permission') : [];
+
         $role->syncPermissions($permissions);
 
         return redirect()->route('roles.index')->with('success', 'Perfil de acesso atualizado com sucesso !');
