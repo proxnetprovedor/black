@@ -35,7 +35,7 @@ class Plan extends Model
 
     public function profiles()
     {
-        return $this->belongsToMany(Profile::class);
+        return $this->belongsToMany(Profile::class, 'acl_plans.profile_plan' );
     }
 
     public function tenants()

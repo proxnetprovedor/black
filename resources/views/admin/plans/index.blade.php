@@ -71,6 +71,7 @@
                                     <div class="dropdown-menu  dropdown-menu-arrow" style="">
                                         <a class="dropdown-item" href="{{route('plans.edit', $plan)}}">Editar</a>
                                         <a class="dropdown-item" href="{{route('plans.show', $plan)}}">Visualizar</a>
+                                        <a class="dropdown-item" href="{{ route('plans.profiles', $plan) }}">Perfis de acesso</a>
                                     </div>
                                 </div>
                             </td>

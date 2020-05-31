@@ -22,7 +22,7 @@ class PlanProfileController extends Controller
         return view('admin.profiles.plans.plans', compact('profile', 'plans'));
     }
 
-    public function syncPlanProfile(Request $request, Profile $profile)
+    public function syncProfilePlan(Request $request, Profile $profile)
     {
         $plans = $request->input('plan') ?? [];
 
@@ -30,4 +30,27 @@ class PlanProfileController extends Controller
 
         return redirect()->route('profiles.index')->with('success', 'Plano sincronizados com sucesso !');
     }
+
+    public function profiles(Plan $plan)
+    {
+       
+        if (!$plan) {
+            return redirect()->back();
+        }
+
+
+        $profiles = Profile::latest()->get();
+
+        return view('admin.plans.profiles.profiles', compact('profiles', 'plan'));
+    }
+
+    public function syncPlanProfile(Request $request, Plan $plan)
+    {
+        $profiles = $request->input('profile') ?? [];
+
+        $plan->profiles()->sync($profiles);
+
+        return redirect()->route('plans.index')->with('success', 'Perfil de acesso sincronizados com sucesso !');
+    }
+
 }

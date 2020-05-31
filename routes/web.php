@@ -41,7 +41,9 @@ Route::prefix('admin')
 			 * Profile x Plans
 			 */
 			Route::get('profiles/{profile}/plans', 'PlanProfileController@plans')->name('profiles.plans');
-			Route::post('profiles/{profile}/plans', 'PlanProfileController@syncPlanProfile')->name('profiles.plans.sync');
+			Route::post('profiles/{profile}/plans', 'PlanProfileController@syncProfilePlan')->name('profiles.plans.sync');
+			Route::get('plans/{plan}/profiles', 'PlanProfileController@profiles')->name('plans.profiles');
+			Route::post('plans/{plan}/profiles', 'PlanProfileController@syncPlanProfile')->name('plans.profiles.sync');
 
 			/**
 			 * Users
