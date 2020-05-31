@@ -10,13 +10,11 @@
     <div class="col-md-12">
       <div class="card">
         
-        <div class="card-header card-header-primary card-header-icon">
-          <div class="card-icon">
-            <i class="material-icons">home</i>PROVEDORAS
-          </div>
-          <div class="col-12 text-right"><a href="{{route('tenants.create')}}" class="btn btn-sm btn-primary"> Nova Provedora</a></div>
-          
-        </div>
+        @include('layouts.components._card-header', 
+        [
+          'icon'=>'home', 'tittle'=>"PROVEDORES", 
+          'button'=>['active'=>true, 'tittle'=>'Novo', 'route'=>route('tenants.create')]
+        ])
         
         <div class="card-body">
           
@@ -39,15 +37,26 @@
                     <td>{{$item->email}}</td>
                     <td>{{$item->active}}</td>
                     <td class="td-actions text-right">
-                      <button type="button" rel="tooltip" class="btn btn-info">
+                      <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">more_vert</i>
+                        <p class="d-lg-none d-md-block">
+                          Account
+                        </p>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                        <a class="dropdown-item" href="{{route('tenants.show', $item->id)}}">Detalhes</a>
+                        <a class="dropdown-item" href="{{route('tenants.edit', $item->id)}}">Editar</a>
+                        <a class="dropdown-item" href="">Excluir</a>
+                      </div>
+                      {{-- <button type="button" rel="tooltip" class="btn btn-info">
                         <i class="material-icons">person</i>
-                      </button>
-                      <button type="button" rel="tooltip" class="btn btn-success">
+                      </button> --}}
+                      {{-- <button type="button" rel="tooltip" class="btn btn-success">
                         <i class="material-icons">edit</i>
                       </button>
                       <button type="button" rel="tooltip" class="btn btn-danger">
                         <i class="material-icons">close</i>
-                      </button>
+                      </button> --}}
                     </td>
                   </tr>  
                 @endforeach

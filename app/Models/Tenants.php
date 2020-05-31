@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tenants extends Model
 {
-    use Blameable, SoftDeletes, UuidTrait;
+    use Blameable, SoftDeletes;
+    use UuidTrait;
 
     public $incrementing = false;
 
