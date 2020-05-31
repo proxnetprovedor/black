@@ -23,11 +23,7 @@ Route::prefix('admin')
 	->group(
 		function () {
 
-			/**
-			 * Permissions
-			 */
 
-			 Route::resource('permissions', 'PermissionController');
 			/**
 			 * Plano e Permission
 			 */

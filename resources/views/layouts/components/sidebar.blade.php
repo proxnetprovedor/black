@@ -81,12 +81,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('permissions.index') }}">
-                                <span class="sidebar-mini"> PE </span>
-                                <span class="sidebar-normal"> Permissões </span>
-                            </a>
-                        </li>
+                       
                     </ul>
 
                 </div>

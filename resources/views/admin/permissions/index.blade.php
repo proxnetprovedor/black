@@ -15,7 +15,7 @@
             </div>
             <div class="row align-items-center">
                 <div class="col-8">
-                    <h3 class="card-title">Perfis de acesso</h3>
+                    <h3 class="card-title">Permissões do sistema</h3>
                 </div>
                 <div class="col-4 text-right">
                     <a href="{{route('permissions.create')}}" class="btn btn-sm btn-primary">Nova permissão
@@ -51,7 +51,7 @@
                                 {{ $permission->name ?? '' }}
                             </td>
                             <td>
-                               {{ $permission->description }}
+                               {{ $permission->description ?? '' }}
                             </td>
 
                             <td>
@@ -75,6 +75,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $permissions->links() }}
             </div>
         </div>
 
