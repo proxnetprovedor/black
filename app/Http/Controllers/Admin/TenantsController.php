@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TenantRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Auth;
 
 class TenantsController extends Controller
@@ -38,19 +39,21 @@ class TenantsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response TenantRequest
      */
     public function store(TenantRequest $request)
     {
         $validated = $request->validated();
+        
         // $validator = Validator::make($request, [
-        //     'nome' => 'bail|required|min:3|max:120',
-        //     'cpf' => 'required|max:11|unique:pessoas',
+        //     'name' => 'bail|required|min:3|max:120',
+        //     'cnpj' => 'required|max:11|unique:pessoas',
         //     'email' => 'required|max:150|unique:users',
         // ]);
         
-        // if ($validator->fails()) {
-        //     return redirect()->back()->withErrors($validator)->withInput();
+        // if ($validated->fails()) {
+        //     dd($validated);
+        //     return redirect()->back()->withErrors($validated)->withInput();
         // }
         $user = Auth::user()->id;
         $inputs = $request->all();
@@ -62,12 +65,13 @@ class TenantsController extends Controller
             $inputs['addressable_id'] = $tenant->id;
             $address = Address::create($inputs);
 
-            //DB::commit();
-            return view('admin.tenants.index');
+            DB::commit();
+            return \redirect(\route('tenants.index'));
+            //return view('admin.tenants.index');
         } catch (\Throwable $th) {
             throw $th;
 			DB::rollback();
-            return view('admin.empresas.create', compact('representante'));
+            //return view('admin.empresas.create', compact('representante'));
         }
         
     }
@@ -89,9 +93,13 @@ class TenantsController extends Controller
      * @param  \App\Model\Tenants  $tenants
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tenants $tenants)
+    public function edit($id)
     {
-        //
+        $tenant = Tenants::find($id);
+        //dd($tenant->address()[0]);
+        $address  = $tenant->address()[0];
+        return view('admin.tenants.edit', compact('tenant', 'address'));
+        
     }
 
     /**
@@ -101,9 +109,13 @@ class TenantsController extends Controller
      * @param  \App\Model\Tenants  $tenants
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tenants $tenants)
+    public function update(Tenants $tenant, Request $request)
     {
-        //
+        //$input = $request->all();
+        //$tenant = Tenants::find($input['id']);
+        $tenant->update($request->all());
+        return redirect(route('tenants.index'));
+        //dd($tenant);
     }
 
     /**

@@ -77,6 +77,12 @@
                         <span class="sidebar-normal"> Permissões </span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('tenants.index') }}">
+                        <span class="sidebar-mini"> PR </span>
+                        <span class="sidebar-normal"> Provedores </span>
+                        </a>
+                    </li>
                     </ul>
                     
                 </div>

@@ -8,6 +8,9 @@ use Ramsey\Uuid\Uuid;
 
 $factory->define(Address::class, function (Faker $faker, $params) {
     $user = User::all()->first()->id;
+    if($params['addressable_type'] == 'App\Models\Tenants') {
+        var_dump($params['addressable_id']);
+    }
     return [
         'id' => Uuid::uuid4()->toString(),
         'lat' => $faker->latitude($min = 2.72, $max = 2.86),
