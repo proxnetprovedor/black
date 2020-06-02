@@ -8,8 +8,8 @@ use Ramsey\Uuid\Uuid;
 
 $factory->define(Address::class, function (Faker $faker, $params) {
     $user = User::all()->first()->id;
-    if($params['addressable_type'] == 'App\Models\Tenants') {
-        var_dump($params['addressable_id']);
+    if($params['addressable_type'] == 'App\Models\Tenant') {
+       // var_dump($params['addressable_id']);
     }
     return [
         'id' => Uuid::uuid4()->toString(),

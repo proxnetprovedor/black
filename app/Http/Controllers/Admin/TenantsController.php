@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Tenants;
+use App\Models\Tenant;
 use App\Models\Address;
 use App\Models\Server;
 use App\Models\Ctos;
@@ -24,7 +24,7 @@ class TenantsController extends Controller
      */
     public function index()
     {
-        $tenants = Tenants::paginate();
+        $tenants = Tenant::paginate();
         return view('admin.tenants.index', compact('tenants'));
     }
 
@@ -63,8 +63,8 @@ class TenantsController extends Controller
         $inputs['created_by'] = $user;
         DB::beginTransaction();
         try {
-            $tenant = Tenants::create($inputs);
-            $inputs['addressable_type'] = 'App\Models\Tenants';
+            $tenant = Tenant::create($inputs);
+            $inputs['addressable_type'] = 'App\Models\Tenant';
             $inputs['addressable_id'] = $tenant->id;
             $address = Address::create($inputs);
 
@@ -82,12 +82,12 @@ class TenantsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\Tenants  $tenants
+     * @param  \App\Model\Tenant  $tenants
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $tenants = Tenants::find($id);
+        $tenants = Tenant::find($id);
         $servers = Server::where('tenant_id', $id)->paginate(5);
         $ctos = Ctos::where('tenant_id', $id)->paginate(5);
         $instalations = Instalation::where('tenant_id', $id)->paginate(5);
@@ -98,12 +98,12 @@ class TenantsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\Tenants  $tenants
+     * @param  \App\Model\Tenant  $tenants
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $tenant = Tenants::find($id);
+        $tenant = Tenant::find($id);
         //dd($tenant->address()[0]);
         $address  = $tenant->address()[0];
         return view('admin.tenants.edit', compact('tenant', 'address'));
@@ -114,13 +114,13 @@ class TenantsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\Tenants  $tenants
+     * @param  \App\Model\Tenant  $tenant
      * @return \Illuminate\Http\Response
      */
-    public function update(Tenants $tenant, Request $request)
+    public function update(Tenant $tenant, Request $request)
     {
         //$input = $request->all();
-        //$tenant = Tenants::find($input['id']);
+        //$tenant = Tenant::find($input['id']);
         $tenant->update($request->all());
         return redirect(route('tenants.index'));
         //dd($tenant);
@@ -129,10 +129,10 @@ class TenantsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\Tenants  $tenants
+     * @param  \App\Model\Tenant  $tenant
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tenants $tenants)
+    public function destroy(Tenant $tenants)
     {
         //
     }

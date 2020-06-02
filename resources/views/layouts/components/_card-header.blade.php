@@ -1,4 +1,4 @@
-<div class="card-header card-header-rose card-header-icon">
+<div class="card-header card-header-primary card-header-icon">
     <div class="card-icon" style="" >
       <i class="material-icons" style="">{{$icon}}</i>
       {{-- <p style="text-align: center">{{$tittle}}</p> --}}

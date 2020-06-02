@@ -9,7 +9,7 @@ use Ramsey\Uuid\Uuid;
 
 $factory->define(Employer::class, function (Faker $faker) {
     $user = User::all()->first()->id;
-    $tenant = Tenants::all()->random(1);
+    $tenant = Tenant::all()->random(1);
     //dd($tenant[0]->id);
     $tenant_id = $tenant[0]->id;
     //dd($tenant_id);

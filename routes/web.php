@@ -17,10 +17,7 @@ Auth::routes();
 
 
 
-Route::prefix('admin')
-	->namespace('Admin')
-	->middleware('auth')
-	->group(
+Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(
 		function () {
 
 
@@ -78,7 +75,12 @@ Route::prefix('admin')
 	);
 
 
-
+Route::prefix('tenant')->namespace('Tenant')->middleware('auth')->group(
+	function() {
+		Route::resource('servers', 'ServerController');
+		Route::resource('ctos', 'CtosController');
+	}
+);
 
 Route::get('/home', 'HomeController@index')->name('home');
 

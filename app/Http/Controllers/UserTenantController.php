@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Server;
+use App\Models\UserTenant;
 use Illuminate\Http\Request;
 
-class ServerController extends Controller
+class UserTenantController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class ServerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Server  $server
+     * @param  \App\Models\UserTenant  $userTenant
      * @return \Illuminate\Http\Response
      */
-    public function show(Server $server)
+    public function show(UserTenant $userTenant)
     {
         //
     }
@@ -52,10 +52,10 @@ class ServerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Server  $server
+     * @param  \App\Models\UserTenant  $userTenant
      * @return \Illuminate\Http\Response
      */
-    public function edit(Server $server)
+    public function edit(UserTenant $userTenant)
     {
         //
     }
@@ -64,10 +64,10 @@ class ServerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Server  $server
+     * @param  \App\Models\UserTenant  $userTenant
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Server $server)
+    public function update(Request $request, UserTenant $userTenant)
     {
         //
     }
@@ -75,10 +75,10 @@ class ServerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Server  $server
+     * @param  \App\Models\UserTenant  $userTenant
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Server $server)
+    public function destroy(UserTenant $userTenant)
     {
         //
     }

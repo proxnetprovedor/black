@@ -8,7 +8,7 @@ use Ramsey\Uuid\Uuid;
 
 $factory->define(Instalation::class, function (Faker $faker) {
     $user = User::all()->first()->id;
-    $tenant = Tenants::all()->random(1);
+    $tenant = Tenant::all()->random(1);
     $accesPoint = AccesPoint::all()->random(1);
     $cto = Ctos::all()->random(1);
     return [

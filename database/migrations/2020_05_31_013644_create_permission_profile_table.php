@@ -38,6 +38,6 @@ class CreatePermissionProfileTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permission_profile');
+        Schema::dropIfExists('acl_plans.permission_profile');
     }
 }

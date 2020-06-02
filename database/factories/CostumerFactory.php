@@ -8,7 +8,7 @@ use Ramsey\Uuid\Uuid;
 
 $factory->define(Costumer::class, function (Faker $faker, $params) {
     $user = User::all()->first()->id;
-    //$tenant = Tenants::all()->random(1);
+    //$tenant = Tenant::all()->random(1);
     $id = Uuid::uuid4()->toString();
     $address = factory(Address::class)->create(['tenant_id' => $params['tenant_id'], 'addressable_id' => $id, 'addressable_type' => 'App\Models\Costumer']);
     return [

@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Tenant;
 
-use App\Models\Ctos;
+use App\Models\Server;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Auth;
 
-class CtosController extends Controller
+class ServerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,9 @@ class CtosController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $tenant = $user->tenant->first();
+        dd($tenant->servers);
     }
 
     /**
@@ -41,10 +45,10 @@ class CtosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Ctos  $ctos
+     * @param  \App\Models\Server  $server
      * @return \Illuminate\Http\Response
      */
-    public function show(Ctos $ctos)
+    public function show(Server $server)
     {
         //
     }
@@ -52,10 +56,10 @@ class CtosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Ctos  $ctos
+     * @param  \App\Models\Server  $server
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ctos $ctos)
+    public function edit(Server $server)
     {
         //
     }
@@ -64,10 +68,10 @@ class CtosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Ctos  $ctos
+     * @param  \App\Models\Server  $server
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ctos $ctos)
+    public function update(Request $request, Server $server)
     {
         //
     }
@@ -75,10 +79,10 @@ class CtosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Ctos  $ctos
+     * @param  \App\Models\Server  $server
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ctos $ctos)
+    public function destroy(Server $server)
     {
         //
     }

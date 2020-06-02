@@ -9,7 +9,7 @@ use Ramsey\Uuid\Uuid;
 
 $factory->define(Person::class, function (Faker $faker, $params) {
     $user = User::all()->first()->id;
-    //$tenant = Tenants::all()->random(1);
+    //$tenant = Tenant::all()->random(1);
     return [
         'id' => Uuid::uuid4()->toString(),
         

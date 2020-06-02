@@ -7,7 +7,7 @@ use App\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Tenants extends Model
+class Tenant extends Model
 {
     use Blameable, SoftDeletes;
     use UuidTrait;
@@ -40,9 +40,19 @@ class Tenants extends Model
         'deleted_at', 'subscription_date', 'expires_at'
     ];
 
+    protected $with = ['servers'];
 
     public function address() {
         $address = Address::where('addressable_type', 'App\Models\Tenants')->where('addressable_id', $this->id)->get();
         return $address;
+    }
+
+    public function servers()
+    {
+        return $this->hasMany(Server::class);
+    }
+    public function ctos()
+    {
+        return $this->hasMany(Ctos::class);
     }
 }
