@@ -7,20 +7,11 @@
 <div class="col-md-12">
     @include('_flash_messages')
     <div class="card">
-        <div class="card-header card-header-rose card-header-icon">
-            <div class="card-icon">
-                <i class="material-icons">assignment</i>
-            </div>
-            <div class="row align-items-center">
-                <div class="col-8">
-                    <h3 class="card-title"> Detalhes do perfil de acesso <strong> {{$role->name}} </strong></h3>
-                </div>
-                <div class="col-4 text-right">
-                    <a href="{{route('plans.index')}}" class="btn btn-sm btn-primary">Voltar
-                        para a lista</a>
-                </div>
-            </div>
-        </div>
+        @include('layouts.components._card-header', 
+        [
+        'icon'=>'assignment', 'tittle'=>"Detalhes do perfil de acesso $role->name", 
+        'button'=>['active'=>true, 'tittle'=>'Voltar', 'route'=>route('roles.index')]
+        ])
         <div class="card-body">
             <ul>
                 <li>

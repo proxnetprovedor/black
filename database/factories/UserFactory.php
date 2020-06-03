@@ -5,6 +5,7 @@ namespace App\Models;
 //use App\User;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
+use Ramsey\Uuid\Uuid;
 
 /*
 |--------------------------------------------------------------------------

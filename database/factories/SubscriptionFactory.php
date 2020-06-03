@@ -8,7 +8,7 @@ use Ramsey\Uuid\Uuid;
 
 $factory->define(Subscription::class, function (Faker $faker) {
     $user = User::all()->first()->id;
-    $tenant = Tenants::all()->random(1);
+    $tenant = Tenant::all()->random(1);
     $person = factory(Person::class)->create(['tenant_id' => $tenant[0]->id]);
     $costumer = factory(Costumer::class)->create(['tenant_id' => $tenant[0]->id, 'person_id' => $person->id]);
     $contract = factory(Contract::class)->create(['tenant_id' => $tenant[0]->id, 'person_id' => $person->id]);

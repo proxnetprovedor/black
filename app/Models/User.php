@@ -26,11 +26,11 @@ class User extends Authenticatable implements Authorizable
     protected $fillable = [
         'name', 'email', 'password',
     ];
-    // public function getIdStrAttribute()
-    // {
-    //     return "{$this->id}";
-    // }
-    
+
+    public function tenant()
+    {
+        return $this->belongsToMany(Tenant::class, 'user_tenants', 'user_id', 'tenant_id');
+    }
     /**
      * The attributes that should be hidden for arrays.
      *

@@ -9,24 +9,12 @@
     @include('_flash_messages')
 
     <div class="card">
-        <div class="card-header  card-header-primary card-header-icon">
-            <div class="card-icon">
-                <i class="material-icons">list</i>
-            </div>
-            <div class="row align-items-center">
-                <div class="col-8">
-                    <h3 class="card-title">Permissões do sistema</h3>
-                </div>
-                <div class="col-4 text-right">
-                    <a href="{{route('permissions.create')}}" class="btn btn-sm btn-primary">Nova permissão
-                        </a>
-                </div>
-            </div>
-
-        </div>
+        @include('layouts.components._card-header', 
+        [
+          'icon'=>'list', 'tittle'=>"Permissões do sistema", 
+          'button'=>['active'=>true, 'tittle'=>'Nova permissão', 'route'=>route('permissions.create')]
+        ])
         <div class="card-body">
-
-
             <div class="table-responsive">
                 <table class=" table ">
                     <thead class="">

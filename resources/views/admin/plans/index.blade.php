@@ -8,23 +8,12 @@
     @include('_flash_messages')
     <div class="card">
         <!-- Card header -->
-        <div class="card-header card-header-primary card-header-icon">
-            <div class="card-icon">
-                <i class="material-icons">list</i>
-            </div>
-            <div class="row align-items-center">
-                <div class="col-8">
-                    <h3 class="card-title"> Planos </h3>
-                </div>
-                <div class="col-4 text-right">
-                    <a href="{{route('plans.create')}}" class="btn btn-sm btn-primary">Novo
-                        plano</a>
-                </div>
-            </div>
-        </div>
+        @include('layouts.components._card-header', 
+        [
+          'icon'=>'assignment', 'tittle'=>"Planos", 
+          'button'=>['active'=>true, 'tittle'=>'Novo Plano', 'route'=>route('plans.create')]
+        ])
         <div class="card-body">
-
-
             <!-- Light table -->
             <div class="table-responsive">
                 <table class="table ">

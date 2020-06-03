@@ -3,15 +3,17 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 namespace App\Models;
 
-//use App\Models\Tenants;
+//use App\Models\Tenant;
 use Faker\Generator as Faker;
 use Ramsey\Uuid\Uuid;
 
-$factory->define(Tenants::class, function (Faker $faker) {
+$factory->define(Tenant::class, function (Faker $faker) {
     $user = User::all()->first()->id;
     $id = Uuid::uuid4()->toString();
-    var_dump($id);
-    $address = factory(Address::class)->create(['addressable_id' => $id, 'tenant_id' =>  null, 'addressable_type' => 'App\Models\Tenants']);
+    //var_dump($id);
+    $address = factory(Address::class)->create(['addressable_id' => $id, 'tenant_id' =>  null, 'addressable_type' => 'App\Models\Tenant']);
+    //$userTenant = factory(User::class)->create();
+    //$tenantUser = factory(UserTenant::class)->create(['user_id'=> $userTenant->id, 'tenant_id'=>$id]);
     return [
         'id' => $id,
         'name' => $faker->company,

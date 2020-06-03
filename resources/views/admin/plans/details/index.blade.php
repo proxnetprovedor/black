@@ -8,24 +8,12 @@
     @include('_flash_messages')
 
     <div class="card">
-        <div class="card-header card-header-primary card-header-icon">
-            <div class="card-icon">
-                <i class="material-icons">list</i>
-            </div>
-            <div class="row align-items-center">
-                <div class="col-8">
-                    <h3 class="card-title">Detalhes do plano <strong> {{$plan->name}} </strong></h3>
-                </div>
-                <div class="col-4 text-right">
-                    <a href="{{route('plans.index')}}" class="btn btn-sm btn-secondary">Voltar
-                        para a lista</a>
-                    <a href="{{route('details.plan.create', $plan->url)}}" class="btn btn-sm btn-primary">Novo
-                        detalhe</a>
-                </div>
-            </div>
-        </div>
+        @include('layouts.components._card-header', 
+        [
+        'icon'=>'list', 'tittle'=>"Datalhesdo plano $plan->name", 
+        'button'=>['active'=>true, 'tittle'=>'Voltar', 'route'=>route('details.plan.create', $plan->url)]
+        ])
         <div class="card-body">
-
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead >
