@@ -28,12 +28,12 @@ class DatabaseSeeder extends Seeder
         factory(App\Models\Ctos::class, 100)->create();
         factory(App\Models\AccesPoint::class, 100)->create();
         factory(App\Models\Instalation::class, 100)->create();
-        factory(App\Models\Subscription::class, 100)->create();
+        //factory(App\Models\Subscription::class, 100)->create();
         $tenant = Tenant::all()->random(5);
         foreach($tenant as $t) {
-            var_dump($t->id);
+            //var_dump($t->id);
             $user = factory(User::class)->create(['tenant_id'=> $t->id]);
-            var_dump($user->id);
+            //var_dump($user->id);
             
             // factory(App\Models\UserTenant::class, 1)->create(['user_id'=> $user->id, 'tenant_id'=> $t->id]);
         }

@@ -16,7 +16,7 @@ class UsersSeeder extends Seeder
     public function run()
     {
         $tenant = Tenant::first();
-        dd($tenant);
+        //dd($tenant);
         $tenant->users()->create([
             'id' => Uuid::uuid4()->toString(),
             'name' => 'Igor',

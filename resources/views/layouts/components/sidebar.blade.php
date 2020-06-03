@@ -97,7 +97,7 @@
                     <ul class="nav">
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('plans.index') }}">
+                            <a class="nav-link" href="{{ route('servers.index') }}">
                                 <span class="sidebar-mini"> S </span>
                                 <span class="sidebar-normal"> Servidores </span>
                             </a>

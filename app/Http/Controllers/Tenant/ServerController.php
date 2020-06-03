@@ -16,9 +16,11 @@ class ServerController extends Controller
      */
     public function index()
     {
+        //dd("d");
         $user = Auth::user();
+        
         $tenant = $user->tenant->first();
-        dd($tenant->servers);
+        dd($tenant);
     }
 
     /**
