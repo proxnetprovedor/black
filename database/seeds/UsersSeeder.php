@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Tenant;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -14,30 +15,32 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::create([
+        $tenant = Tenant::first();
+        dd($tenant);
+        $tenant->users()->create([
             'id' => Uuid::uuid4()->toString(),
             'name' => 'Igor',
             'email' => 'igor.alexander.silva@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'created_at' => now(),
-            'updated_at' => now()
+            'updated_at' => now(),
         ]);
         // dd($user->id);
 
-        $user->assignRole('administrator');
+        // $user->assignRole('administrator');
         
-        $user2 = User::create([
+        $tenant->users()->create([
             'id' => Uuid::uuid4()->toString(),
             'name' => 'Fabricio',
             'email' => 'fabriciolpu2@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'created_at' => now(),
-            'updated_at' => now()
+            'updated_at' => now(),
         ]);
 
 
-        $user2->assignRole('administrator');
+        // $user2->assignRole('administrator');
     }
 }

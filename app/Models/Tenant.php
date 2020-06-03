@@ -34,6 +34,7 @@ class Tenant extends Model
         'created_by',
         'updated_by',
         'deleted_by',
+        'plan_id'
     ];
     protected $dates = [
         'created_at', 'updated_at',
@@ -41,6 +42,16 @@ class Tenant extends Model
     ];
 
     protected $with = ['servers'];
+
+    public function plan()
+    {
+        return $this->belongsTo(Plan::class);
+    }
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 
     public function address() {
         $address = Address::where('addressable_type', 'App\Models\Tenants')->where('addressable_id', $this->id)->get();

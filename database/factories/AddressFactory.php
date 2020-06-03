@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 use Ramsey\Uuid\Uuid;
 
 $factory->define(Address::class, function (Faker $faker, $params) {
-    $user = User::all()->first()->id;
+    // $user = User::all()->first()->id;
     if($params['addressable_type'] == 'App\Models\Tenant') {
        // var_dump($params['addressable_id']);
     }
@@ -26,7 +26,7 @@ $factory->define(Address::class, function (Faker $faker, $params) {
         'apartment' => $faker->buildingNumber,
         'addressable_id' => $params['addressable_id'],
         'addressable_type'  => $params['addressable_type'],
-        'created_by' => $user,
+        // 'created_by' => factory(User::class)->create()->id,
         'tenant_id' => $params['tenant_id']
     ];
 });

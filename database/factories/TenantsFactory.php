@@ -1,14 +1,16 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-namespace App\Models;
+// namespace App\Models;
 
-//use App\Models\Tenant;
+use App\Models\Address;
+use App\Models\Plan;
+use App\Models\Tenant;
 use Faker\Generator as Faker;
 use Ramsey\Uuid\Uuid;
 
 $factory->define(Tenant::class, function (Faker $faker) {
-    $user = User::all()->first()->id;
+    // $user = User::all()->first()->id;
     $id = Uuid::uuid4()->toString();
     //var_dump($id);
     $address = factory(Address::class)->create(['addressable_id' => $id, 'tenant_id' =>  null, 'addressable_type' => 'App\Models\Tenant']);
@@ -28,6 +30,7 @@ $factory->define(Tenant::class, function (Faker $faker) {
         'subscription_suspende' => false,
         'lat' => $faker->latitude($min = 2.72, $max = 2.86),
         'lng' => -($faker->longitude($min = 60.78, $max = 60.65)),
-        'created_by' => $user,
+        // 'created_by' => $user,
+        'plan_id' => factory(Plan::class)->create()->id
     ];
 });

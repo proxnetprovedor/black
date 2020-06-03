@@ -16,7 +16,7 @@ class User extends Authenticatable implements Authorizable
     public $incrementing = false;
 
     protected $keyType = 'string';
-    
+
     protected $guard_name = 'web';
     /**
      * The attributes that are mass assignable.
@@ -27,9 +27,11 @@ class User extends Authenticatable implements Authorizable
         'name', 'email', 'password',
     ];
 
+
+
     public function tenant()
     {
-        return $this->belongsToMany(Tenant::class, 'user_tenants', 'user_id', 'tenant_id');
+        return $this->belongsTo(Tenant::class);
     }
     /**
      * The attributes that should be hidden for arrays.

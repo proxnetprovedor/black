@@ -30,7 +30,7 @@ class CreateAddressesTable extends Migration
             $table->string('apartment', 200)->nullable();
             $table->uuidMorphs('addressable');
 
-            $table->uuid('created_by');
+            $table->uuid('created_by')->nullable();
             $table->uuid('updated_by')->nullable();
             $table->uuid('deleted_by')->nullable();
             $table->uuid('tenant_id')->nullable();

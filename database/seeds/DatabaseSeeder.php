@@ -14,11 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        factory(Tenant::class, 5)->create();
+        
         $this->call(PermissionSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(PlanSeeder::class);
         $this->call(UsersSeeder::class);
-        factory(Tenant::class, 5)->create();
+
         factory(App\Models\Employer::class, 50)->create();
         factory(App\Models\InternetPlanServer::class, 50)->create();
         //factory(App\Models\Server::class, 100)->create();
@@ -30,10 +32,10 @@ class DatabaseSeeder extends Seeder
         $tenant = Tenant::all()->random(5);
         foreach($tenant as $t) {
             var_dump($t->id);
-            $user = factory(User::class)->create();
+            $user = factory(User::class)->create(['tenant_id'=> $t->id]);
             var_dump($user->id);
             
-            factory(App\Models\UserTenant::class, 1)->create(['user_id'=> $user->id, 'tenant_id'=> $t->id]);
+            // factory(App\Models\UserTenant::class, 1)->create(['user_id'=> $user->id, 'tenant_id'=> $t->id]);
         }
     }
 }
