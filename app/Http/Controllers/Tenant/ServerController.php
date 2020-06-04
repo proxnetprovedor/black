@@ -20,7 +20,9 @@ class ServerController extends Controller
         $user = Auth::user();
         
         $tenant = $user->tenant->first();
-        dd($tenant);
+        $servers = $tenant->servers;
+        return view('tenant.servers.index', compact('servers'));
+        //dd($tenant->servers);
     }
 
     /**

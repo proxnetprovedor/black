@@ -66,4 +66,8 @@ class Tenant extends Model
     {
         return $this->hasMany(Ctos::class);
     }
+    public function instalations()
+    {
+        return $this->hasMany(Instalation::class);
+    }
 }

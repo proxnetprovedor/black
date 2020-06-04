@@ -102,9 +102,15 @@
                                 <span class="sidebar-normal"> Servidores </span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('instalations.index') }}">
+                                <span class="sidebar-mini"> S </span>
+                                <span class="sidebar-normal"> Instalações </span>
+                            </a>
+                        </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('profiles.index') }}">
+                            <a class="nav-link" href="{{ route('ctos.index') }}">
                                 <span class="sidebar-mini"> PP </span>
                                 <span class="sidebar-normal"> CTO </span>
                             </a>
