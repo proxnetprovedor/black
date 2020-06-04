@@ -81,6 +81,7 @@ Route::prefix('tenant')->namespace('Tenant')->middleware('auth')->group(
 	function() {
 		Route::resource('servers', 'ServerController');
 		Route::resource('ctos', 'CtosController');
+		Route::resource('instalations', 'InstalationController');
 	}
 );
 

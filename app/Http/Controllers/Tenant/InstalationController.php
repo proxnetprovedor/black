@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Tenant;
 
 use App\Models\Instalation;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Auth;
 
 class InstalationController extends Controller
 {
@@ -14,7 +16,11 @@ class InstalationController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $tenant = $user->tenant->first();
+        $instalations = $tenant->instalations;
+        //dd($instalations);
+        return view('tenant.instalations.index', compact('instalations'));
     }
 
     /**
