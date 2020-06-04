@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'Cadastro'])
+@extends('layouts.app', ['page' => 'Cadastro', 'class' => 'page-header register-page header-filter', 'url' => '../../assets/img/register.jpg'])
 
 @section('content')
 

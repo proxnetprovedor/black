@@ -2,100 +2,100 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+  <!-- Scripts -->
+  <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <title>
-        Black Route
-    </title>
-    <!-- Fonts -->
-    <link rel="stylesheet" type="text/css"
-        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <!-- CSS Files -->
-    <link href="{{ asset('css/black-route.css') }}" rel="stylesheet">
+  <title>
+    Black Route
+  </title>
+  <!-- Fonts -->
+  <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- CSS Files -->
+  <link href="{{ asset('css/black-route.css') }}" rel="stylesheet">
 </head>
 
 <body class="off-canvas-sidebar">
-    <div id="app">
+  <div id="app">
 
-        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
-            <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
+      <div class="container">
 
-                <div class="navbar-wrapper">
-                    <a class="navbar-brand" href="javascript:;">{{$page ?? 'Black Route'}}</a>
-                </div><button class="navbar-toggler" type="button" data-toggle="collapse"
-                    aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="navbar-toggler-icon icon-bar"></span>
-                    <span class="navbar-toggler-icon icon-bar"></span>
-                    <span class="navbar-toggler-icon icon-bar"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end">
-                    <ul class="navbar-nav">
-                        {{-- <li class="nav-item">
-                            <a href="../dashboard.html" class="nav-link">
-                                <i class="material-icons">dashboard</i>
-                                Dashboard
-                                <div class="ripple-container"></div></a>
-                        </li> --}}
-                        <li class="nav-item  {{isset($page) && $page == 'Cadastro' ? 'active' : ''}} ">
-                            <a href="{{route('register')}}" class="nav-link">
-                                <i class="material-icons">person_add</i>
-                                Cadastre-se
-                            </a>
-                        </li>
-                        <li class="nav-item {{isset($page) && $page == 'Login' ? 'active' : ''}} "">
-                            <a href="{{route('login')}}" class="nav-link">
-                                <i class="material-icons">fingerprint</i>
-                                Entrar
-                            </a>
-                        </li>
-                        {{-- <li class="nav-item ">
+        <div class="navbar-wrapper">
+          <a class="navbar-brand" href="javascript:;">{{$page ?? 'Black Route'}}</a>
+        </div><button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="navbar-toggler-icon icon-bar"></span>
+          <span class="navbar-toggler-icon icon-bar"></span>
+          <span class="navbar-toggler-icon icon-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="{{ route('site.home') }}" class="nav-link">
+                <i class="material-icons">dashboard</i>
+                Planos
+                <div class="ripple-container"></div></a>
+            </li>
+            <li class="nav-item  {{isset($page) && $page == 'Cadastro' ? 'active' : ''}} ">
+              <a href="{{route('register')}}" class="nav-link">
+                <i class="material-icons">person_add</i>
+                Cadastre-se
+              </a>
+            </li>
+            <li class="nav-item {{isset($page) && $page == 'Login' ? 'active' : ''}} "">
+                            <a href=" {{route('login')}}" class="nav-link">
+              <i class="material-icons">fingerprint</i>
+              Entrar
+              </a>
+            </li>
+            {{-- <li class="nav-item ">
                             <a href="../pages/lock.html" class="nav-link">
                                 <i class="material-icons">lock_open</i>
                                 Lock
                             </a>
                         </li> --}}
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <div class="wrapper wrapper-full-page">
-            <div class="page-header login-page header-filter" filter-color="black"
-                style="background-image: url('../../assets/img/login.jpg'); background-size: cover; background-position: top center;">
-                <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
-                <div class="container">
-                    <div class="row">
-                        @yield('content')
-                    </div>
-                </div>
-                <footer class="footer">
-                    <div class="container">
-
-                        <div class="copyright float-right" style="font-size: 10px">
-                            &copy;2020 - BlackRoute
-
-                        </div>
-                    </div>
-                </footer>
-            </div>
+          </ul>
         </div>
-        <!--   Core JS Files   -->
-        @include('layouts.components.js-plugins')
+      </div>
+    </nav>
 
+    <div class="wrapper wrapper-full-page">
+      <div class="{{$class ?? ''}}" filter-color="black"
+        style="background-image: url('{{$url ?? ''}}'); background-size: cover; background-position: top center;">
+        <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
+        <div class="container">
+          <div class="row">
+            @yield('content')
+          </div>
+        </div>
+        <footer class="footer">
+          <div class="container">
+
+            <div class="copyright float-right" style="font-size: 10px">
+              &copy;2020 - BlackRoute
+
+            </div>
+          </div>
+        </footer>
+      </div>
     </div>
-    <script>
-        $(document).ready(function() {
+    <!--   Core JS Files   -->
+    @include('layouts.components.js-plugins')
+
+  </div>
+  <script>
+    $(document).ready(function() {
           $().ready(function() {
             $sidebar = $('.sidebar');
     
@@ -264,16 +264,16 @@
             });
           });
         });
-    </script>
-    <script>
-        $(document).ready(function() {
+  </script>
+  <script>
+    $(document).ready(function() {
           md.checkFullPageBackgroundImage();
           setTimeout(function() {
             // after 1000 ms we add the class animated to the login/register card
             $('.card').removeClass('card-hidden');
           }, 700);
         });
-    </script>
+  </script>
 </body>
 
 </html>

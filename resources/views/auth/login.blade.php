@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'Login'])
+@extends('layouts.app', ['page' => 'Login', 'class' => 'page-header login-page header-filter', 'url' => '../../assets/img/login.jpg'])
 
 @section('content')
 
@@ -68,5 +68,7 @@
   </form>
 </div>
 @endsection
+
+
 
 
