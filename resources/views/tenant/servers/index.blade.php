@@ -6,14 +6,14 @@
 @section('content')
 
 <div class="container-fluid mt--6">
-    @include('_flash_messages')
+    
     <div class="col-md-12">
+      @include('_flash_messages')
       <div class="card">
-        
         @include('layouts.components._card-header', 
         [
           'icon'=>'dns', 'tittle'=>"SERVIDORES", 
-          'button'=>['active'=>true, 'tittle'=>'Novo', 'route'=>route('tenants.create')]
+          'button'=>['active'=>true, 'tittle'=>'Novo', 'route'=>route('servers.create')]
         ])
         
         <div class="card-body">
@@ -42,9 +42,9 @@
                       <button type="button" rel="tooltip" class="btn btn-info">
                         <i class="material-icons">person</i>
                       </button>
-                      <button type="button" rel="tooltip" class="btn btn-success">
+                      <a class="btn btn-success" href="{{route('servers.edit', $item)}}">
                         <i class="material-icons">edit</i>
-                      </button>
+                      </a>
                       <button type="button" rel="tooltip" class="btn btn-danger">
                         <i class="material-icons">close</i>
                       </button>

@@ -32,7 +32,7 @@ class ServerController extends Controller
      */
     public function create()
     {
-        //
+        return view ('tenant.servers.create');
     }
 
     /**
@@ -65,7 +65,12 @@ class ServerController extends Controller
      */
     public function edit(Server $server)
     {
-        //
+        if(imOwner($server->tenant_id)) {
+            return view ('tenant.servers.edit', compact('server'));
+        } else {
+            return redirect()->route('servers.index')
+                ->with('error', 'O Servidor ' . $server->name . ' não pertence a sua Empresa !');
+        }
     }
 
     /**
@@ -77,7 +82,16 @@ class ServerController extends Controller
      */
     public function update(Request $request, Server $server)
     {
-        //
+        if(imOwner($server->tenant_id)) {
+            $server->update($request->all());
+            $servers = \myTenant()->servers;
+            return redirect()->route('servers.index')
+                ->with('succes', 'Servidor ' . $server->name . 'atualizado com sucesso !');
+                
+        } else {
+            return redirect()->route('servers.index')
+            ->with('error', 'O Servidor ' . $server->name . ' não pertence a sua Empresa !');
+        }
     }
 
     /**
