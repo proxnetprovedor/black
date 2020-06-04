@@ -56,9 +56,10 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'cnpj' => ['required', Rule::unique((new Tenant())->getTable(), 'cnpj')],
-            'empresa' => ['required',Rule::unique((new Tenant())->getTable(), 'name')],
+            'cnpj' => 'required|unique:pgsql.providers.tenants',
+            //'empresa' => 'required|unique:pgsql.providers.name',
         ]);
+        //dd($data);
     }
 
     /**
