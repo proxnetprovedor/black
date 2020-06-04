@@ -16,7 +16,7 @@ class Tenant extends Model
 
     protected $keyType = 'string';
 
-    protected $table = 'providers.tenants';
+    public $table = 'providers.tenants';
 
     protected $fillable = [
         'name',

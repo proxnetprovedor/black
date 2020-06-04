@@ -27,7 +27,15 @@ class User extends Authenticatable implements Authorizable
         'name', 'email', 'password',
     ];
 
+    public function isAdmin(): bool
+    {
+        return in_array($this->email, config('acl.admins'));
+    }
 
+    public function isTenant(): bool
+    {
+        return !in_array($this->email, config('acl.admins'));
+    }
 
     public function tenant()
     {
