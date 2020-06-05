@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Traits\Blameable;
+use App\Traits\TenantTrait;
 use App\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Server extends Model
 {
-    use Blameable, SoftDeletes, UuidTrait;
+    use Blameable, SoftDeletes, UuidTrait, TenantTrait;
 
     public $incrementing = false;
 

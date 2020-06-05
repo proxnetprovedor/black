@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Tenant;
 use App\Providers\RouteServiceProvider;
+use App\Services\TenantService;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -53,13 +55,12 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'cnpj' => 'required|unique:pgsql.providers.tenants',
-            //'empresa' => 'required|unique:pgsql.providers.name',
+            'name' => ['required', 'string', 'min:3', 'max:255'],
+            'email' => ['required', 'string', 'email', 'min:3', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:6', 'max:16', 'confirmed'],
+            'empresa' => ['required|unique:pgsql.providers.tenants,name', 'string', 'min:3', 'max:255',],
+            'cnpj' => ['required|unique:pgsql.providers.tenants', 'numeric', 'digits:14',],
         ]);
-        //dd($data);
     }
 
     /**
@@ -71,30 +72,16 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-        
         if (!$plan = session('plan')) {
             redirect()->route('site.home');
         }
 
+        $tenantService = app(TenantService::class);
 
-        $tenant = $plan->tenants()->create(
-            [
-                'cnpj' => $data['cnpj'],
-                'name' => $data['empresa'],
-                'url' => Str::kebab($data['empresa']),
-                'email' => $data['email'],
+        $user = DB::transaction(function () use ($tenantService, $plan, $data) {
+            return  $tenantService->make($plan, $data);
+        });
 
-                'subscription_date' => now(),
-                'expires_at' => now()->addDays(7),
-
-            ]
-        );
-
-        $user = $tenant->users()->create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
 
         return $user;
     }

@@ -48,7 +48,7 @@
                     </div>
                     <div class="col-md-5 mr-auto">
                         <div class="social text-center">
-                            <button class="btn btn-just-icon btn-round btn-twitter">
+                            {{-- <button class="btn btn-just-icon btn-round btn-twitter">
                                 <i class="fa fa-twitter"></i>
                             </button>
                             <button class="btn btn-just-icon btn-round btn-dribbble">
@@ -56,7 +56,7 @@
                             </button>
                             <button class="btn btn-just-icon btn-round btn-facebook">
                                 <i class="fa fa-facebook"> </i>
-                            </button>
+                            </button> --}}
                             <h4 class="mt-3"> <p><strong>Plano:</strong> {{ session('plan')->name ?? 'Nenhum plano selecionado' }}</p> </h4>
                         </div>
                         <form class="form" method="" action="">

@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use App\Traits\Blameable;
+use App\Traits\TenantTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Instalation extends Model
 {
-    use Blameable, SoftDeletes;
+    use Blameable, SoftDeletes, TenantTrait;
 
     protected $table = 'providers.instalations';
     protected $fillable = [

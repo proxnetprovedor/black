@@ -1,11 +1,12 @@
 <?php
 use App\Traits\Blameable;
+use App\Traits\TenantTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class InstalatioonTypes extends Model
 {
-    use Blameable, SoftDeletes;
+    use Blameable, SoftDeletes, TenantTrait;
 
     protected $table = 'providers.instalation_types';
     protected $fillable = [
