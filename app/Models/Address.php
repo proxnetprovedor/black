@@ -2,17 +2,11 @@
 namespace App\Models;
 
 use App\Traits\Blameable;
-use App\Traits\UuidTrait;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Address extends Model
+class Address extends BaseModel
 {
-    use Blameable, SoftDeletes, UuidTrait;
-
-    public $incrementing = false;
-
-    protected $keyType = 'string';
+    use Blameable, SoftDeletes;
 
     protected $table = 'addresses';
 

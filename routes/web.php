@@ -13,12 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
+Route::prefix('admin')->namespace('Auth')->group(
+	function () {
+		Route::post('/login', 'LoginController@login')->name('admin.login');
+		Route::get('/login', 'LoginController@showLoginForm')->name('admin.login.show');
+		Route::post('/register', 'RegisterController@register')->name('admin.register.store');
+		Route::get('/register', 'RegisterController@showRegistrationForm')->name('admin.register.show');
+		Route::post('/logout', 'LoginController@logout')->name('logout');
+	}
+);
 
 
 Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(
 	function () {
+
+
+
 		/**
 		 * Home Dashboard
 		 */
@@ -50,6 +60,13 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(
 		 */
 		Route::resource('users', 'UserController');
 		// Route::delete('users_mass_destroy', 'UsersController@massDestroy')->name('users.mass_destroy');
+
+		/**
+		 * Routes Providers Plans
+		 * 
+		 */
+
+		Route::get('plans/{url}/providers', 'ProviderPlanController@index')->name('providers.plan.index');
 
 		/**
 		 * Routes Details Plans
@@ -88,7 +105,7 @@ Route::prefix('tenant')->namespace('Tenant')->middleware('auth')->group(
 	}
 );
 
-Auth::routes();
+// Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 

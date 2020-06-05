@@ -12,7 +12,7 @@
             <div class="card">
                 @include('layouts.components._card-header', 
                 [
-                'icon'=>'assignment', 'tittle'=>"Editar detalhe do plano <span> $plan->name</span>", 
+                'icon'=>'assignment', 'tittle'=>"Editar detalhe do plano  $plan->name", 
                 'button'=>['active'=>true, 'tittle'=>'Voltar', 'route'=>route('details.plan.index', $plan->url)]
                 ])
                 <div class="card-body">

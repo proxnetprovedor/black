@@ -4,17 +4,11 @@ namespace App\Models;
 
 use App\Traits\Blameable;
 use App\Traits\TenantTrait;
-use App\Traits\UuidTrait;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Server extends Model
+class Server extends BaseModel
 {
-    use Blameable, SoftDeletes, UuidTrait, TenantTrait;
-
-    public $incrementing = false;
-
-    protected $keyType = 'string';
+    use Blameable, SoftDeletes, TenantTrait;
 
     protected $table = 'providers.servers';
     

@@ -1,7 +1,5 @@
 @extends('layouts.admin')
 
-@section('title','Formulario')
-
 
 @section('content')
 <div class="col-md-12">
@@ -14,13 +12,12 @@
             </div>
             <div class="row align-items-center">
                 <div class="col-8">
-                    <h3 class="card-title">Detalhes do plano <strong>{{ $plan->name }} </strong></h3>
+                    <h3 class="card-title">Provedoras do plano <strong>{{ $plan->name }} </strong></h3>
                 </div>
                 <div class="col-4 text-right">
                     <a href="{{route('plans.index')}}" class="btn btn-sm btn-primary">Voltar
                         para a lista</a>
 
-                    <a href="{{route('details.plan.create', $plan->url)}}" class="btn btn-sm btn-primary">Novo detalhe</a>
 
                 </div>
             </div>
@@ -37,10 +34,10 @@
                         </tr>
                     </thead>
                     <tbody class="list">
-                        @foreach ($details as $detail)
+                        @foreach ($providers as $provider)
                         <tr>
                             <td>
-                                {{ $detail->name }}
+                                {{ $provider->name }}
                             </td>
                             <td>
                                 <div class="dropdown">
@@ -49,10 +46,10 @@
                                         <i class="material-icons">more_vert</i>
                                     </a>
                                     <div class="dropdown-menu  dropdown-menu-arrow" style="">
+                                        {{-- <a class="dropdown-item"
+                                            href="{{ route('providers.plan.edit', [$plan->url, $provider->id]) }}">Editar</a>
                                         <a class="dropdown-item"
-                                            href="{{ route('details.plan.edit', [$plan->url, $detail->id]) }}">Editar</a>
-                                        <a class="dropdown-item"
-                                            href="{{ route('details.plan.show', [$plan->url, $detail->id]) }}">Visualizar</a>
+                                            href="{{ route('providers.plan.show', [$plan->url, $provider->id]) }}">Visualizar</a> --}}
                                     </div>
                                 </div>
                             </td>
@@ -63,7 +60,7 @@
             </div>
         </div>
         <div class="card-footer py-4">
-            {!! $details->links() !!}
+            {!! $providers->links() !!}
         </div>
     </div>
 

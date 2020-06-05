@@ -4,19 +4,12 @@ namespace App\Models;
 
 use App\Traits\Blameable;
 use App\Traits\TenantTrait;
-use App\Traits\UuidTrait;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
-class AccesPoint extends Model
+class AccesPoint extends BaseModel
 {
-    use Blameable, SoftDeletes, TenantTrait, UuidTrait;
-
-
-    public $incrementing = false;
-
-    protected $keyType = 'string';
+    use Blameable, SoftDeletes, TenantTrait;
 
     protected $table = 'providers.acces_points';
     

@@ -58,8 +58,8 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'min:3', 'max:255'],
             'email' => ['required', 'string', 'email', 'min:3', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'max:16', 'confirmed'],
-            'empresa' => ['required|unique:pgsql.providers.tenants,name', 'string', 'min:3', 'max:255',],
-            'cnpj' => ['required|unique:pgsql.providers.tenants', 'numeric', 'digits:14',],
+            'empresa' => ['required', 'unique:pgsql.providers.tenants,name', 'string', 'min:3', 'max:255',],
+            'cnpj' => ['required', 'unique:pgsql.providers.tenants', 'numeric', 'digits:14',],
         ]);
     }
 

@@ -7,13 +7,9 @@ use App\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class DetailPlan extends Model
+class DetailPlan extends BaseModel
 {
-    use Blameable, SoftDeletes, UuidTrait;
-
-    public $incrementing = false;
-
-    protected $keyType = 'string';
+    use Blameable, SoftDeletes;
 
     protected $table = 'acl_plans.detail_plans';
 

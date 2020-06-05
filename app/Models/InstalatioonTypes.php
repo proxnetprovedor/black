@@ -1,10 +1,11 @@
 <?php
+
+use App\Models\BaseModel;
 use App\Traits\Blameable;
 use App\Traits\TenantTrait;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class InstalatioonTypes extends Model
+class InstalatioonTypes extends BaseModel
 {
     use Blameable, SoftDeletes, TenantTrait;
 

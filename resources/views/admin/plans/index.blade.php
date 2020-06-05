@@ -42,7 +42,7 @@
                                 </span>
                             </td>
                             <td>
-                                <a href="#">
+                                <a href="{{route('providers.plan.index', $plan->url)}}">
                                     <i class="fa fa-users"> Provedoras </i>
                                 </a>
                             </td>

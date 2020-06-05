@@ -16,13 +16,9 @@ class ServerController extends Controller
      */
     public function index()
     {
-        //dd("d");
-        $user = Auth::user();
-        
-        $tenant = $user->tenant->first();
-        $servers = $tenant->servers;
+        $servers = Server::latest()->get();
+
         return view('tenant.servers.index', compact('servers'));
-        //dd($tenant->servers);
     }
 
     /**

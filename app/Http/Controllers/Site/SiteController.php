@@ -28,6 +28,6 @@ class SiteController extends Controller
 
         session()->put('plan', $plan);
 
-        return redirect()->route('register');
+        return redirect()->route('admin.register.show');
     }
 }

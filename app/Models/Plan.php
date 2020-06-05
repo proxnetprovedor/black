@@ -2,19 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Models\DetailPlan;
-use App\Traits\UuidTrait;
 use App\Traits\Blameable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Plan extends Model
+class Plan extends BaseModel
 {
-    use Blameable, SoftDeletes, UuidTrait;
-
-    public $incrementing = false;
-
-    protected $keyType = 'string';
+    use Blameable, SoftDeletes;
 
     protected $table = 'acl_plans.plans';
 
@@ -35,7 +29,7 @@ class Plan extends Model
 
     public function profiles()
     {
-        return $this->belongsToMany(Profile::class, 'acl_plans.profile_plan' );
+        return $this->belongsToMany(Profile::class, 'acl_plans.profile_plan');
     }
 
     public function tenants()

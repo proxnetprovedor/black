@@ -16,9 +16,8 @@ class CtosController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $tenant = $user->tenant->first();
-        $ctos = $tenant->ctos;
+        
+        $ctos = Ctos::latest()->get();
         //dd($ctos);
         return view('tenant.ctos.index', compact('ctos'));
     }

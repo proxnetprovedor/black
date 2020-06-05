@@ -6,7 +6,7 @@
     <div class="card card-signup">
         <h2 class="card-title text-center">{{ __('Cadastro') }}</h2>
         <div class="card-body">
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('admin.register.store') }}">
                 @csrf
                 <div class="row">
                     <div class="col-md-5 ml-auto">

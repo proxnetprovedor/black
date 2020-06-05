@@ -8,13 +8,9 @@ use App\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Subscription extends Model
+class Subscription extends BaseModel
 {
-    use Blameable, SoftDeletes, UuidTrait, TenantTrait;
-
-    public $incrementing = false;
-
-    protected $keyType = 'string';
+    use Blameable, SoftDeletes, TenantTrait;
 
     protected $table = 'subscription.subscriptions';
 

@@ -48,13 +48,13 @@
                 <div class="ripple-container"></div></a>
             </li>
             <li class="nav-item  {{isset($page) && $page == 'Cadastro' ? 'active' : ''}} ">
-              <a href="{{route('register')}}" class="nav-link">
+              <a href="{{route('admin.register.show')}}" class="nav-link">
                 <i class="material-icons">person_add</i>
                 Cadastre-se
               </a>
             </li>
             <li class="nav-item {{isset($page) && $page == 'Login' ? 'active' : ''}} "">
-                            <a href=" {{route('login')}}" class="nav-link">
+                            <a href=" {{route('admin.login.show')}}" class="nav-link">
               <i class="material-icons">fingerprint</i>
               Entrar
               </a>

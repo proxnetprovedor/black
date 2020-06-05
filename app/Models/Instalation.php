@@ -4,10 +4,9 @@ namespace App\Models;
 
 use App\Traits\Blameable;
 use App\Traits\TenantTrait;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Instalation extends Model
+class Instalation extends BaseModel
 {
     use Blameable, SoftDeletes, TenantTrait;
 

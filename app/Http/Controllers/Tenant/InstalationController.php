@@ -16,10 +16,9 @@ class InstalationController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $tenant = $user->tenant->first();
-        $instalations = $tenant->instalations;
-        //dd($instalations);
+       
+        $instalations = Instalation::latest()->get();
+
         return view('tenant.instalations.index', compact('instalations'));
     }
 

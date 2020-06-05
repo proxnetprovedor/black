@@ -4,13 +4,11 @@ namespace App\Models;
 
 use App\Traits\Blameable;
 use App\Traits\TenantTrait;
-use App\Traits\UuidTrait;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class InternetPlanServer extends Model
+class InternetPlanServer extends BaseModel
 {
-    use Blameable, SoftDeletes, UuidTrait, TenantTrait;
+    use Blameable, SoftDeletes, TenantTrait;
 
     public $incrementing = false;
 
