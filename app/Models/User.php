@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\Traits\UserACLTrait;
+use App\Traits\UserACLTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\Access\Authorizable;
-use Spatie\Permission\Traits\HasRoles;
 use App\Traits\UuidTrait;
 
 class User extends Authenticatable implements Authorizable
