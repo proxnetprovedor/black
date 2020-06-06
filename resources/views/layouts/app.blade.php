@@ -75,9 +75,7 @@
         style="background-image: url('{{$url ?? ''}}'); background-size: cover; background-position: top center;">
         <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
         <div class="container">
-          <div class="row">
-            @yield('content')
-          </div>
+          @yield('content')
         </div>
         <footer class="footer">
           <div class="container">

@@ -61,7 +61,7 @@ class RolesController extends Controller
      */
     public function edit(Role $role)
     {
-        $permissions = Permission::latest()->get()->pluck('name', 'name');
+        $permissions = Permission::latest()->get();
 
         return view('admin.roles.edit', compact('role', 'permissions'));
     }
@@ -78,8 +78,8 @@ class RolesController extends Controller
 
         $role->update($request->except('permission'));
         $permissions = $request->input('permission') ? $request->input('permission') : [];
-
-        $role->syncPermissions($permissions);
+        // dd($permissions);
+        $role->permissions()->sync($permissions);
 
         return redirect()->route('roles.index')->with('success', 'Perfil de acesso atualizado com sucesso !');
     }

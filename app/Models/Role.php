@@ -3,11 +3,15 @@
 namespace App\Models;
 
 use App\Traits\UuidTrait;
-use Spatie\Permission\Models\Role as ModelRole;
+use Illuminate\Database\Eloquent\Model;
 
-class Role extends ModelRole
+// use Spatie\Permission\Models\Role as ModelRole;
+
+class Role extends Model
 {
     use UuidTrait;
+
+    protected $table = 'acl_plans.roles';
 
     protected $guarded = [];
 
@@ -15,4 +19,22 @@ class Role extends ModelRole
 
     protected $keyType = 'string';
 
+    /**
+     * Get Permissions
+     */
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class,  'acl_plans.permission_role');
+    }
+
+    /**
+     * Get Users
+     */
+    public function users()
+    {
+        return $this->belongsToMany(User::class,  'acl_plans.role_user');
+    }
+
+
+   
 }

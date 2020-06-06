@@ -10,7 +10,7 @@ use Faker\Generator as Faker;
 use Ramsey\Uuid\Uuid;
 
 $factory->define(Tenant::class, function (Faker $faker) {
-    // $user = User::all()->first()->id;
+    $plans = Plan::all()->pluck('id');
     $id = Uuid::uuid4()->toString();
     //var_dump($id);
     $address = factory(Address::class)->create(['addressable_id' => $id, 'tenant_id' =>  null, 'addressable_type' => 'App\Models\Tenant']);
@@ -31,6 +31,6 @@ $factory->define(Tenant::class, function (Faker $faker) {
         'lat' => $faker->latitude($min = 2.72, $max = 2.86),
         'lng' => -($faker->longitude($min = 60.78, $max = 60.65)),
         // 'created_by' => $user,
-        'plan_id' => factory(Plan::class)->create()->id
+        'plan_id' => $faker->randomElement($plans)
     ];
 });

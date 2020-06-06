@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreatePermissionTables extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,12 @@ class CreatePermissionTables extends Migration
      */
     public function up()
     {
-      
-
-        Schema::create('acl_plans.permissions', function (Blueprint $table) {
+        Schema::create('acl_plans.roles', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
             $table->string('description')->nullable();
             $table->timestamps();
         });
-
-      
     }
 
     /**
@@ -32,6 +28,6 @@ class CreatePermissionTables extends Migration
      */
     public function down()
     {
-        Schema::drop('acl_plans.permissions');
+        Schema::dropIfExists('acl_plans.roles');
     }
 }

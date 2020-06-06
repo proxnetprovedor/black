@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\UserACLTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,7 +12,7 @@ use App\Traits\UuidTrait;
 
 class User extends Authenticatable implements Authorizable
 {
-    use Notifiable,  HasRoles, UuidTrait;
+    use Notifiable, UuidTrait, UserACLTrait;
 
     public $incrementing = false;
 
@@ -36,11 +37,22 @@ class User extends Authenticatable implements Authorizable
     {
         return !in_array($this->email, config('acl.admins'));
     }
-
+    /**
+     * Tenant
+     */
     public function tenant()
     {
         return $this->belongsTo(Tenant::class);
     }
+
+    /**
+     * Get Roles
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class,'acl_plans.role_user');
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

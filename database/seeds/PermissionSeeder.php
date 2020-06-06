@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Ramsey\Uuid\Uuid;
 use App\Models\Permission;
+use Illuminate\Support\Facades\Artisan;
 
 class PermissionSeeder extends Seeder
 {
@@ -14,18 +15,17 @@ class PermissionSeeder extends Seeder
     public function run()
     {
         Artisan::call('cache:clear');
-        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         
-        Permission::create(['id' => Uuid::uuid4()->toString(), 'name' => 'users_manage', 'guard_name' => 'web']);
-        Permission::create(['id' => Uuid::uuid4()->toString(), 'name' => 'users create', 'guard_name' => 'web']);
-        Permission::create(['id' => Uuid::uuid4()->toString(), 'name' => 'users view', 'guard_name' => 'web']);
-        Permission::create(['id' => Uuid::uuid4()->toString(), 'name' => 'users delete', 'guard_name' => 'web']);
-        Permission::create(['id' => Uuid::uuid4()->toString(), 'name' => 'users edit', 'guard_name' => 'web']);
-        Permission::create(['id' => Uuid::uuid4()->toString(), 'name' => 'plans view', 'guard_name' => 'web']);
-        Permission::create(['id' => Uuid::uuid4()->toString(), 'name' => 'plans manage', 'guard_name' => 'web']);
-        Permission::create(['id' => Uuid::uuid4()->toString(), 'name' => 'plans edit', 'guard_name' => 'web']);
-        Permission::create(['id' => Uuid::uuid4()->toString(), 'name' => 'plans delete', 'guard_name' => 'web']);
-        Permission::create(['id' => Uuid::uuid4()->toString(), 'name' => 'plans create', 'guard_name' => 'web']);
+        Permission::create(['id' => Uuid::uuid4()->toString(), 'name' => 'users manage']);
+        Permission::create(['id' => Uuid::uuid4()->toString(), 'name' => 'users create']);
+        Permission::create(['id' => Uuid::uuid4()->toString(), 'name' => 'users view']);
+        Permission::create(['id' => Uuid::uuid4()->toString(), 'name' => 'users delete']);
+        Permission::create(['id' => Uuid::uuid4()->toString(), 'name' => 'users edit']);
+        Permission::create(['id' => Uuid::uuid4()->toString(), 'name' => 'plans view']);
+        Permission::create(['id' => Uuid::uuid4()->toString(), 'name' => 'plans manage']);
+        Permission::create(['id' => Uuid::uuid4()->toString(), 'name' => 'plans edit']);
+        Permission::create(['id' => Uuid::uuid4()->toString(), 'name' => 'plans delete']);
+        Permission::create(['id' => Uuid::uuid4()->toString(), 'name' => 'plans create']);
     }
 }

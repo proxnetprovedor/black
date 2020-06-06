@@ -17,11 +17,11 @@
 <div class="form-group">
     <label for="permissions" class="bmd-label-floating">Permissões *</label>
     <br>
-    @foreach ($permissions as $id => $permissions)
+    @foreach ($permissions as $permission)
     <div class="custom-control custom-checkbox custom-control-inline mb-2">
-        <input id="{{$id}}" name="permission[]" class="custom-control-input" type="checkbox" value="{{ $id }}"
-            {{ (in_array($id, old('permissions', [])) || isset($role) && $role->permissions()->pluck('name', 'id')->contains($id)) ? 'checked' : ''  }}>
-        <label class="custom-control-label" for="{{$id}}">{{ $permissions }}</label>
+        <input id="{{$permission->id}}" name="permission[]" class="custom-control-input" type="checkbox" value="{{ $permission->id }}"
+            {{ (in_array($permission->id, old('permissions', [])) || isset($role) && $role->permissions()->pluck('id')->contains($permission->id)) ? 'checked' : ''  }}>
+        <label class="custom-control-label" for="{{$permission->id}}">{{ $permission->name }}</label>
     </div>
     @endforeach
     @if($errors->has('permissions'))

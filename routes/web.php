@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Tenant;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/tenant/permissions', function (){
+	$tenant = Tenant::with('plan.profiles.permissions')->where('id', auth()->user()->tenant_id)->first();
+	dd($tenant);
+});
 
 Route::prefix('admin')->namespace('Auth')->group(
 	function () {

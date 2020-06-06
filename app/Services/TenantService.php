@@ -22,7 +22,10 @@ class TenantService
         return $user;
     }
 
-    public function storeTenant()
+    /**
+     * Cadastra o provedor para um teste de 7 dias
+     */
+    public function storeTenant()   
     {
         $data = $this->data;
 
@@ -35,6 +38,9 @@ class TenantService
         ]);
     }
 
+    /**
+     * Cadastra o usuário da provedora
+     */
     public function storeUser($tenant)
     {
         $data = $this->data;

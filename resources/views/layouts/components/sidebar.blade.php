@@ -15,7 +15,7 @@
             <div class="user-info">
                 <a data-toggle="collapse" href="#collapseExample" class="username">
                     <span>
-                        {{Auth::user()->name}}
+                        {{Auth::user()->name}} | {{Auth::user()->tenant->name}}
                         <b class="caret"></b>
                     </span>
                 </a>
@@ -44,12 +44,14 @@
             </div>
         </div>
         <ul class="nav">
+            @can('users manage')
             <li class="nav-item active">
                 <a class="nav-link" href="/home">
                     <i class="material-icons">dashboard</i>
                     <p> Dashboard </p>
                 </a>
             </li>
+            @endcan 
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#formsExamples" aria-expanded="true">
                     <i class="material-icons">content_paste</i>
@@ -81,7 +83,7 @@
                             </a>
                         </li>
 
-                       
+
                     </ul>
 
                 </div>
@@ -129,7 +131,7 @@
                             </a>
                         </li>
 
-                       
+
                     </ul>
 
                 </div>
