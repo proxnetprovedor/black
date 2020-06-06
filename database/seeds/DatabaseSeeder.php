@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Models\Tenant;
 use App\Models\User;
+
 //use App\Models\Employer;
 
 class DatabaseSeeder extends Seeder
@@ -22,8 +23,9 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersSeeder::class);
 
         factory(App\Models\Employer::class, 50)->create();
-        factory(App\Models\InternetPlanServer::class, 50)->create();
-        //factory(App\Models\Server::class, 100)->create();
+        //factory(App\Models\InternetPlanServer::class, 50)->create();
+        factory(App\Models\Server::class, 100)->create();
+        factory(App\Models\InternetPlan::class, 100)->create();
 
         factory(App\Models\Ctos::class, 100)->create();
         factory(App\Models\AccesPoint::class, 100)->create();

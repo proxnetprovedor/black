@@ -31,4 +31,10 @@ class Server extends BaseModel
     protected $dates = [
         'created_at', 'updated_at', 'deleted_at',
     ];
+
+    protected $with = ['internetPlans'];
+    public function internetPlans()
+    {
+        return $this->belongsToMany(InternetPlan::class, 'providers.internet_plan_servers');
+    }
 }

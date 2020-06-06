@@ -19,9 +19,5 @@ class InternetPlanServer extends BaseModel
     protected $fillable = [
         'server_id',
         'internet_plan_id',
-        'created_by',
-        'updated_by',
-        'deleted_by'
     ];
-    protected $dates = ['created_at', 'updated_at', 'deleted_at',];
 }

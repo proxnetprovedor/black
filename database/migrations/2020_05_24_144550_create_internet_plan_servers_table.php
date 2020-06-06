@@ -14,13 +14,11 @@ class CreateInternetPlanServersTable extends Migration
     public function up()
     {
         Schema::create('providers.internet_plan_servers', function (Blueprint $table) {
-            $table->uuid('id')->primary();
             $table->uuid('server_id');
             $table->uuid('internet_plan_id');
             $table->foreign('server_id')->references('id')->on('providers.servers')->onDelete('cascade');
             $table->foreign('internet_plan_id')->references('id')->on('providers.internet_plans')->onDelete('cascade');
-            $table->softDeletes();
-            $table->timestamps();
+            $table->primary(['server_id', 'internet_plan_id']);
         });
         // DB::statement('ALTER TABLE providers.internet_plan_servers ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
     }

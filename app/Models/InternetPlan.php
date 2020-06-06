@@ -27,5 +27,10 @@ class InternetPlan extends BaseModel
         'deleted_by',
         'tenant_id',
     ];
-    protected $dates = ['created_at', 'updated_at', 'deleted_at',];
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+
+    public function servers()
+    {
+        return $this->belongsToMany(Server::class, 'providers.servers', 'internet_plan_id', 'server_id');
+    }
 }

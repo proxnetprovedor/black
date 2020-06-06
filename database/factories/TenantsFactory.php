@@ -6,6 +6,8 @@
 use App\Models\Address;
 use App\Models\Plan;
 use App\Models\Tenant;
+use App\Models\InternetPlan;
+use App\Models\Server;
 use Faker\Generator as Faker;
 use Ramsey\Uuid\Uuid;
 
