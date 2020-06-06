@@ -17,8 +17,7 @@ class CtosController extends Controller
     public function index()
     {
         
-        $ctos = Ctos::latest()->get();
-        //dd($ctos);
+        $ctos = Ctos::latest()->paginate(15);
         return view('tenant.ctos.index', compact('ctos'));
     }
 
@@ -29,7 +28,7 @@ class CtosController extends Controller
      */
     public function create()
     {
-        //
+        return view('tenant.ctos.create');
     }
 
     /**
@@ -40,7 +39,9 @@ class CtosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cto = Ctos::create($request->all());
+        return redirect()->route('ctos.index')
+            ->with('succes', 'CTO ' . $cto->name . 'cadastrado com sucesso !');
     }
 
     /**
@@ -49,9 +50,9 @@ class CtosController extends Controller
      * @param  \App\Models\Ctos  $ctos
      * @return \Illuminate\Http\Response
      */
-    public function show(Ctos $ctos)
+    public function show(Ctos $cto)
     {
-        //
+        return view('tenant.ctos.show');
     }
 
     /**
@@ -60,9 +61,9 @@ class CtosController extends Controller
      * @param  \App\Models\Ctos  $ctos
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ctos $ctos)
+    public function edit(Ctos $cto)
     {
-        //
+        return view('tenant.ctos.edit', compact('cto'));
     }
 
     /**
@@ -72,9 +73,11 @@ class CtosController extends Controller
      * @param  \App\Models\Ctos  $ctos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ctos $ctos)
+    public function update(Request $request, Ctos $cto)
     {
-        //
+        $cto->update($request->all());
+        return redirect()->route('ctos.index')
+            ->with('succes', 'CTO ' . $cto->name . 'atualizado com sucesso !');
     }
 
     /**

@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Ctos extends BaseModel
 {
-    use Blameable, SoftDeletes, TenantTrait;
+    use Blameable;
+    use SoftDeletes;
+    use TenantTrait;
 
 
     protected $table = 'providers.ctos';
@@ -25,4 +27,6 @@ class Ctos extends BaseModel
         'tenant_id',
     ];
     protected $dates = ['created_at', 'updated_at', 'deleted_at',];
+
+    
 }

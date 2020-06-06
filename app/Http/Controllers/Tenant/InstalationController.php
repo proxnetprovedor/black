@@ -17,7 +17,7 @@ class InstalationController extends Controller
     public function index()
     {
        
-        $instalations = Instalation::latest()->get();
+        $instalations = Instalation::latest()->paginate(15);
 
         return view('tenant.instalations.index', compact('instalations'));
     }
@@ -29,7 +29,7 @@ class InstalationController extends Controller
      */
     public function create()
     {
-        //
+        return view('tenant.instalations.create');
     }
 
     /**
@@ -40,7 +40,9 @@ class InstalationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $instalation = Instalation::create($request->all());
+        return redirect()->route('instalations.index')
+            ->with('succes', 'Intalação ' . $instalation->ssd . 'cadastrado com sucesso !');
     }
 
     /**

@@ -32,7 +32,7 @@ class Server extends BaseModel
         'created_at', 'updated_at', 'deleted_at',
     ];
 
-    protected $with = ['internetPlans'];
+    //protected $with = ['internetPlans'];
     public function internetPlans()
     {
         return $this->belongsToMany(InternetPlan::class, 'providers.internet_plan_servers');

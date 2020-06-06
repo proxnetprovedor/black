@@ -16,8 +16,7 @@ class ServerController extends Controller
      */
     public function index()
     {
-        $servers = Server::latest()->get();
-
+        $servers = Server::latest()->paginate(15);
         return view('tenant.servers.index', compact('servers'));
     }
 
@@ -39,7 +38,9 @@ class ServerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $server = Server::create($request->all());
+        return redirect()->route('ctos.index')
+            ->with('succes', 'Servidor ' . $server->name . 'cadastrado com sucesso !');
     }
 
     /**
@@ -50,7 +51,10 @@ class ServerController extends Controller
      */
     public function show(Server $server)
     {
-        //
+        //dd($server);
+        $internetPlans = $server->internetPlans;
+        
+        return view('tenant.servers.show', compact('server', 'internetPlans'));
     }
 
     /**
@@ -61,12 +65,7 @@ class ServerController extends Controller
      */
     public function edit(Server $server)
     {
-        if(imOwner($server->tenant_id)) {
-            return view ('tenant.servers.edit', compact('server'));
-        } else {
-            return redirect()->route('servers.index')
-                ->with('error', 'O Servidor ' . $server->name . ' não pertence a sua Empresa !');
-        }
+        return view ('tenant.servers.edit', compact('server'));
     }
 
     /**
@@ -78,18 +77,11 @@ class ServerController extends Controller
      */
     public function update(Request $request, Server $server)
     {
-        if(imOwner($server->tenant_id)) {
-            $server->update($request->all());
-            $servers = \myTenant()->servers;
-            return redirect()->route('servers.index')
-                ->with('succes', 'Servidor ' . $server->name . 'atualizado com sucesso !');
-                
-        } else {
-            return redirect()->route('servers.index')
-            ->with('error', 'O Servidor ' . $server->name . ' não pertence a sua Empresa !');
-        }
-    }
 
+        $server->update($request->all());
+        return redirect()->route('servers.index')
+            ->with('succes', 'Servidor ' . $server->name . 'atualizado com sucesso !');
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -98,6 +90,6 @@ class ServerController extends Controller
      */
     public function destroy(Server $server)
     {
-        //
+        
     }
 }

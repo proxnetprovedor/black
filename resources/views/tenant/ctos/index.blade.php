@@ -6,31 +6,31 @@
 @section('content')
 
 <div class="container-fluid mt--6">
-    @include('_flash_messages')
     <div class="col-md-12">
+      @include('_flash_messages')
       <div class="card">
         
         @include('layouts.components._card-header', 
         [
           'icon'=>'dns', 'tittle'=>"CTOS", 
-          'button'=>['active'=>true, 'tittle'=>'Novo', 'route'=>route('tenants.create')]
+          'button'=>['active'=>true, 'tittle'=>'Novo', 'route'=>route('ctos.create')]
         ])
         
         <div class="card-body">
           
-          <div class="material-datatables">
-            <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
-                  <thead>
-                    <tr style="">
-                      <th>Nome</th>
-                      <th>Numero</th>
-                      <th>Capacidade</th>
-                      <th class="disabled-sorting text-right">Ações</th>
-                    </tr>
-                  </thead>
-                <tbody>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr style="">
+                  <th>Nome</th>
+                  <th>Numero</th>
+                  <th>Capacidade</th>
+                  <th class="disabled-sorting text-right">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
                 @foreach ($ctos as $item)
-                <tr>
+                  <tr>
                     <td>{{$item->name}}</td>
                     <td>{{$item->number}}</td>
                     <td>{{$item->capacity}}</td>
@@ -49,21 +49,22 @@
                       <button type="button" rel="tooltip" class="btn btn-info">
                         <i class="material-icons">person</i>
                       </button>
-                      <button type="button" rel="tooltip" class="btn btn-success">
+                      <a class="btn btn-success" href="{{route('ctos.edit', $item)}}">
                         <i class="material-icons">edit</i>
-                      </button>
+                      </a>
                       <button type="button" rel="tooltip" class="btn btn-danger">
                         <i class="material-icons">close</i>
                       </button>
                     </td>
                   </tr>  
                 @endforeach
-                </tbody>
-              </table>
-            </div>
+              </tbody>
+            </table>
+            {{ $ctos->links() }}
           </div>
-          <!-- end content-->
         </div>
+          <!-- end content-->
+      </div>
         <!--  end card  -->
     </div>
 </div>

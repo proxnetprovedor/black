@@ -9,12 +9,17 @@ trait Blameable
 {
 
     public static function bootBlameable() {
+        
         if(Auth::check()){
             static::creating(function($model) {
-                if(array_key_exists('created_by', $model->attributes)){
+                //dd(array_key_exists('created_by', $model->attributes));
+                if(!array_key_exists('created_by', $model->attributes)){
+                    
                     $model->created_by = Auth::id();
+                   
                 }
                 if(array_key_exists('updated_by', $model->attributes)){
+                    dd(Auth::id());
                     $model->updated_by = Auth::id();
                 }
             });
@@ -34,6 +39,7 @@ trait Blameable
     }
     //Usuário criador da model
     public  function createdBy() {
+        dd(Auth::id());
         return $this->belongsTo(User::class, 'created_by');
     }
 
