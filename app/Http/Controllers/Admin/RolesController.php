@@ -32,7 +32,7 @@ class RolesController extends Controller
      */
     public function create()
     {
-        $permissions = Permission::latest()->get()->pluck('name', 'name');
+        $permissions = Permission::latest()->get();
 
         return view('admin.roles.create', compact('permissions'));
     }
@@ -46,8 +46,10 @@ class RolesController extends Controller
     public function store(StoreRolesRequest $request)
     {
         $role = Role::create($request->except('permission'));
+
         $permissions = $request->input('permission') ? $request->input('permission') : [];
-        $role->givePermissionTo($permissions);
+        
+        $role->permissions()->sync($permissions);
 
         return redirect()->route('roles.index')->with('success', 'Perfil de acesso criado com sucesso !');
     }
