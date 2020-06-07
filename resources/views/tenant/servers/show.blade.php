@@ -6,7 +6,14 @@
 @section('content')
 
 <div class="container-fluid">
-  <div class="row">
+  <nav aria-label="breadcrumb" role="navigation">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{route('tenant.infra.dashboard')}}">Dashboard</a></li>
+      <li class="breadcrumb-item"><a href="{{route('servers.index')}}">Servidores</a></li>
+      <li class="breadcrumb-item active"><a href="#">{{$server->name}}</a></li>
+    </ol>
+  </nav>
+  <div class="row">    
     <div class="col-lg-5 col-md-12">
       <div class="card">
           @include('layouts.components._card-header',

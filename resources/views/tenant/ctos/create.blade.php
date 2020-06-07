@@ -8,6 +8,13 @@
 <div class="container-fluid mt--6">
     @include('_flash_messages')
     <div class="col-md-12">
+      <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{route('tenant.infra.dashboard')}}">Dashboard</a></li>
+          <li class="breadcrumb-item"><a href="{{route('ctos.index')}}">CTOS</a></li>
+          <li class="breadcrumb-item active"><a href="#">Novo</a></li>
+        </ol>
+      </nav>
       <div class="card">
         @include('layouts.components._card-header', 
         [

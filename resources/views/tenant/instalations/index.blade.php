@@ -6,8 +6,15 @@
 @section('content')
 
 <div class="container-fluid mt--6">
-    @include('_flash_messages')
+    
     <div class="col-md-12">
+      <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{route('tenant.infra.dashboard')}}">Dashboard</a></li>
+          <li class="breadcrumb-item active"><a href="#">Instalações</a></li>
+        </ol>
+      </nav>
+      @include('_flash_messages')
       <div class="card">
         
         @include('layouts.components._card-header', 
@@ -42,15 +49,18 @@
                     <td class="text-right">{{$item->switch_porta}}</td>
                     <td class="text-right">{{$item->pppoe_port}}</td>
                     <td class="td-actions text-right">
-                      <a class="btn btn-primary" href="{{route('instalations.show', $item)}}">
-                        <i class="material-icons">info</i>
+                      <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">more_vert</i>
+                        <p class="d-lg-none d-md-block">
+                          Account
+                        </p>
                       </a>
-                      <a class="btn btn-success" href="{{route('instalations.edit', $item)}}">
-                        <i class="material-icons">edit</i>
-                      </a>
-                      <button type="button" rel="tooltip" class="btn btn-danger">
-                        <i class="material-icons">close</i>
-                      </button>
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                        <a class="dropdown-item" href="{{route('instalations.show', $item->id)}}">Detalhes</a>
+                        <a class="dropdown-item" href="{{route('instalations.edit', $item->id)}}">Editar</a>
+                        <a class="dropdown-item" href="">Excluir</a>
+                      </div>
+                      
                     </td>
                   </tr>  
                 @endforeach

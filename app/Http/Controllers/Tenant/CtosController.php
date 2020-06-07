@@ -52,7 +52,7 @@ class CtosController extends Controller
      */
     public function show(Ctos $cto)
     {
-        return view('tenant.ctos.show');
+        return view('tenant.ctos.show', compact('cto'));
     }
 
     /**

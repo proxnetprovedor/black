@@ -114,7 +114,7 @@ Route::prefix('tenant')->namespace('Tenant')->middleware('auth')->group(
 
 // Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 /**
  * Site

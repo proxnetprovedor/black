@@ -7,6 +7,12 @@
 
 <div class="container-fluid mt--6">
     <div class="col-md-12">
+      <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{route('tenant.infra.dashboard')}}">Dashboard</a></li>
+          <li class="breadcrumb-item active"><a href="{{route('ctos.index')}}">CTOS</a></li>
+        </ol>
+      </nav>
       @include('_flash_messages')
       <div class="card">
         
@@ -35,15 +41,15 @@
                     <td>{{$item->number}}</td>
                     <td>{{$item->capacity}}</td>
                     <td class="td-actions text-right">
-                      <a class="btn btn-primary" href="{{route('ctos.show', $item)}}">
-                        <i class="material-icons">info</i>
+                      <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">more_vert</i>
+                        <p class="d-lg-none d-md-block">Account</p>
                       </a>
-                      <a class="btn btn-success" href="{{route('ctos.edit', $item)}}">
-                        <i class="material-icons">edit</i>
-                      </a>
-                      <button type="button" rel="tooltip" class="btn btn-danger">
-                        <i class="material-icons">close</i>
-                      </button>
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                        <a class="dropdown-item" href="{{route('ctos.show', $item->id)}}">Detalhes</a>
+                        <a class="dropdown-item" href="{{route('ctos.edit', $item->id)}}">Editar</a>
+                        <a class="dropdown-item" href="">Excluir</a>
+                      </div>
                     </td>
                   </tr>  
                 @endforeach
@@ -54,7 +60,25 @@
         </div>
           <!-- end content-->
       </div>
+      
         <!--  end card  -->
+        <div class="col-md-6">
+          <div class="card ">
+            <div class="card-header card-header-text card-header-rose">
+              <div class="card-text">
+                <h4 class="card-title">Custom Skin & Settings Map</h4>
+              </div>
+            </div>
+            <div class="card-body ">
+              <h4 class="card-title"></h4>
+              <div id="customSkinMap" class="map"></div>
+            </div>
+          </div>
+        </div>
     </div>
 </div>
 @endsection
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbu1X_x1tXwgBaUmzJI9Qr55RyEkOPUaQ"></script>
+
+
