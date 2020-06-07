@@ -35,20 +35,9 @@
                     <td>{{$item->number}}</td>
                     <td>{{$item->capacity}}</td>
                     <td class="td-actions text-right">
-                      {{-- <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons">more_vert</i>
-                        <p class="d-lg-none d-md-block">
-                          Account
-                        </p>
+                      <a class="btn btn-primary" href="{{route('ctos.show', $item)}}">
+                        <i class="material-icons">info</i>
                       </a>
-                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                        <a class="dropdown-item" href="{{route('tenants.show', $item->id)}}">Detalhes</a>
-                        <a class="dropdown-item" href="{{route('tenants.edit', $item->id)}}">Editar</a>
-                        <a class="dropdown-item" href="">Excluir</a>
-                      </div> --}}
-                      <button type="button" rel="tooltip" class="btn btn-info">
-                        <i class="material-icons">person</i>
-                      </button>
                       <a class="btn btn-success" href="{{route('ctos.edit', $item)}}">
                         <i class="material-icons">edit</i>
                       </a>

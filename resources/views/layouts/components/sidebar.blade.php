@@ -97,7 +97,12 @@
                 </a>
                 <div class="collapse" id="infra">
                     <ul class="nav">
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('tenant.infra.dashboard') }}">
+                                <span class="sidebar-mini">D</span>
+                                <span class="sidebar-normal"> Dashboard</span>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('servers.index') }}">
                                 <span class="sidebar-mini"> S </span>

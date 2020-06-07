@@ -53,7 +53,7 @@ class InstalationController extends Controller
      */
     public function show(Instalation $instalation)
     {
-        //
+        return view('tenant.instalations.show', compact('instalation'));
     }
 
     /**
@@ -64,7 +64,7 @@ class InstalationController extends Controller
      */
     public function edit(Instalation $instalation)
     {
-        //
+        return view('tenant.instalations.edit', compact('instalation'));
     }
 
     /**
@@ -76,7 +76,9 @@ class InstalationController extends Controller
      */
     public function update(Request $request, Instalation $instalation)
     {
-        //
+        $instalation->update($request->all());
+        return redirect()->route('instalations.index')
+            ->with('succes', 'Instalação ' . $instalation->ssid . 'atualizado com sucesso !');
     }
 
     /**

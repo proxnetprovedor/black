@@ -108,6 +108,7 @@ Route::prefix('tenant')->namespace('Tenant')->middleware('auth')->group(
 		Route::resource('servers', 'ServerController');
 		Route::resource('ctos', 'CtosController');
 		Route::resource('instalations', 'InstalationController');
+		Route::get('dashboard', 'InfraController@index')->name('tenant.infra.dashboard');
 	}
 );
 

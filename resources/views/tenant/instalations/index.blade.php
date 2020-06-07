@@ -42,12 +42,12 @@
                     <td class="text-right">{{$item->switch_porta}}</td>
                     <td class="text-right">{{$item->pppoe_port}}</td>
                     <td class="td-actions text-right">
-                      <button type="button" rel="tooltip" class="btn btn-info">
-                        <i class="material-icons">person</i>
-                      </button>
-                      <button type="button" rel="tooltip" class="btn btn-success">
+                      <a class="btn btn-primary" href="{{route('instalations.show', $item)}}">
+                        <i class="material-icons">info</i>
+                      </a>
+                      <a class="btn btn-success" href="{{route('instalations.edit', $item)}}">
                         <i class="material-icons">edit</i>
-                      </button>
+                      </a>
                       <button type="button" rel="tooltip" class="btn btn-danger">
                         <i class="material-icons">close</i>
                       </button>
