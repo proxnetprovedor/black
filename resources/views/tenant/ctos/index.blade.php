@@ -62,23 +62,21 @@
       </div>
       
         <!--  end card  -->
-        <div class="col-md-6">
-          <div class="card ">
+        <div class="col-md-12">
+          <div class="card">
             <div class="card-header card-header-text card-header-rose">
               <div class="card-text">
                 <h4 class="card-title">Custom Skin & Settings Map</h4>
               </div>
             </div>
             <div class="card-body ">
-              <h4 class="card-title"></h4>
-              <div id="customSkinMap" class="map"></div>
-            </div>
+              @include('map')
           </div>
         </div>
     </div>
 </div>
 @endsection
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbu1X_x1tXwgBaUmzJI9Qr55RyEkOPUaQ"></script>
+{{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbu1X_x1tXwgBaUmzJI9Qr55RyEkOPUaQ"></script> --}}
 
 
