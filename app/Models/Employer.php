@@ -17,7 +17,6 @@ class Employer extends BaseModel
         'function',
         'working_hours',
         'salary',
-        'plan_id',
         'person_id',
         'user_id',
 
