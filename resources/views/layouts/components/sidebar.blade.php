@@ -5,7 +5,7 @@
         Tip 2: you can also add an image using data-image tag
     -->
     <div class="logo"><a href="#" class="simple-text logo-mini">{{ config('app.name', 'B-R') }}</a>
-        <a href="#" class="simple-text logo-normal">{{ config('app.name', 'Bla') }}</a>
+        <a href="#" class="simple-text logo-normal">{{ config('app.name') }}</a>
     </div>
     <div class="sidebar-wrapper">
         <div class="user">

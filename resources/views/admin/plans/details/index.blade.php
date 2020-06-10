@@ -5,6 +5,12 @@
 
 @section('content')
 <div class="col-md-12">
+    <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{route('plans.index')}}">Planos</a></li>
+        </ol>
+    </nav>
     @include('_flash_messages')
 
     <div class="card">
@@ -20,7 +26,8 @@
                     <a href="{{route('plans.index')}}" class="btn btn-sm btn-primary">Voltar
                         para a lista</a>
 
-                    <a href="{{route('details.plan.create', $plan->url)}}" class="btn btn-sm btn-primary">Novo detalhe</a>
+                    <a href="{{route('details.plan.create', $plan->url)}}" class="btn btn-sm btn-primary">Novo
+                        detalhe</a>
 
                 </div>
             </div>

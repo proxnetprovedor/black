@@ -5,14 +5,20 @@
 
 @section('content')
 <div class="col-md-12">
+    <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{route('profiles.index')}}">Perfis de acesso do Provedor</a></li>
+        </ol>
+    </nav>
     @include('_flash_messages')
     <div class="card">
-        @include('layouts.components._card-header', 
+        @include('layouts.components._card-header',
         [
-        'icon'=>'assignment', 'tittle'=>"Detalhes do perfil $profile->name", 
+        'icon'=>'assignment', 'tittle'=>"Detalhes do perfil $profile->name",
         'button'=>['active'=>true, 'tittle'=>'Voltar', 'route'=>route('profiles.index')]
         ])
-        
+
         <div class="card-body">
             <ul>
                 <li>
@@ -21,13 +27,13 @@
                 <li>
                     <strong>Descrição:</strong> {{ $profile->description }}
                 </li>
-               
+
                 <hr>
                 <li>
-                    <strong>Permissões :</strong> 
+                    <strong>Permissões :</strong>
                     @foreach ($profile->permissions as $permission)
-                    <li> {{$permission->name}} </li>
-                    @endforeach
+                <li> {{$permission->name}} </li>
+                @endforeach
                 </li>
                 <hr>
                 <strong>Planos vinculados:</strong>

@@ -8,10 +8,15 @@
 <div class="col-md-12">
     @include('_flash_messages')
 
+    <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
+        </ol>
+    </nav>
     <div class="card">
         @include('layouts.components._card-header', 
         [
-        'icon'=>'list', 'tittle'=>"Perfis de acesso", 
+        'icon'=>'list', 'tittle'=>"Perfis de acesso do usu", 
         'button'=>['active'=>true, 'tittle'=>'Novo', 'route'=>route('roles.create')]
         ])
         <div class="card-body">

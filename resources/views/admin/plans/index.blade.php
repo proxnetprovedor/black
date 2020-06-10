@@ -5,13 +5,18 @@
 
 @section('content')
 <div class="col-md-12">
+    <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
+        </ol>
+    </nav>
     @include('_flash_messages')
     <div class="card">
         <!-- Card header -->
-        @include('layouts.components._card-header', 
+        @include('layouts.components._card-header',
         [
-          'icon'=>'assignment', 'tittle'=>"Planos", 
-          'button'=>['active'=>true, 'tittle'=>'Novo Plano', 'route'=>route('plans.create')]
+        'icon'=>'assignment', 'tittle'=>"Planos",
+        'button'=>['active'=>true, 'tittle'=>'Novo Plano', 'route'=>route('plans.create')]
         ])
         <div class="card-body">
             <!-- Light table -->
@@ -24,6 +29,7 @@
                             <th>Descrição</th>
                             <th>Provedoras</th>
                             <th>Detalhes</th>
+                            <th>Perfil de Acesso</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -41,14 +47,22 @@
                                     <span class="status">{{$plan->description}}</span>
                                 </span>
                             </td>
+
                             <td>
                                 <a href="{{route('providers.plan.index', $plan->url)}}">
                                     <i class="fa fa-users"> Provedoras </i>
                                 </a>
                             </td>
+
                             <td>
                                 <a href="{{route('details.plan.index', $plan->url)}}">
                                     <i class="fa fa-pencil"> Detalhes</i>
+                                </a>
+                            </td>
+
+                            <td>
+                                <a href="{{ route('plans.profiles', $plan) }}">
+                                    <i class="fa fa-sitemap"> Perfis de acesso</i>
                                 </a>
                             </td>
                             <td>
@@ -60,7 +74,6 @@
                                     <div class="dropdown-menu  dropdown-menu-arrow" style="">
                                         <a class="dropdown-item" href="{{route('plans.edit', $plan)}}">Editar</a>
                                         <a class="dropdown-item" href="{{route('plans.show', $plan)}}">Visualizar</a>
-                                        <a class="dropdown-item" href="{{ route('plans.profiles', $plan) }}">Perfis de acesso</a>
                                     </div>
                                 </div>
                             </td>

@@ -3,6 +3,12 @@
 
 @section('content')
 <div class="col-md-12">
+    <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{route('plans.index')}}">Planos</a></li>
+        </ol>
+    </nav>
     <div class="card">
         <div class="card-header card-header-primary card-header-icon">
             <div class="card-icon">

@@ -7,30 +7,40 @@
 
 <div class="col-md-12">
     @include('_flash_messages')
-
+    <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
+        </ol>
+    </nav>
     <div class="card">
-        @include('layouts.components._card-header', 
+        @include('layouts.components._card-header',
         [
-        'icon'=>'list', 'tittle'=>"Perfis de acesso (Provedores)", 
+        'icon'=>'list', 'tittle'=>"Perfis de acesso (Provedores)",
         'button'=>['active'=>true, 'tittle'=>'Novo', 'route'=>route('profiles.create')]
         ])
         <div class="card-body">
             <div class="table-responsive">
                 <table class=" table ">
-                    <thead class="">
+                    <thead >
                         <tr>
-                            <th scope="col" class="sort" data-sort="name">
+                            <th >
                                 Nome
                             </th>
-                            <th scope="col" class="sort" data-sort="budget">
+                            <th >
                                 Descrição
+                            </th>
+                            <th >
+                                Planos
+                            </th>
+                            <th >
+                                Permissões
                             </th>
                             <th scope="col">
                                 Ações
                             </th>
                         </tr>
                     </thead>
-                    <tbody class="list">
+                    <tbody >
                         @foreach($profiles as $key => $profile)
                         <tr data-entry-id="{{ $profile->id }}">
 
@@ -39,7 +49,18 @@
                                 {{ $profile->name ?? '' }}
                             </td>
                             <td>
-                               {{ $profile->description ?? '' }}
+                                {{ $profile->description ?? '' }}
+                            </td>
+
+                            <td>
+                                <a href="{{ route('profiles.plans', $profile) }}">
+                                    <i class="fa fa-pencil"> Planos</i>
+                                </a>
+                            </td>
+
+                            <td>
+                                <a href="{{ route('profiles.permissions', $profile) }}">
+                                    <i class="fa fa-sitemap"></i>Permissões</a>
                             </td>
 
                             <td>
@@ -52,11 +73,14 @@
 
                                         <a class="dropdown-item" href="{{route('profiles.edit', $profile)}}">Editar</a>
 
-                                        <a class="dropdown-item" href="{{route('profiles.show', $profile)}}">Visualizar</a>
+                                        <a class="dropdown-item"
+                                            href="{{route('profiles.show', $profile)}}">Visualizar</a>
 
-                                        <a class="dropdown-item" href="{{ route('profiles.permissions', $profile) }}">Permissões</a>
+                                        {{-- <a class="dropdown-item"
+                                            href="{{ route('profiles.permissions', $profile) }}">Permissões</a> --}}
 
-                                        <a class="dropdown-item" href="{{ route('profiles.plans', $profile) }}">Planos</a>
+                                        {{-- <a class="dropdown-item"
+                                            href="{{ route('profiles.plans', $profile) }}">Planos</a> --}}
 
                                         {{-- <form id="form" action="{{route('profiles.destroy', $profile->id)}}"
                                         method="POST"

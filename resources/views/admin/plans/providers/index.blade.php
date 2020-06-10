@@ -3,6 +3,12 @@
 
 @section('content')
 <div class="col-md-12">
+    <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{route('plans.index')}}">Planos</a></li>
+        </ol>
+    </nav>
     @include('_flash_messages')
 
     <div class="card">
@@ -49,7 +55,8 @@
                                         {{-- <a class="dropdown-item"
                                             href="{{ route('providers.plan.edit', [$plan->url, $provider->id]) }}">Editar</a>
                                         <a class="dropdown-item"
-                                            href="{{ route('providers.plan.show', [$plan->url, $provider->id]) }}">Visualizar</a> --}}
+                                            href="{{ route('providers.plan.show', [$plan->url, $provider->id]) }}">Visualizar</a>
+                                        --}}
                                     </div>
                                 </div>
                             </td>

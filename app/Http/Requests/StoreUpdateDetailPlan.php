@@ -27,4 +27,13 @@ class StoreUpdateDetailPlan extends FormRequest
             'name' => 'required|min:3|max:255',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Informe o nome',
+            'name.min' => 'O nome deve conter ao menos 3 caracteres',
+            'name.max' => 'O nome deve conter no máximo 255 caracteres',
+        ];
+    }
 }

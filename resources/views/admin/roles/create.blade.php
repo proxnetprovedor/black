@@ -7,10 +7,16 @@
 
 <div class="col-md-12">
     @include('_flash_messages')
+    <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{route('roles.index')}}">Perfil de acesso do usuário</a></li>
+        </ol>
+    </nav>
     <div class="card">
-        @include('layouts.components._card-header', 
+        @include('layouts.components._card-header',
         [
-        'icon'=>'assignment', 'tittle'=>"Criar um Perfil de Acesso", 
+        'icon'=>'assignment', 'tittle'=>"Criar um Perfil de Acesso",
         'button'=>['active'=>true, 'tittle'=>'Voltar', 'route'=>route('roles.index')]
         ])
         <div class="card-body">

@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class PermissionProfileController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:isSuperAdmin');
+    }
 
     public function permissions(Profile $profile)
     {

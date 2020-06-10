@@ -16,12 +16,13 @@ class DetailPlanController extends Controller
     {
         $this->repository = $detailPlan;
         $this->plan = $plan;
+        $this->middleware('can:isSuperAdmin');
     }
 
     public function index($urlPlan)
     {
         if (!$plan = $this->plan->where('url', $urlPlan)->first()) {
-            return redirect()->back();
+            return redirect()->back()->with('warning', 'Plano não encontrado ou não existe');
         }
 
         // $details = $plan->details();
@@ -36,7 +37,7 @@ class DetailPlanController extends Controller
     public function create($urlPlan)
     {
         if (!$plan = $this->plan->where('url', $urlPlan)->first()) {
-            return redirect()->back();
+            return redirect()->back()->with('warning', 'Plano não encontrado ou não existe');
         }
 
         return view('admin.plans.details.create', [
@@ -47,7 +48,7 @@ class DetailPlanController extends Controller
     public function store(StoreUpdateDetailPlan $request, $urlPlan)
     {
         if (!$plan = $this->plan->where('url', $urlPlan)->first()) {
-            return redirect()->back();
+            return redirect()->back()->with('warning', 'Plano não encontrado ou não existe');
         }
 
         // $data = $request->all();
@@ -65,7 +66,7 @@ class DetailPlanController extends Controller
         $detail = $this->repository->find($idDetail);
 
         if (!$plan || !$detail) {
-            return redirect()->back();
+            return redirect()->back()->with('warning', 'Plano ou detalhe não encontrado ou não existe');
         }
 
         return view('admin.plans.details.edit', [
@@ -117,6 +118,6 @@ class DetailPlanController extends Controller
 
         return redirect()
                     ->route('details.plan.index', $plan->url)
-                    ->with('success', 'Registro ' .$detail->name. ' detalado com sucesso');
+                    ->with('success', 'Detalhe ' .$detail->name. ' detalado com sucesso');
     }
 }

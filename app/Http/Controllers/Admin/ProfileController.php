@@ -8,6 +8,11 @@ use App\Models\Profile;
 
 class ProfileController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:isSuperAdmin');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -50,7 +55,7 @@ class ProfileController extends Controller
     {
         $profile = Profile::create($request->all());
 
-        return redirect()->route('profiles.index')->with('success', 'Perfil criado com sucesso !');
+        return redirect()->route('profiles.index')->with('success', 'Perfil '.$profile->name.' criado com sucesso !');
     }
 
     /**
@@ -75,7 +80,7 @@ class ProfileController extends Controller
     {
         $profile->update($request->all());
 
-        return redirect()->route('profiles.index')->with('success', 'Perfil editado com sucesso !');
+        return redirect()->route('profiles.index')->with('success', 'Perfil '.$profile->name.' editado com sucesso !');
     }
 
     /**

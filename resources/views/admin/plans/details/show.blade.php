@@ -5,6 +5,13 @@
 
 @section('content')
 <div class="container-fluid mt--6">
+    <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{route('plans.index')}}">Planos</a></li>
+            <li class="breadcrumb-item"><a href="{{route('details.plan.index', $plan->url)}}">Detalhes do Plano</a></li>
+        </ol>
+    </nav>
     <div class="card">
         <div class="card-header">
             <div class="row align-items-center">

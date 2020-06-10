@@ -2,7 +2,7 @@
     <div class="row">
         @csrf
         <div class="col-md-6">
-            <div class="form-group {{ $errors->has('name') ? 'has-danger' : '' }}">
+            <div class="form-group  label-floating {{ $errors->has('name') ? 'has-danger' : '' }}">
                 <label class="form-control-label" for="name">Nome </label> <span style="color:#f5365c ">*</span>
                 <input type="text" name="name" id="name"
                     class="form-control form-control-sm {{ $errors->has('name') ? 'has-danger' : '' }}"

@@ -38,7 +38,7 @@ class AuthServiceProvider extends ServiceProvider
             Gate::define($permission->name, function (User $user) use ($permission) {
                 return $user->hasPermission($permission->name);
             });
-        } 
+        }
 
         /**
          * Verifica se o usuário é dono do registro 
@@ -48,12 +48,21 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         /**
+         * Define um gate de superAdmin
+         */
+        Gate::define('isSuperAdmin', function (User $user) {
+            if ($user->isAdmin()) {
+                return true;
+            }
+        });
+
+        /**
          * Antes de definir as permissões acima, checa se o user é superAdmin
          */
-        // Gate::before(function (User $user) {
-        //     if ($user->isAdmin()) {
-        //         return true;
-        //     }
-        // });
+        Gate::before(function (User $user) {
+            if ($user->isAdmin()) {
+                return true;
+            }
+        });
     }
 }

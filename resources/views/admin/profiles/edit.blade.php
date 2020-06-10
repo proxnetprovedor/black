@@ -5,12 +5,18 @@
 
 @section('content')
 <div class="col-md-12">
+    <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{route('profiles.index')}}">Perfis de acesso do Provedor</a></li>
+        </ol>
+    </nav>
     @include('_flash_messages')
 
     <div class="card">
-        @include('layouts.components._card-header', 
+        @include('layouts.components._card-header',
         [
-        'icon'=>'assignment', 'tittle'=>"Editar Perfil", 
+        'icon'=>'assignment', 'tittle'=>"Editar Perfil",
         'button'=>['active'=>true, 'tittle'=>'Voltar', 'route'=>route('profiles.index')]
         ])
         <div class="card-body">

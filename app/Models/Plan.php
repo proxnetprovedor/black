@@ -22,6 +22,11 @@ class Plan extends BaseModel
         'created_at', 'updated_at', 'deleted_at',
     ];
 
+    // public function providers()
+    // {
+    //     return $this->
+    // }
+
     public function details()
     {
         return $this->hasMany(DetailPlan::class);
