@@ -21,6 +21,15 @@ class CtosController extends Controller
         return view('tenant.ctos.index', compact('ctos'));
     }
 
+    public function localizacao() {
+        $ctos = Ctos::all();
+        return response()->json([
+            'ctos' => $ctos,
+            'message' => 'creditos'
+            ], 200);
+        //return response()->json($ctos, 200, $headers);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

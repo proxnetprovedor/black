@@ -107,10 +107,15 @@ Route::prefix('tenant')->namespace('Tenant')->middleware('auth')->group(
 	function () {
 		Route::resource('servers', 'ServerController');
 		Route::resource('ctos', 'CtosController');
+		Route::get('ctoslocalizacao', 'CtosController@localizacao');
 		Route::resource('instalations', 'InstalationController');
 		Route::get('dashboard', 'InfraController@index')->name('tenant.infra.dashboard');
 	}
 );
+
+//Route::group(['prefix' => 'f'], function () {
+
+//});
 
 // Auth::routes();
 

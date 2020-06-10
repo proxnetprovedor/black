@@ -59,15 +59,17 @@
           {{ $ctos->links() }}
         </div>
       </div>
-      <!-- end content-->
-    </div>
-
-    <!--  end card  -->
-    <div class="col-md-6">
-      <div class="card ">
-        <div class="card-header card-header-text card-header-rose">
-          <div class="card-text">
-            <h4 class="card-title">Custom Skin & Settings Map</h4>
+      
+        <!--  end card  -->
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header card-header-text card-header-rose">
+              <div class="card-text">
+                <h4 class="card-title">Custom Skin & Settings Map</h4>
+              </div>
+            </div>
+            <div class="card-body ">
+              @include('map')
           </div>
         </div>
         <div class="card-body ">
@@ -80,4 +82,6 @@
 </div>
 @endsection
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbu1X_x1tXwgBaUmzJI9Qr55RyEkOPUaQ"></script>
+{{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbu1X_x1tXwgBaUmzJI9Qr55RyEkOPUaQ"></script> --}}
+
+
