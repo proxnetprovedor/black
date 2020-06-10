@@ -54,7 +54,7 @@
             @endcan 
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#formsExamples" aria-expanded="true">
-                    <i class="material-icons">content_paste</i>
+                    <i class="material-icons">verified</i>
                     <p> Controle de Acesso
                         <b class="caret"></b>
                     </p>
@@ -64,21 +64,21 @@
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('plans.index') }}">
-                                <span class="sidebar-mini"> PL </span>
+                                <span class="sidebar-mini"> PLA </span>
                                 <span class="sidebar-normal"> Planos </span>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('profiles.index') }}">
-                                <span class="sidebar-mini"> PP </span>
+                                <span class="sidebar-mini"> P.P </span>
                                 <span class="sidebar-normal"> Perfil de acesso (provedores) </span>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('roles.index') }}">
-                                <span class="sidebar-mini"> PA </span>
+                                <span class="sidebar-mini"> P.U </span>
                                 <span class="sidebar-normal"> Perfil de acesso (usuários) </span>
                             </a>
                         </li>
@@ -90,7 +90,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#infra" aria-expanded="true">
-                    <i class="material-icons">content_paste</i>
+                    <i class="material-icons">storage</i>
                     <p>Infraestrutura
                         <b class="caret"></b>
                     </p>

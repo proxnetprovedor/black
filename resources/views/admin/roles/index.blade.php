@@ -13,10 +13,11 @@
             <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
         </ol>
     </nav>
+    
     <div class="card">
-        @include('layouts.components._card-header', 
+        @include('layouts.components._card-header',
         [
-        'icon'=>'list', 'tittle'=>"Perfis de acesso do usu", 
+        'icon'=>'list', 'tittle' => "Perfis de acesso do usuário",
         'button'=>['active'=>true, 'tittle'=>'Novo', 'route'=>route('roles.create')]
         ])
         <div class="card-body">
