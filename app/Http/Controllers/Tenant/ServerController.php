@@ -90,6 +90,7 @@ class ServerController extends Controller
      */
     public function destroy(Server $server)
     {
-        
+        $server->delete();
+        return redirect()->back()->with('success', 'Servidor removido com sucesso!');
     }
 }
