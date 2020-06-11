@@ -31,10 +31,10 @@ mix.scripts(
         "resources/assets/js/core/jquery.min.js",
         "resources/assets/js/core/popper.min.js",
         "resources/assets/js/core/bootstrap-material-design.min.js",
-        
+
         "resources/assets/js/plugins/perfect-scrollbar.jquery.min.js",
         "resources/assets/js/plugins/moment.min.js",
-        
+
     ],
     "public/js/plugins-core.js"
 );
@@ -46,8 +46,8 @@ mix.scripts(
         "resources/assets/js/plugins/bootstrap-selectpicker.js",
         "resources/assets/js/plugins/bootstrap-datetimepicker.min.js",
         "resources/assets/js/plugins/jquery.dataTables.min.js",
-        
-        
+
+
     ],
     "public/js/plugins-form.js"
 );
@@ -64,7 +64,7 @@ mix.scripts(
     [
         "resources/assets/js/plugins/sweetalert2.js",
         "resources/assets/js/plugins/bootstrap-notify.js",
-        
+
         //"resources/assets/demo/demo.js"
     ],
     "public/js/plugins-notify.js"
@@ -91,3 +91,7 @@ mix.styles(
 // mix.copy("resources/css/icons", "public/css/scss/icons/");
 
 
+mix.disableNotifications();
+mix.browserSync({
+    proxy: 'localhost:8000'
+})
