@@ -19,8 +19,6 @@ class Employer extends BaseModel
         'salary',
         'person_id',
         'user_id',
-
-
         'created_by',
         'updated_by',
         'deleted_by',

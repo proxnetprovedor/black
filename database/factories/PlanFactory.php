@@ -13,6 +13,5 @@ $factory->define(Plan::class, function (Faker $faker) {
         'name' => $faker->word, 
         'url' => $id,
         'price' => 100.00, 
-        
     ];
 });

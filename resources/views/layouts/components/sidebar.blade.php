@@ -10,12 +10,12 @@
     <div class="sidebar-wrapper">
         <div class="user">
             <div class="photo">
-                <img src="../../assets/img/faces/avatar.jpg" />
+                <img src="{{ auth()->user()->tenant->logo ?? '' }}" />
             </div>
             <div class="user-info">
                 <a data-toggle="collapse" href="#collapseExample" class="username">
                     <span>
-                        {{Auth::user()->name}} | {{Auth::user()->tenant->name}}
+                        {{Auth::user()->name}} | {{ Str::limit(Auth::user()->tenant->name, 15, '...') }} 
                         <b class="caret"></b>
                     </span>
                 </a>
@@ -51,7 +51,7 @@
                     <p> Dashboard </p>
                 </a>
             </li>
-            @endcan 
+            @endcan
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#formsExamples" aria-expanded="true">
                     <i class="material-icons">verified</i>

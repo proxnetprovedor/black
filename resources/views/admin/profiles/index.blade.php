@@ -60,7 +60,7 @@
 
                             <td>
                                 <a href="{{ route('profiles.permissions', $profile) }}">
-                                    <i class="fa fa-sitemap"></i>Permissões</a>
+                                    <i class="fa fa-sitemap"></i> Permissões</a>
                             </td>
 
                             <td>

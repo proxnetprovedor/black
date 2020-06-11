@@ -15,24 +15,26 @@ class PlanSeeder extends Seeder
     {
         Plan::create([
             'id' => Uuid::uuid4()->toString(),
-            'name' => 'Default',
-            'url' => 'defaults',
+            'name' => 'Básico',
+            'url' => 'basico',
             'price' => 99.99,
             'description' => 'Plano Básico',
         ]);
+
         Plan::create([
             'id' => Uuid::uuid4()->toString(),
-            'name' => 'Standard',
-            'url' => 'standard',
+            'name' => 'Padrão',
+            'url' => 'padrao',
             'price' => 200.00,
             'description' => 'Plano Padrão',
         ]);
-        Plan::create([
-            'id' => Uuid::uuid4()->toString(),
-            'name' => 'Businers',
-            'url' => 'businers',
-            'price' => 499.99,
-            'description' => 'Plano Empresarial',
-        ]);
+
+        // Plan::create([
+        //     'id' => Uuid::uuid4()->toString(),
+        //     'name' => 'Businers',
+        //     'url' => 'businers',
+        //     'price' => 499.99,
+        //     'description' => 'Plano Empresarial',
+        // ]);
     }
 }

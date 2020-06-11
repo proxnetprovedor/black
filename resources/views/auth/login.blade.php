@@ -47,7 +47,7 @@
                 <i class="material-icons">lock_outline</i>
               </span>
             </div>
-            <input type="password" class="form-control" name="password" placeholder="Password...">
+            <input type="password" class="form-control" name="password" placeholder="Senha...">
 
             @if ($errors->has('password'))
             <span class="invalid-feedback" style="display: block;" role="alert">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Permission;
 use Illuminate\Database\Seeder;
 use Ramsey\Uuid\Uuid;
 use App\Models\Role;
@@ -17,6 +18,7 @@ class RoleSeeder extends Seeder
         Artisan::call('cache:clear');
 
         $role = Role::create(['id' => Uuid::uuid4()->toString(), 'name' => 'Administrador']);
-        // $role->givePermissionTo('users_manage');
+        $permissoes = Permission::all()->pluck('id');
+        $role->permissions()->sync($permissoes);
     }
 }
