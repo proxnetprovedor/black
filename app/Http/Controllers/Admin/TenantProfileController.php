@@ -29,21 +29,25 @@ class TenantProfileController extends Controller
     public function update(TenantProfileRequest $request, Tenant $tenant)
     {
 
-        DB::transaction( function() use($request, $tenant) {
+        if (!($tenant->id === auth()->user()->tenant_id)) {
+            abort(403);
+        }
+
+        DB::transaction(function () use ($request, $tenant) {
             $attributes = $request->all();
 
-            if($request->hasFile('logo') && $request->logo->isValid()){
-                if(Storage::exists($tenant->logo)){
+            if ($request->hasFile('logo') && $request->logo->isValid()) {
+                if (Storage::exists($tenant->logo)) {
                     Storage::delete($tenant->logo);
                 }
-    
+
                 // persiste a imagem na pasta do tenant correspondente
-                $attributes['logo'] = $request->logo->storeAs("public/tenants/{$tenant->id}", 'logo-{}');
+                $attributes['logo'] = $request->logo->store("tenants/{$tenant->id}");
             }
-    
+
             $tenant->update($attributes);
         });
-       
+
         return redirect()->route('tenant.profile.show', $tenant)->with('success', 'Perfil atualizado com sucesso !');
         // dd($request->logo);
         // dd($request->all());

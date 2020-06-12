@@ -25,14 +25,37 @@ class TenantProfileRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {   
+    {
 
         // dd(request()->all());
-        return [
-            'email' => ['required', 'string', 'email', 'min:3', 'max:255',  Rule::unique('pgsql.providers.tenants')->ignore( app(ManagerTenant::class)->getTenantIdentify() )],
-            'name' => ['required', 'string', 'min:3', 'max:255', Rule::unique('pgsql.providers.tenants')->ignore( app(ManagerTenant::class)->getTenantIdentify() )],
-            'cnpj' => ['required', 'numeric', 'digits:14', Rule::unique('pgsql.providers.tenants')->ignore( app(ManagerTenant::class)->getTenantIdentify() )],
+        $rules =  [
+            'email' => ['required', 'string', 'email', 'min:3', 'max:255',  Rule::unique('pgsql.providers.tenants')->ignore(app(ManagerTenant::class)->getTenantIdentify())],
+            'name' => ['required', 'string', 'min:3', 'max:255', Rule::unique('pgsql.providers.tenants')->ignore(app(ManagerTenant::class)->getTenantIdentify())],
+            'cnpj' => ['required', 'numeric', 'digits:14', Rule::unique('pgsql.providers.tenants')->ignore(app(ManagerTenant::class)->getTenantIdentify())],
             // 'logo' => ['mimes:jpeg,jpg,png,', 'dimensions:min_width=128,min_height=128', 'dimensions:max_width=1024,max_height=1024',]
+            'logo' => ['required', 'image', 'dimensions:max_width=1024,max_height=1024']
+
+
+
+        ];
+
+        if ($this->method() == 'PUT') {
+            $rules['logo'] = ['nullable', 'image', 'dimensions:max_width=1024,max_height=1024'];
+        }
+
+        return $rules;
+    }
+
+    public function messages()
+    {
+        return [
+            // 'logo' => [
+            //     'dimensions' => [
+            //         'max_width' => 'O :attribute não pode ter uma dimensão (largura) maior que :max_width px',
+            //         'max_height' => 'O :attribute não pode ter uma dimensão (altura) maior que :max_height px',
+            //     ]
+            // ]
+            'logo.dimensions' => 'A imagem possui dimenssões maiores que 1024x1024'
         ];
     }
 }

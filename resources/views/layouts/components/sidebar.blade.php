@@ -10,7 +10,7 @@
     <div class="sidebar-wrapper">
         <div class="user">
             <div class="photo">
-                <img src="{{ auth()->user()->tenant->logo ?? '' }}" />
+                <img src="{{ auth()->user()->tenant->logo() ?? '' }}" />
             </div>
             <div class="user-info">
                 <a data-toggle="collapse" href="#collapseExample" class="username">
