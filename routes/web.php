@@ -114,8 +114,12 @@ Route::prefix('tenant')->namespace('Tenant')->middleware('auth')->group(
 		Route::get('ctoslocalizacao', 'CtosController@localizacao');
 		Route::resource('instalations', 'InstalationController');
 		Route::get('dashboard', 'InfraController@index')->name('tenant.infra.dashboard');
+
+		
 	}
 );
+Route::get('f/maps/clientes', 'tenant\MapsController@clientes');
+Route::get('f/maps/servers', 'tenant\MapsController@servers');
 
 //Route::group(['prefix' => 'f'], function () {
 

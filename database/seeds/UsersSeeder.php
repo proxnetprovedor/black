@@ -40,6 +40,16 @@ class UsersSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
+        $tenant->users()->create([
+            'id' => Uuid::uuid4()->toString(),
+            'name' => 'Danilo Veloso',
+            'email' => 'danilovsdanilo@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('danilo123'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
 
         // $user2->assignRole('administrator');
     }

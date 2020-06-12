@@ -9,7 +9,6 @@
     @include('_flash_messages')
     <div class="col-md-12">
       <div class="card">
-        
         @include('layouts.components._card-header', 
         [
           'icon'=>'home', 'tittle'=>"PROVEDORES", 
