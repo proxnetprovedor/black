@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Permission;
+use App\Models\Tenant;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -48,6 +49,14 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         /**
+         * Verifica se o tenant é dono do registro 
+         */
+        Gate::define('owner-tenant', function (User $user, Tenant $tenant) {
+            dd($tenant);
+           return  dd($user->tenant_id == $tenant->id);
+        });
+
+        /**
          * Define um gate de superAdmin
          */
         Gate::define('isSuperAdmin', function (User $user) {
@@ -59,10 +68,10 @@ class AuthServiceProvider extends ServiceProvider
         /**
          * Antes de definir as permissões acima, checa se o user é superAdmin
          */
-        Gate::before(function (User $user) {
-            if ($user->isAdmin()) {
-                return true;
-            }
-        });
+        // Gate::before(function (User $user) {
+        //     if ($user->isAdmin()) {
+        //         return true;
+        //     }
+        // });
     }
 }

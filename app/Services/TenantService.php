@@ -5,6 +5,12 @@ namespace App\Services;
 use App\Models\Plan;
 use Illuminate\Support\Facades\Hash;
 
+/*
+ |  Implementa os recuros para o formulário de registro de um provedor
+ |
+ |
+ */
+
 class TenantService
 {
     private $plan, $data;
@@ -25,7 +31,7 @@ class TenantService
     /**
      * Cadastra o provedor para um teste de 7 dias
      */
-    public function storeTenant()   
+    public function storeTenant()
     {
         $data = $this->data;
 

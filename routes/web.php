@@ -94,7 +94,11 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(
 		// Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 
 
-
+		/**
+		 * Profile (Perfil) do tenant
+		 */
+		Route::get('/tenant/{tenant}/profile', 'TenantProfileController@show')->name('tenant.profile.show');
+		Route::put('/tenant/{tenant}/profile', 'TenantProfileController@update')->name('tenant.profile.update');
 		/**
 		 * Routes Tenants
 		 */
