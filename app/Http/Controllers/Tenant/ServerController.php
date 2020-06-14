@@ -27,7 +27,7 @@ class ServerController extends Controller
      */
     public function create()
     {
-        return view ('tenant.servers.create');
+        return view('tenant.servers.create');
     }
 
     /**
@@ -51,9 +51,9 @@ class ServerController extends Controller
      */
     public function show(Server $server)
     {
-        //dd($server);
         $internetPlans = $server->internetPlans;
-        
+        // dd($server);
+
         return view('tenant.servers.show', compact('server', 'internetPlans'));
     }
 
@@ -65,7 +65,7 @@ class ServerController extends Controller
      */
     public function edit(Server $server)
     {
-        return view ('tenant.servers.edit', compact('server'));
+        return view('tenant.servers.edit', compact('server'));
     }
 
     /**
@@ -79,6 +79,8 @@ class ServerController extends Controller
     {
 
         $server->update($request->all());
+
+        // dd($request->all());
         return redirect()->route('servers.index')
             ->with('succes', 'Servidor ' . $server->name . 'atualizado com sucesso !');
     }
@@ -90,7 +92,10 @@ class ServerController extends Controller
      */
     public function destroy(Server $server)
     {
+        // dd($server);
+        $server->internetPlans()->detach();
         $server->delete();
-        return redirect()->back()->with('success', 'Servidor removido com sucesso!');
+        return redirect()->route('servers.index')
+            ->with('succes', 'Servidor ' . $server->name . 'atualizado com sucesso !');
     }
 }

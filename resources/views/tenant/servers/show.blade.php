@@ -13,22 +13,59 @@
       <li class="breadcrumb-item active"><a href="#">{{$server->name}}</a></li>
     </ol>
   </nav>
-  <div class="row">    
+  <div class="row">
     <div class="col-lg-5 col-md-12">
       <div class="card">
-          @include('layouts.components._card-header',
-          [
-          'icon'=>'home', 'tittle'=>"SERVIDOR $server->name" ,
-          'button'=>['active'=>true, 'tittle'=>'voltar', 'route'=>route('servers.index')]
-          ])
-    
-          <div class="card-body">
-            <div class="table-responsive">
-              
+        @include('layouts.components._card-header',
+        [
+        'icon'=>'home', 'tittle'=>"SERVIDOR $server->name" ,
+        'button'=>['active'=>true, 'tittle'=>'voltar', 'route'=>route('servers.index')]
+        ])
+
+        <div class="card-body">
+          <form action="{{route('servers.update', $server)}}" method="post" id="formServer"
+            enctype="multipart/form-data">
+            @csrf
+            <input type="hidden" name="_method" value="PUT" id="method_id">
+
+            <div class="form-group bmd-form-group">
+              <label for="ip_address" class="bmd-label-floating">IP</label>
+              <input type="text" id="ip_address" value="{{ $server->ip_address }}" name="ip_address"
+                class="form-control">
             </div>
+
+            <div class="form-group bmd-form-group">
+              <label for="port" class="bmd-label-floating">Porta</label>
+              <input type="text" id="port" value="{{ $server->port }}" name="port" class="form-control">
+            </div>
+
+            <div class="form-group bmd-form-group">
+              <label for="login" class="bmd-label-floating">Login</label>
+              <input type="text" id="login" value="{{ $server->login }}" class="form-control">
+            </div>
+
+            <div class="form-group bmd-form-group">
+              <label for="interface" class="bmd-label-floating">Interface</label>
+              <input type="text" id="interface" value="{{ $server->interface }}" name="interface" class="form-control">
+            </div>
+          </form>
+        </div>
+        <div class="card-footer d-flex justify-content-around">
+          <div class="col-md-6">
+            <button class="btn btn-danger btn-block" data-toggle="modal"
+              data-target="#deleteServerModal">Excluir</button>
           </div>
+          <div class="col-md-6 ">
+            <button onclick="salveServer('{{ $server->id }}')" class="btn btn-primary btn-block">Salvar</button>
+          </div>
+        </div>
+
+        @include('tenant.servers.modals.deleteServerModal')
+
       </div>
     </div>
+
+
     <div class="col-lg-7 col-md-12">
       <div class="card">
         @include('layouts.components._card-header',
@@ -39,7 +76,7 @@
 
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table">
+            <table class="table table-hover">
               <thead>
                 <tr style="">
                   <th>Nome</th>
@@ -50,7 +87,7 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($internetPlans as $item)
+                @forelse ($internetPlans as $item)
                 <tr>
                   <td>{{$item->name}}</td>
                   <td>{{$item->price}}</td>
@@ -70,16 +107,39 @@
                       <a class="dropdown-item" href="">Excluir</a>
                     </div>
                   </td>
+
+                  @empty
+                  <div class="alert alert-info">Nenhum registro!</div>
                 </tr>
-                @endforeach
+                @endforelse
               </tbody>
             </table>
           </div>
         </div>
       </div>
     </div>
+
   </div>
-  
-      
-</div>
-@endsection
+
+
+  @endsection
+
+  @section('scripts_after_body')
+  <script>
+    function deleteServer(id){
+      let url = '{{ route("servers.destroy", ":id") }}'
+      url = url.replace(':id', id);
+      $('#formServer').attr('action', url)
+      $('#method_id').val('delete')
+      $('#formServer').submit()
+   }
+
+  function salveServer(id){
+    let url = '{{ route("servers.update", ":id") }}'
+    url = url.replace(':id', id);
+    $('#formServer').attr('action', url)
+    $('#method_id').val('PUT')
+    $('#formServer').submit()
+  }
+  </script>
+  @endsection
