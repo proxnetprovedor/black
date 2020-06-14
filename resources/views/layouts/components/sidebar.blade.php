@@ -15,7 +15,7 @@
             <div class="user-info">
                 <a data-toggle="collapse" href="#collapseExample" class="username">
                     <span>
-                        {{Auth::user()->name}} | {{ Str::limit(Auth::user()->tenant->name, 15, '...') }} 
+                        {{Auth::user()->name}} | {{ Str::limit(Auth::user()->tenant->name, 15, '...') }}
                         <b class="caret"></b>
                     </span>
                 </a>
@@ -43,9 +43,9 @@
                 </div>
             </div>
         </div>
-        <ul class="nav">
+        <ul class="nav" id="sidebarCollapse">
             @can('users manage')
-            <li class="nav-item active">
+            <li class="nav-item {{ Request::is('home') ? 'active' : '' }}">
                 <a class="nav-link" href="/home">
                     <i class="material-icons">dashboard</i>
                     <p> Dashboard </p>
@@ -59,25 +59,28 @@
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse" id="formsExamples">
+                <div class="collapse @if(Request::is('admin/plans') || 
+                    Request::is('admin/profiles') ||
+                    Request::is('admin/roles')) show @endif" id="formsExamples">
+
                     <ul class="nav">
 
-                        <li class="nav-item">
+                        <li class="nav-item {{ Request::is('admin/plans') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('plans.index') }}">
                                 <span class="sidebar-mini"> PLA </span>
                                 <span class="sidebar-normal"> Planos </span>
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item {{ Request::is('admin/profiles') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('profiles.index') }}">
                                 <span class="sidebar-mini"> P.P </span>
                                 <span class="sidebar-normal"> Perfil de acesso (provedores) </span>
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('roles.index') }}">
+                        <li class="nav-item {{ Request::is('admin/roles') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('roles.index') }}" aria-selected="true">
                                 <span class="sidebar-mini"> P.U </span>
                                 <span class="sidebar-normal"> Perfil de acesso (usuários) </span>
                             </a>
@@ -95,42 +98,43 @@
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse" id="infra">
+                <div class="collapse @if( Request::is('tenant/*') ) show @endif" id="infra">
+
                     <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('tenant.infra.dashboard') }}">
+                        <li class="nav-item {{ Request::is('tenant/dashboard') ? 'active' : '' }}">
+                            <a class="nav-link " href="{{ route('tenant.infra.dashboard') }}">
                                 <span class="sidebar-mini">D</span>
                                 <span class="sidebar-normal"> Dashboard</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item {{ Request::is('tenant/servers') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('servers.index') }}">
                                 <span class="sidebar-mini"> S </span>
                                 <span class="sidebar-normal"> Servidores </span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item {{ Request::is('tenant/instalations') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('instalations.index') }}">
                                 <span class="sidebar-mini"> S </span>
                                 <span class="sidebar-normal"> Instalações </span>
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item {{ Request::is('tenant/ctos') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('ctos.index') }}">
                                 <span class="sidebar-mini"> PP </span>
                                 <span class="sidebar-normal"> CTO </span>
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('roles.index') }}">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#">
                                 <span class="sidebar-mini"> PA </span>
                                 <span class="sidebar-normal"> CEO </span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('roles.index') }}">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#">
                                 <span class="sidebar-mini"> PA </span>
                                 <span class="sidebar-normal"> Mapa de Rede </span>
                             </a>
@@ -144,3 +148,22 @@
         </ul>
     </div>
 </div>
+@section('scripts_after_body')
+
+<script>
+    $(document).ready(function () {
+        oldElment = []
+       $('li .nav-item').each( (i, element) => {
+           $(element).on('click', (e) => {
+               oldElment.push( $(e.currentTarget) )
+               $(e.currentTarget).addClass('active')
+
+               if(oldElment[oldElment.length -2]){
+                oldElment[oldElment.length -2].removeClass('active')
+                $(e.currentTarget).addClass('active')
+               }
+           })
+       })
+    });
+</script>
+@endsection

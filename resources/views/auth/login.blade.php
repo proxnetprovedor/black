@@ -1,4 +1,5 @@
-@extends('layouts.app', ['page' => 'Login', 'class' => 'page-header login-page header-filter', 'url' => '../../assets/img/login.jpg'])
+@extends('layouts.app', ['page' => 'Login', 'class' => 'page-header login-page header-filter', 'url' =>
+'../../assets/img/login.jpg'])
 
 @section('content')
 
@@ -60,7 +61,7 @@
       </div>
 
       <div class="card-footer justify-content-center">
-        <button type="submit" class="btn btn-rose btn-link btn-lg" style="color: #9c27b0">
+        <button type="submit" class="btn btn-rose btn-link btn-wd btn-lg" style="color: #9c27b0">
           {{ __('Entrar') }}
         </button>
       </div>
@@ -68,7 +69,3 @@
   </form>
 </div>
 @endsection
-
-
-
-
