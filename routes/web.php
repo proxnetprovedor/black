@@ -94,7 +94,11 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(
 		// Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 
 
-
+		/**
+		 * Profile (Perfil) do tenant
+		 */
+		Route::get('/tenant/{tenant}/profile', 'TenantProfileController@show')->name('tenant.profile.show');
+		Route::put('/tenant/{tenant}/profile', 'TenantProfileController@update')->name('tenant.profile.update');
 		/**
 		 * Routes Tenants
 		 */
@@ -110,8 +114,12 @@ Route::prefix('tenant')->namespace('Tenant')->middleware('auth')->group(
 		Route::get('ctoslocalizacao', 'CtosController@localizacao');
 		Route::resource('instalations', 'InstalationController');
 		Route::get('dashboard', 'InfraController@index')->name('tenant.infra.dashboard');
+
+		
 	}
 );
+Route::get('f/maps/clientes', 'tenant\MapsController@clientes');
+Route::get('f/maps/servers', 'tenant\MapsController@servers');
 
 //Route::group(['prefix' => 'f'], function () {
 

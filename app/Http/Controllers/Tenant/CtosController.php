@@ -24,7 +24,7 @@ class CtosController extends Controller
     public function localizacao() {
         $ctos = Ctos::all();
         return response()->json([
-            'ctos' => $ctos,
+            'data' => $ctos,
             'message' => 'creditos'
             ], 200);
         //return response()->json($ctos, 200, $headers);

@@ -36,6 +36,12 @@ class Tenant extends BaseModel
 
     protected $with = ['servers'];
 
+
+    public function logo()
+    {
+        return url("storage/{$this->logo}");
+    }
+
     public function plan()
     {
         return $this->belongsTo(Plan::class);
