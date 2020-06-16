@@ -33,4 +33,10 @@ class Instalation extends BaseModel
         'tenant_id',
     ];
     protected $dates = ['created_at', 'updated_at', 'deleted_at',];
+    protected $with = ['subscription'];
+
+    public function subscription()
+    {
+        return $this->hasOne(Subscription::class, 'instalation_id');
+    }
 }

@@ -34,7 +34,7 @@ class Tenant extends BaseModel
         'deleted_at', 'subscription_date', 'expires_at'
     ];
 
-    protected $with = ['servers'];
+    //protected $with = ['servers'];
 
 
     public function logo()

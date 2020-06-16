@@ -120,6 +120,7 @@ Route::prefix('tenant')->namespace('Tenant')->middleware('auth')->group(
 );
 Route::get('f/maps/clientes', 'tenant\MapsController@clientes');
 Route::get('f/maps/servers', 'tenant\MapsController@servers');
+Route::get('f/maps/costumers', 'tenant\MapsController@costumers');
 
 //Route::group(['prefix' => 'f'], function () {
 

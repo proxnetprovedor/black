@@ -14,7 +14,9 @@ $factory->define(Subscription::class, function (Faker $faker) {
     $contract = factory(Contract::class)->create(['tenant_id' => $tenant[0]->id, 'person_id' => $person->id]);
     $id = Uuid::uuid4()->toString();
     $address = factory(Address::class)->create(['tenant_id' =>  $tenant[0]->id, 'addressable_id' => $id, 'addressable_type' => 'App\Models\Subscription']);
-
+    //$instation = factory(Instalation::class)->create(['tenant_id' => $tenant[0]->id]);
+    //dd($instation->id);
+    //$costumer = factory(Costumer::class)->create(['tenant_id' => $tenant[0]->id, 'person_id' => $person->id]);
     return [
         'id' => $id,
         //'person_id' => $person->id,
@@ -22,7 +24,8 @@ $factory->define(Subscription::class, function (Faker $faker) {
         'tenant_id' => $tenant[0]->id,
         'auto_block' => true,
         'costumer_id' => $costumer->id,
-        'contract_id' => $contract->id
+        'contract_id' => $contract->id,
+        //'instalation_id' => $instation->id,
         // 'pay_day' = ,
         // 'pay_discount',
         // 'pay_exta',
@@ -34,7 +37,7 @@ $factory->define(Subscription::class, function (Faker $faker) {
         // 'ip_address',
         // 'mac_address',
         
-        // 'instalation_id'
+        
         // 'server_id'
         
         // 'employee_id'

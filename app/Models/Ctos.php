@@ -27,6 +27,10 @@ class Ctos extends BaseModel
         'tenant_id',
     ];
     protected $dates = ['created_at', 'updated_at', 'deleted_at',];
+    //protected $with = ['instalations'];
 
-    
+    public function instalations()
+    {
+        return $this->hasMany(Instalation::class, 'cto_id');
+    }
 }

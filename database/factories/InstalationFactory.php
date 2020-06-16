@@ -6,11 +6,17 @@ namespace App\Models;
 use Faker\Generator as Faker;
 use Ramsey\Uuid\Uuid;
 
-$factory->define(Instalation::class, function (Faker $faker) {
+$factory->define(Instalation::class, function (Faker $faker, $params) {
     $user = User::all()->first()->id;
-    $tenant = Tenant::all()->random(1);
+    //$tenant = Tenant::all()->random(1);
     $accesPoint = AccesPoint::all()->random(1);
-    $cto = Ctos::all()->random(1);
+    //$cto = Ctos::all()->random(1);
+    $tenant = Tenant::find($params['tenant_id']);
+    $ctos = $tenant->ctos->random(1);
+    var_dump($ctos[0]);
+    //$cto = Ctos::where('tenant_id', $tenant->id)->get()->random(1);
+    //dd($cto);
+    
     return [
         'id' => Uuid::uuid4()->toString(),
         'ssid' => $faker->userName,
@@ -24,8 +30,8 @@ $factory->define(Instalation::class, function (Faker $faker) {
         'switch_porta' => 8000,
         'pppoe_port' => 5151,
         'access_point_id' => $accesPoint[0]->id,
-        'cto_id' => $cto[0]->id,
+        'cto_id' => $ctos[0]->id,
         'created_by' => $user,
-        'tenant_id' => $tenant[0]->id
+        'tenant_id' => $tenant->id
     ];
 });

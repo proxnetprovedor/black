@@ -265,8 +265,15 @@
         origin: new google.maps.Point(0,0), // origin
         anchor: new google.maps.Point(0, 0) // anchor
     };
+    var costumer = {
+        url: '{{asset("img/icons/person.png")}}', // url
+        scaledSize: new google.maps.Size(20, 20), // scaled size
+        origin: new google.maps.Point(0,0), // origin
+        anchor: new google.maps.Point(0, 0) // anchor
+    };
     gerarMarcadores(map, 'tenant/ctoslocalizacao', cto);
     gerarMarcadores(map, 'f/maps/servers', server);
+    gerarMarcadores(map, 'f/maps/costumers', costumer);
     
 	}
 </script>

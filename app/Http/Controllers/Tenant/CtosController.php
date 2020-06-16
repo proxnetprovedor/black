@@ -61,6 +61,7 @@ class CtosController extends Controller
      */
     public function show(Ctos $cto)
     {
+        dd($cto->instalations);
         return view('tenant.ctos.show', compact('cto'));
     }
 
