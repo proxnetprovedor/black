@@ -61,7 +61,7 @@
       </div>
 
       <div class="card-footer justify-content-center">
-        <button type="submit" class="btn btn-rose btn-link btn-wd btn-lg" style="color: #9c27b0">
+        <button type="submit" class="btn btn-link btn-primary" >
           {{ __('Entrar') }}
         </button>
       </div>

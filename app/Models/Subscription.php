@@ -5,8 +5,8 @@ namespace App\Models;
 use App\Traits\Blameable;
 use App\Traits\TenantTrait;
 use App\Traits\UuidTrait;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Instalation;
 
 class Subscription extends BaseModel
 {
@@ -45,4 +45,14 @@ class Subscription extends BaseModel
         'created_at', 'updated_at', 'deleted_at',
         'pay_day'
     ];
+
+    public function ctos()
+    {
+        return $this->belongsToMany(Ctos::class, 'cto_id', 'cto_subcscritions')->withPivot('spliter');
+    }
+
+    public function instalation()
+    {
+        return $this->belongsTo(Instalation::class);
+    }
 }

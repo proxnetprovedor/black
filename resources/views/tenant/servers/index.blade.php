@@ -54,10 +54,9 @@
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                     <a class="dropdown-item" href="{{route('servers.show', $item->id)}}">Detalhes</a>
                     <a class="dropdown-item" href="{{route('servers.edit', $item->id)}}">Editar</a>
-                    <a onclick="event.preventDefault(); document.getElementById('form-delete-{{ $item->id }}').submit();"
-                      class="dropdown-item" href="">Excluir</a>
+                    <a data-toggle="modal" data-target="#deleteServerModal" class="dropdown-item">Excluir</a>
                   </div>
-                  
+
                   <form action="{{ route('servers.destroy', $item->id) }}" method="post"
                     id="form-delete-{{ $item->id }}">
                     @method('delete')
@@ -67,6 +66,7 @@
                 </td>
               </tr>
             </tbody>
+            @include('tenant.servers.modals.index.deleteServerModal')
             @endforeach
           </table>
           {{ $servers->links() }}
@@ -74,4 +74,14 @@
       </div>
     </div>
   </div>
+
+  @endsection
+
+  @section('scripts_after_body')
+  <script>
+    function deleteServer(id){
+      let form = $(`#form-delete-${id}`)
+      return form.submit();
+    }
+  </script>
   @endsection

@@ -40,7 +40,7 @@ class ServerController extends Controller
     {
         $server = Server::create($request->all());
         return redirect()->route('ctos.index')
-            ->with('succes', 'Servidor ' . $server->name . 'cadastrado com sucesso !');
+            ->with('success', 'Servidor ' . $server->name . 'cadastrado com sucesso !');
     }
 
     /**
@@ -82,7 +82,7 @@ class ServerController extends Controller
 
         // dd($request->all());
         return redirect()->route('servers.index')
-            ->with('succes', 'Servidor ' . $server->name . 'atualizado com sucesso !');
+            ->with('success', 'Servidor ' . $server->name . 'atualizado com sucesso !');
     }
     /**
      * Remove the specified resource from storage.
@@ -96,6 +96,6 @@ class ServerController extends Controller
         $server->internetPlans()->detach();
         $server->delete();
         return redirect()->route('servers.index')
-            ->with('succes', 'Servidor ' . $server->name . 'atualizado com sucesso !');
+            ->with('success', 'Servidor ' . $server->name . ' excluído com sucesso !');
     }
 }

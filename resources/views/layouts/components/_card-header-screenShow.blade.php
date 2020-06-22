@@ -6,7 +6,7 @@
   <h4 class="card-title">{{$tittle}}</h4>
   @if ($button['active'] == true)
   <div class="card-title col-12 text-right" style="margin-top: -30px">
-    <a href="{{$button['route']}}" class="btn btn-sm btn-primary">
+    <a data-toggle="{{$button['toggle']}}" data-target="{{$button['target']}}" class="btn btn-sm btn-primary">
       {{$button['tittle']}}
     </a>
   </div>

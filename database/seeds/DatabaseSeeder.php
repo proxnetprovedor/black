@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
                     factory(App\Models\Ctos::class, 30)->create(['tenant_id' => $tenant->id]);
                     factory(App\Models\AccesPoint::class, 100)->create(['tenant_id' => $tenant->id]);
                     factory(App\Models\Subscription::class, 200)->create(['tenant_id' => $tenant->id]);
-                    //factory(App\Models\Instalation::class, 100)->create(['tenant_id' => $tenant->id]);
+                    factory(App\Models\Instalation::class, 30)->create(['tenant_id' => $tenant->id]);
                     //factory(App\Models\Costumer::class, 50)->create(['tenant_id' => $tenant->id]);
                 });
         });

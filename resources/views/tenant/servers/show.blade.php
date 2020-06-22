@@ -60,7 +60,7 @@
           </div>
         </div>
 
-        @include('tenant.servers.modals.deleteServerModal')
+        @include('tenant.servers.modals.show.deleteServerModal')
 
       </div>
     </div>

@@ -33,4 +33,8 @@ class Ctos extends BaseModel
     {
         return $this->hasMany(Instalation::class, 'cto_id');
     }
+    public function subscriptions()
+    {
+        return $this->belongsToMany(Subscription::class, 'providers.cto_subscriptions', 'cto_id', 'subscription_id')->withPivot('spliter', 'id');
+    }
 }

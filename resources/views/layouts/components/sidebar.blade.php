@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <ul class="nav" id="sidebarCollapse">
+        <ul class="nav">
             @can('users manage')
             <li class="nav-item {{ Request::is('home') ? 'active' : '' }}">
                 <a class="nav-link" href="/home">
@@ -98,7 +98,7 @@
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse @if( Request::is('tenant/*') ) show @endif" id="infra">
+                <div class="collapse @if( Request::is('tenant/*') ) show @else @endif" id="infra">
 
                     <ul class="nav">
                         <li class="nav-item {{ Request::is('tenant/dashboard') ? 'active' : '' }}">

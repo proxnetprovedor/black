@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Tenant;
 use App\Models\Ctos;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Instalation;
+use App\Models\Subscription;
 use Auth;
 
 class CtosController extends Controller
@@ -16,17 +18,18 @@ class CtosController extends Controller
      */
     public function index()
     {
-        
+
         $ctos = Ctos::latest()->paginate(15);
         return view('tenant.ctos.index', compact('ctos'));
     }
 
-    public function localizacao() {
+    public function localizacao()
+    {
         $ctos = Ctos::all();
         return response()->json([
             'data' => $ctos,
             'message' => 'creditos'
-            ], 200);
+        ], 200);
         //return response()->json($ctos, 200, $headers);
     }
 
@@ -50,7 +53,7 @@ class CtosController extends Controller
     {
         $cto = Ctos::create($request->all());
         return redirect()->route('ctos.index')
-            ->with('succes', 'CTO ' . $cto->name . 'cadastrado com sucesso !');
+            ->with('success', 'CTO ' . $cto->name . 'cadastrado com sucesso !');
     }
 
     /**
@@ -61,7 +64,7 @@ class CtosController extends Controller
      */
     public function show(Ctos $cto)
     {
-        dd($cto->instalations);
+        //    dd($cto->with(Subscription::all())->with(Instalation::all())->get());
         return view('tenant.ctos.show', compact('cto'));
     }
 
@@ -87,7 +90,7 @@ class CtosController extends Controller
     {
         $cto->update($request->all());
         return redirect()->route('ctos.index')
-            ->with('succes', 'CTO ' . $cto->name . 'atualizado com sucesso !');
+            ->with('success', 'CTO ' . $cto->name . ' atualizado com sucesso !');
     }
 
     /**
@@ -96,8 +99,12 @@ class CtosController extends Controller
      * @param  \App\Models\Ctos  $ctos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ctos $ctos)
+    public function destroy(Ctos $cto)
     {
-        //
+        // dd($cto);
+        $cto->instalations()->delete();
+        $cto->delete();
+        return redirect()->route('ctos.index')
+            ->with('success', 'CTO ' . $cto->name . ' excluído com sucesso !');
     }
 }

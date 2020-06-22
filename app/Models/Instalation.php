@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\Blameable;
 use App\Traits\TenantTrait;
+use App\Models\Subscription;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Instalation extends BaseModel
@@ -33,10 +34,11 @@ class Instalation extends BaseModel
         'tenant_id',
     ];
     protected $dates = ['created_at', 'updated_at', 'deleted_at',];
-    protected $with = ['subscription'];
+    // protected $with = ['subscription'];
 
-    public function subscription()
+    public function subscriptions()
     {
-        return $this->hasOne(Subscription::class, 'instalation_id');
+        return $this->hasMany(Subscription::class, 'instalation_id');
     }
+
 }
