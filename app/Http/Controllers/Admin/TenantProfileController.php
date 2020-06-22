@@ -49,7 +49,5 @@ class TenantProfileController extends Controller
         });
 
         return redirect()->route('tenant.profile.show', $tenant)->with('success', 'Perfil atualizado com sucesso !');
-        // dd($request->logo);
-        // dd($request->all());
     }
 }

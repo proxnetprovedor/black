@@ -44,7 +44,7 @@ class Tenant extends BaseModel
 
     public function plan()
     {
-        return $this->belongsTo(Plan::class);
+        return $this->belongsTo(Plan::class, 'plan_id');
     }
 
     public function users()
