@@ -99,6 +99,9 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(
 		 */
 		Route::get('/tenant/{tenant}/profile', 'TenantProfileController@show')->name('tenant.profile.show');
 		Route::put('/tenant/{tenant}/profile', 'TenantProfileController@update')->name('tenant.profile.update');
+		
+		Route::get('/tenant/{tenant}/plan', 'TenantPlanController@show')->name('tenant.plan.show');
+		Route::put('/tenant/{tenant}/plan/{plan}', 'TenantPlanController@update')->name('tenant.plan.update');
 		/**
 		 * Routes Tenants
 		 */

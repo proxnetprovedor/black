@@ -74,21 +74,23 @@
                     <div class="col-md-6 col-sm-4">
                         <h4 class="title">Alterar logo</h4>
                         <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail img-circle">
-                            <img src='{{$tenant->logo() ?? '../../../assets/img/placeholder.jpg'}}' alt="...">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail img-circle" style=""></div>
-                          <div>
-                            <span class="btn btn-round btn-rose btn-file">
-                              <span class="fileinput-new">Escolher uma nova logo</span>
-                              <span class="fileinput-exists">Escolher outra logo</span>
-                              <input type="hidden"><input type="file" name="logo">
-                            <div class="ripple-container"></div></span>
-                            <br>
-                            <a href="#" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Cancelar</a>
-                          </div>
+                            <div class="fileinput-new thumbnail img-circle">
+                                <img src='{{$tenant->logo() ?? '../../../assets/img/placeholder.jpg'}}' alt="...">
+                            </div>
+                            <div class="fileinput-preview fileinput-exists thumbnail img-circle" style=""></div>
+                            <div>
+                                <span class="btn btn-round btn-rose btn-file">
+                                    <span class="fileinput-new">Escolher uma nova logo</span>
+                                    <span class="fileinput-exists">Escolher outra logo</span>
+                                    <input type="hidden"><input type="file" name="logo">
+                                    <div class="ripple-container"></div>
+                                </span>
+                                <br>
+                                <a href="#" class="btn btn-danger btn-round fileinput-exists"
+                                    data-dismiss="fileinput"><i class="fa fa-times"></i> Cancelar</a>
+                            </div>
                         </div>
-                      </div>
+                    </div>
 
                     <hr>
 
@@ -109,37 +111,37 @@
                             <label class="bmd-label-floating">Latitude</label>
                             <input name="lat" type="text" class="form-control"
                                 value="{{isset($tenant->lat) && $tenant->lat && !old('lat') ? $tenant->lat :  ''}}">
-                            @if($errors->has('lat'))
-                            <span class="invalid-feedback" style="display: block;" role="alert">
-                                <strong>{{$errors->first('lat')}}</strong>
-                            </span>
-                            @endif
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group bmd-form-group">
-                            <label class="bmd-label-floating">Logintude</label>
-                            <input name="lng" type="text" class="form-control"
-                                value="{{isset($tenant->lng) && $tenant->lng && !old('lng') ? $tenant->lng :  ''}}">
-                            @if($errors->has('lng'))
-                            <span class="invalid-feedback" style="display: block;" role="alert">
-                                <strong>{{$errors->first('lng')}}</strong>
-                            </span>
-                            @endif
-                        </div>
-                    </div>
-                </div> --}}
-
-                <button type="submit" class="btn btn-rose pull-right">Atualizar</button>
-
-                <div class="clearfix"></div>
-            </form>
+                @if($errors->has('lat'))
+                <span class="invalid-feedback" style="display: block;" role="alert">
+                    <strong>{{$errors->first('lat')}}</strong>
+                </span>
+                @endif
         </div>
     </div>
+
+    <div class="col-md-6">
+        <div class="form-group bmd-form-group">
+            <label class="bmd-label-floating">Logintude</label>
+            <input name="lng" type="text" class="form-control"
+                value="{{isset($tenant->lng) && $tenant->lng && !old('lng') ? $tenant->lng :  ''}}">
+            @if($errors->has('lng'))
+            <span class="invalid-feedback" style="display: block;" role="alert">
+                <strong>{{$errors->first('lng')}}</strong>
+            </span>
+            @endif
+        </div>
+    </div>
+</div> --}}
+
+<button type="submit" class="btn btn-rose pull-right">Atualizar</button>
+
+<div class="clearfix"></div>
+</form>
+</div>
+</div>
 </div>
 <div class="col-md-4">
-    <div class="card card-profile">
+    <div class="card card-profile ">
         <div class="card-avatar">
             <a href="#pablo">
                 <img class="img" src="{{$tenant->logo() ?? ''}}">
@@ -195,9 +197,9 @@
                 </div>
             </div>
 
-            <a href="" class="btn btn-rose btn-round">Atualizar Plano</a>
+            <a href="{{route('tenant.plan.show', $tenant)}}" class="btn btn-rose btn-round">Atualizar Plano</a>
         </div>
     </div>
 </div>
-
+{{--  --}}
 @endsection
