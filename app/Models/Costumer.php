@@ -34,4 +34,17 @@ class Costumer extends BaseModel
         'tenant_id',
     ];
     protected $dates = ['created_at', 'updated_at', 'deleted_at',];
+
+    public function person()
+    {
+        return $this->belongsTo(Person::class, 'person_id');
+    }
+    public function addresses()
+    {
+        return $this->hasManyThrough(Address::class, Costumer::class);
+    }
+    public function address()
+    {
+        return $this->morphOne(Address::class, 'addressable');
+    }
 }

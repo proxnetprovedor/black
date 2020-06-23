@@ -31,5 +31,10 @@ class Address extends BaseModel
         'tenant_id',
     ];
     protected $dates = ['created_at', 'updated_at', 'deleted_at',];
+
+    public function addressable()
+    {
+        return $this->morphTo();
+    }
 }
 
