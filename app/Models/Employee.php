@@ -6,7 +6,7 @@ use App\Traits\Blameable;
 use App\Traits\TenantTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Employer extends BaseModel
+class Employee extends BaseModel
 {
     use Blameable, SoftDeletes, TenantTrait;
 
@@ -25,4 +25,14 @@ class Employer extends BaseModel
         'tenant_id',
     ];
     protected $dates = ['created_at', 'updated_at', 'deleted_at',];
+
+    public function person()
+    {
+        return $this->belongsTo(Person::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

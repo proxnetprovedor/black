@@ -37,12 +37,10 @@ class TenantUnique implements Rule
             ->where($attribute, $value)
             ->where('tenant_id', $tenant_id)
             ->first();
-
         if($is_valid && $is_valid->{$this->column} == $this->collumnValue)
             return true;
 
 
-            dd($is_valid);
         // se for NULL retorna TRUE
         return is_null($is_valid);
     }
@@ -54,6 +52,6 @@ class TenantUnique implements Rule
      */
     public function message()
     {
-        return 'O :attribute ja foi cadastrado em nossos bancos de dados';
+        return 'O :attribute já está em uso';
     }
 }

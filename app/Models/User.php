@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\TenantTrait;
 use App\Traits\UserACLTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;

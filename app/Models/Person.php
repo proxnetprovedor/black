@@ -12,16 +12,25 @@ class Person extends BaseModel
 
 
     protected $table = 'people';
-    
+
     protected $fillable = [
         'cpf_cnpj',
         'documento',
-        'insc_estadual', 
+        'insc_estadual',
         'insc_municipal',
         'created_by',
         'updated_by',
         'deleted_by',
         'tenant_id',
     ];
+    
     protected $dates = ['created_at', 'updated_at', 'deleted_at',];
+
+    /**
+     * Uma pessoa pode ter um endereço
+     */
+    public function address()
+    {
+        return $this->morphOne(Address::class, 'addressable');
+    }
 }

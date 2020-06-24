@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/tenant/permissions', function (){
+Route::get('/tenant/permissions', function () {
 	$tenant = Tenant::with('plan.profiles.permissions')->where('id', auth()->user()->tenant_id)->first();
 	dd($tenant);
 });
@@ -99,7 +99,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(
 		 */
 		Route::get('/tenant/{tenant}/profile', 'TenantProfileController@show')->name('tenant.profile.show');
 		Route::put('/tenant/{tenant}/profile', 'TenantProfileController@update')->name('tenant.profile.update');
-		
+
 		Route::get('/tenant/{tenant}/plan', 'TenantPlanController@show')->name('tenant.plan.show');
 		Route::put('/tenant/{tenant}/plan/{plan}', 'TenantPlanController@update')->name('tenant.plan.update');
 		/**
@@ -118,7 +118,10 @@ Route::prefix('tenant')->namespace('Tenant')->middleware('auth')->group(
 		Route::resource('instalations', 'InstalationController');
 		Route::get('dashboard', 'InfraController@index')->name('tenant.infra.dashboard');
 
-		
+		/**
+		 * Colaboradores de um dado Provedor
+		 */
+		Route::resource('employees', 'EmployeeController');
 	}
 );
 Route::get('f/maps/clientes', 'tenant\MapsController@clientes');
