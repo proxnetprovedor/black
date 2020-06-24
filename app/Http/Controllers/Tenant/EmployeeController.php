@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateEmployeeRequest;
 use App\Models\Employee;
 use App\Models\User;
+use App\Services\EmployeeService;
 use App\Services\PersonService;
 use App\Tenant\ManagerTenant;
 use Illuminate\Http\Request;
@@ -45,36 +46,19 @@ class EmployeeController extends Controller
      */
     public function store(StoreUpdateEmployeeRequest $request)
     {
-        $personService = app(PersonService::class);
 
-        $employee = DB::transaction(function () use ($request, $personService) {
-            $person = $personService->store($request->all());
+        $employee = DB::transaction(function () use ($request) {
 
-            $user = $this->storeUser($request->all());
+            $employeeService = app(EmployeeService::class);
 
-            $request->request->add(['person_id' => $person->id, 'user_id' => $user->id]);
-
-           return Employee::create($request->all());
-
+            return $employeeService->store($request->all());
         });
 
 
-        return redirect()->route('employees.index')->with('success', 'Colaborador  '.$employee->name.' cadastrado com sucesso !');
+        return redirect()->route('employees.index')->with('success', 'Colaborador  ' . $employee->name . ' cadastrado com sucesso !');
     }
 
-    /**
-     * Cadastra o usuário da provedora
-     */
-    public function storeUser($attributes)
-    {   
-        $tenant = app(ManagerTenant::class)->getTenant();
 
-        return $tenant->users()->create([
-            'name' =>  $attributes['name'],
-            'email' =>  $attributes['email'],
-            'password' => Hash::make($attributes['password']),
-        ]);
-    }
 
     /**
      * Display the specified resource.
@@ -95,7 +79,7 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        // dd($employee->user);
+        // dd($employee->person->address);
 
         return view('tenant.employees.edit', compact('employee'));
     }

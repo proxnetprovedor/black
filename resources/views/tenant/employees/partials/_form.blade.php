@@ -1,4 +1,6 @@
 <div class="pl-lg-4">
+    <h4 class="">Dados básicos</h4>
+    <br>
     <div class="row">
         @csrf
         <div class="col-md-6">
@@ -85,6 +87,7 @@
 
     <hr>
 
+    <h4 class="">Endereço</h4>
     <br>
     <div class="row">
         <div class="col-md-3">
@@ -92,7 +95,7 @@
                 <label class="bmd-label-floating" for="city">Cidade </label> <span style="color:#f5365c ">*</span>
                 <input type="text" name="city" id="city"
                     class="form-control  {{ $errors->has('city') ? 'has-danger' : '' }}" placeholder="Informe a cidade"
-                    value="{{ isset($employee) && $employee->address != null && !old('city') != null ? $employee->address->city  : old('city')  }}"
+                    value="{{ isset($employee) && $employee->person->address != null && !old('city') != null ? $employee->person->address->city  : old('city')  }}"
                     autofocus>
                 @if($errors->has('city'))
                 <span class="invalid-feedback" style="display: block;" role="alert">
@@ -107,7 +110,7 @@
                 <label class="bmd-label-floating" for="state">Estado </label> <span style="color:#f5365c ">*</span>
                 <input type="text" name="state" id="state"
                     class="form-control  {{ $errors->has('state') ? 'has-danger' : '' }}" placeholder="Informe o estado"
-                    value="{{ isset($employee) && $employee->address != null && !old('state') != null ? $employee->address->state  : old('state')  }}"
+                    value="{{ isset($employee) && $employee->person->address != null && !old('state') != null ? $employee->person->address->state  : old('state')  }}"
                     autofocus>
                 @if($errors->has('state'))
                 <span class="invalid-feedback" style="display: block;" role="alert">
@@ -122,7 +125,7 @@
                 <label class="bmd-label-floating" for="number">Numero </label> <span style="color:#f5365c ">*</span>
                 <input type="text" name="number" id="number"
                     class="form-control  {{ $errors->has('number') ? 'has-danger' : '' }}" placeholder="Numero"
-                    value="{{ isset($employee) && $employee->address != null && !old('number') != null ? $employee->address->number  : old('number')  }}"
+                    value="{{ isset($employee) && $employee->person->address != null && !old('number') != null ? $employee->person->address->number  : old('number')  }}"
                     autofocus>
                 @if($errors->has('number'))
                 <span class="invalid-feedback" style="display: block;" role="alert">
@@ -138,7 +141,7 @@
                     style="color:#f5365c ">*</span>
                 <input type="text" name="neighborthood" id="neighborthood"
                     class="form-control  {{ $errors->has('neighborthood') ? 'has-danger' : '' }}" placeholder="Bairro"
-                    value="{{ isset($employee) && $employee->address != null && !old('neighborthood') != null ? $employee->address->neighborthood  : old('neighborthood')  }}"
+                    value="{{ isset($employee) && $employee->person->address != null && !old('neighborthood') != null ? $employee->person->address->neighborthood  : old('neighborthood')  }}"
                     autofocus>
                 @if($errors->has('neighborthood'))
                 <span class="invalid-feedback" style="display: block;" role="alert">
@@ -154,7 +157,7 @@
                 <input type="text" name="address" id="address"
                     class="form-control  {{ $errors->has('address') ? 'has-danger' : '' }}"
                     placeholder="Logradouro, rua, avenida, travessa .."
-                    value="{{ isset($employee) && $employee->address != null && !old('address') != null ? $employee->address->address  : old('address')  }}"
+                    value="{{ isset($employee) && $employee->person->address != null && !old('address') != null ? $employee->person->address->address  : old('address')  }}"
                     autofocus>
                 @if($errors->has('address'))
                 <span class="invalid-feedback" style="display: block;" role="alert">
@@ -169,7 +172,7 @@
                 <label class="bmd-label-floating" for="cep">CEP </label> <span style="color:#f5365c ">*</span>
                 <input type="text" name="cep" id="cep"
                     class="form-control  {{ $errors->has('cep') ? 'has-danger' : '' }}" placeholder="Cep"
-                    value="{{ isset($employee) && $employee->cep != null && !old('cep') != null ? $employee->cep->cep  : old('cep')  }}"
+                    value="{{ isset($employee) && $employee->person->address != null && !old('cep') != null ? $employee->person->address->cep  : old('cep')  }}"
                     autofocus>
                 @if($errors->has('cep'))
                 <span class="invalid-feedback" style="display: block;" role="alert">
@@ -188,7 +191,7 @@
     <br>
 
     <hr>
-
+    <h4 class="">Dados de login</h4>
     <br>
 
     <div class="row">
