@@ -15,7 +15,7 @@
             <div class="user-info">
                 <a data-toggle="collapse" href="#collapseExample" class="username">
                     <span>
-                        {{Auth::user()->name}} | {{ Str::limit(Auth::user()->tenant->name, 15, '...') }}
+                        {{ Str::limit(Auth::user()->name, 12, '..') }} | {{ Str::limit(Auth::user()->tenant->name, 15, '...') }}
                         <b class="caret"></b>
                     </span>
                 </a>
