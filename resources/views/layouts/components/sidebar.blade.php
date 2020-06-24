@@ -64,21 +64,22 @@
                     Request::is('admin/roles')) show @endif" id="formsExamples">
 
                     <ul class="nav">
-
+                        @can('isSuperAdmin')
                         <li class="nav-item {{ Request::is('admin/plans') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('plans.index') }}">
                                 <span class="sidebar-mini"> PLA </span>
                                 <span class="sidebar-normal"> Planos </span>
                             </a>
                         </li>
-
+                        @endcan
+                        @can('isSuperAdmin')
                         <li class="nav-item {{ Request::is('admin/profiles') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('profiles.index') }}">
                                 <span class="sidebar-mini"> P.P </span>
                                 <span class="sidebar-normal"> Perfil de acesso (provedores) </span>
                             </a>
                         </li>
-
+                        @endcan
                         <li class="nav-item {{ Request::is('admin/roles') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('roles.index') }}" aria-selected="true">
                                 <span class="sidebar-mini"> P.U </span>
