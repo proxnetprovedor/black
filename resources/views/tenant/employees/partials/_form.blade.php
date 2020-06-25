@@ -89,7 +89,25 @@
 
     <h4 class="">Endereço</h4>
     <br>
+
+
+
     <div class="row">
+        <div class="col-md-2">
+            <div class="form-group  label-floating {{ $errors->has('cep') ? 'has-danger' : '' }}">
+                <label class="bmd-label-floating" for="cep">CEP </label> <span style="color:#f5365c ">*</span>
+                <input type="text" name="cep" id="cep"
+                    class="form-control  {{ $errors->has('cep') ? 'has-danger' : '' }}" placeholder="Cep"
+                    value="{{ isset($employee) && $employee->person->address != null && !old('cep') != null ? $employee->person->address->cep  : old('cep')  }}"
+                    autofocus>
+                @if($errors->has('cep'))
+                <span class="invalid-feedback" style="display: block;" role="alert">
+                    <strong>{{$errors->first('cep')}}</strong>
+                </span>
+                @endif
+            </div>
+        </div>
+        
         <div class="col-md-3">
             <div class="form-group  label-floating {{ $errors->has('city') ? 'has-danger' : '' }}">
                 <label class="bmd-label-floating" for="city">Cidade </label> <span style="color:#f5365c ">*</span>
@@ -167,20 +185,7 @@
             </div>
         </div>
 
-        <div class="col-md-2">
-            <div class="form-group  label-floating {{ $errors->has('cep') ? 'has-danger' : '' }}">
-                <label class="bmd-label-floating" for="cep">CEP </label> <span style="color:#f5365c ">*</span>
-                <input type="text" name="cep" id="cep"
-                    class="form-control  {{ $errors->has('cep') ? 'has-danger' : '' }}" placeholder="Cep"
-                    value="{{ isset($employee) && $employee->person->address != null && !old('cep') != null ? $employee->person->address->cep  : old('cep')  }}"
-                    autofocus>
-                @if($errors->has('cep'))
-                <span class="invalid-feedback" style="display: block;" role="alert">
-                    <strong>{{$errors->first('cep')}}</strong>
-                </span>
-                @endif
-            </div>
-        </div>
+
 
 
 
@@ -239,3 +244,29 @@
 
         </div>
     </div>
+
+
+
+    <script>
+        const cep = document.getElementById('cep');
+
+        cep.addEventListener('blur', loadCep);
+
+        function loadCep(){
+            fetch('https://viacep.com.br/ws/'+cep.value+'/json/unicode/')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                document.getElementById('address').value = data.logradouro;
+                document.getElementById('state').value = data.uf;
+                document.getElementById('city').value = data.localidade;
+                document.getElementById('neighborthood').value = data.bairro;
+                // console.log(data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+        }
+
+    </script>
