@@ -91,9 +91,9 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(StoreUpdateEmployeeRequest $request, Employee $employee)
     {
-        //
+        dd($employee);
     }
 
     /**

@@ -18,6 +18,23 @@
             </div>
         </div>
 
+        <div class="col-md-6">
+            <div class="form-group  label-floating {{ $errors->has('email') ? 'has-danger' : '' }}">
+                <label class="bmd-label-floating" for="email">Email de login </label> <span
+                    style="color:#f5365c ">*</span>
+                <input type="text" name="email" id="email"
+                    class="form-control  {{ $errors->has('email') ? 'has-danger' : '' }}"
+                    placeholder="E-mail para efetuar login no sistema"
+                    value="{{ isset($employee) && $employee->user != null && !old('email') != null ? $employee->user->email  : old('email')  }}"
+                    autofocus>
+                @if($errors->has('email'))
+                <span class="invalid-feedback" style="display: block;" role="alert">
+                    <strong>{{$errors->first('email')}}</strong>
+                </span>
+                @endif
+            </div>
+        </div>
+
         <div class="col-md-4">
             <div class="form-group   label-floating {{ $errors->has('function') ? 'has-danger' : '' }}">
                 <label class="bmd-label-floating" for="function">Função</label> <span style="color:#f5365c ">*</span>
@@ -191,58 +208,6 @@
 
 
 
-    </div>
-
-    <br>
-
-    <hr>
-    <h4 class="">Dados de login</h4>
-    <br>
-
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group  label-floating {{ $errors->has('email') ? 'has-danger' : '' }}">
-                <label class="bmd-label-floating" for="email">Email de login </label> <span
-                    style="color:#f5365c ">*</span>
-                <input type="text" name="email" id="email"
-                    class="form-control  {{ $errors->has('email') ? 'has-danger' : '' }}"
-                    placeholder="E-mail para efetuar login no sistema"
-                    value="{{ isset($employee) && $employee->user != null && !old('email') != null ? $employee->user->email  : old('email')  }}"
-                    autofocus>
-                @if($errors->has('email'))
-                <span class="invalid-feedback" style="display: block;" role="alert">
-                    <strong>{{$errors->first('email')}}</strong>
-                </span>
-                @endif
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="form-group  label-floating {{ $errors->has('password') ? 'has-danger' : '' }}">
-                <label class="bmd-label-floating" for="password">Senha </label> <span style="color:#f5365c ">*</span>
-                <input type="password" name="password" id="password"
-                    class="form-control  {{ $errors->has('password') ? 'has-danger' : '' }}"
-                    placeholder="Carga horária de Trabalho"
-                    {{-- value="{{ isset($employee) && $employee->user != null && !old('password') != null ? $employee->user->password  : old('password')  }}"
-                    --}} autofocus>
-                @if($errors->has('password'))
-                <span class="invalid-feedback" style="display: block;" role="alert">
-                    <strong>{{$errors->first('password')}}</strong>
-                </span>
-                @endif
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="form-group  label-floating">
-                <label class="bmd-label-floating" for="password_confirmation">Confirme a Senha </label> <span
-                    style="color:#f5365c ">*</span>
-                <input placeholder="Confirme sua senha" id="password-confirm" type="password" class="form-control"
-                    name="password_confirmation" autocomplete="new-password">
-
-            </div>
-
-        </div>
     </div>
 
 
