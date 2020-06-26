@@ -63,7 +63,7 @@ class RolesController extends Controller
      */
     public function edit(Role $role)
     {
-        $permissions = Permission::latest()->get();
+        $permissions = Permission::orderBy('name', 'ASC')->get();
 
         return view('admin.roles.edit', compact('role', 'permissions'));
     }
@@ -78,13 +78,12 @@ class RolesController extends Controller
     public function update(UpdateRolesRequest $request, Role $role)
     {
 
+        // dd($role);
         $role->update($request->except('permission'));
         $permissions = $request->input('permission') ? $request->input('permission') : [];
-        // dd($permissions);
         $role->permissions()->sync($permissions);
 
-        // return redirect()-back()->with('success', 'Perfil de acesso atualizado com sucesso');
-        return redirect()->route('roles.index')->with('success', 'Perfil de acesso atualizado com sucesso !');
+        return redirect()->route('roles.edit', [$role->id])->with('success', 'Perfil de acesso atualizado com sucesso');
     }
 
     public function show(Role $role)

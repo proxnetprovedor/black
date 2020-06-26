@@ -122,6 +122,7 @@ Route::prefix('tenant')->namespace('Tenant')->middleware('auth')->group(
 		 * Colaboradores de um dado Provedor
 		 */
 		Route::resource('employees', 'EmployeeController');
+		Route::resource('costumers', 'CostumerController');
 	}
 );
 Route::get('f/maps/clientes', 'tenant\MapsController@clientes');

@@ -34,6 +34,5 @@ class PermissionProfileController extends Controller
         $profile->permissions()->sync($permissions);
 
         return redirect()->back()->with('success', 'Permissões sincronizadas com sucesso');
-        // return redirect()->route('profiles.index')->with('success', 'Permissões sincronizadas com sucesso !');
     }
 }

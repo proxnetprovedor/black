@@ -15,7 +15,8 @@
             <div class="user-info">
                 <a data-toggle="collapse" href="#collapseExample" class="username">
                     <span>
-                        {{ Str::limit(Auth::user()->name, 12, '..') }} | {{ Str::limit(Auth::user()->tenant->name, 15, '...') }}
+                        {{ Str::limit(Auth::user()->name, 12, '..') }} |
+                        {{ Str::limit(Auth::user()->tenant->name, 15, '...') }}
                         <b class="caret"></b>
                     </span>
                 </a>
@@ -141,10 +142,20 @@
                             </a>
                         </li>
 
-
                     </ul>
 
                 </div>
+            </li>
+            <li class="nav-item">
+                <ul class="nav">
+                    <li class="nav-item {{ Request::is('tenant/costumers') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('costumers.index') }}" aria-expanded="true">
+                            <i class="material-icons">assignment_ind</i>
+                            <p>Clientes
+                            </p>
+                        </a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>
