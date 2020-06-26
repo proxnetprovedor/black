@@ -22,10 +22,14 @@
         <div class="card-body">
             <form method="POST" action="{{route('employees.store')}}" autocomplete="off" enctype="multipart/form-data">
                 @include('tenant.employees.partials._form')
+                @include('tenant.employees.partials._password')
                 <div class="text-center">
                     <button type="submit" class="btn btn-success mt-4">Salvar</button>
                 </div>
             </form>
+
+
+        
         </div>
     </div>
 </div>

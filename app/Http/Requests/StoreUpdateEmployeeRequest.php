@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Rules\CPF;
 use App\Rules\TenantUnique;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreUpdateEmployeeRequest extends FormRequest
 {
@@ -25,23 +26,40 @@ class StoreUpdateEmployeeRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => ['required', 'string', 'min:3', 'max:100'],
-            'cpf_cnpj' => ['required', 'max:18', new CPF()],
-            'salary' => ['required', 'numeric',],
-            'working_hours' => ['required', 'numeric'],
-            'function' => ['required', 'string', 'min:3', 'max:100'],
-            'email' => ['required', 'string', 'email', 'min:3', 'max:255', new TenantUnique('users')],
-            'password' => ['required', 'string', 'min:6', 'max:16', 'confirmed'],
+        return
 
-            'cep' => ['required'],
-            'neighborthood' => ['required', 'string', 'max:100'],
-            'address' => ['required', 'string', 'max:100'],
-            'number' => ['required', 'string', 'max:9'],
-            'state' => ['required', 'string'],
-            'city' => ['required', 'string'],
+            $rules = [
+                'name' => ['required', 'string', 'min:3', 'max:100'],
+                'cpf_cnpj' => ['required', 'max:18', new CPF()],
+                'salary' => ['required', 'numeric',],
+                'working_hours' => ['required', 'numeric'],
+                'function' => ['required', 'string', 'min:3', 'max:100'],
+               
+                'email' => 
+                [
+                    'required',
+                    'string',
+                    'email',
+                    'min:3',
+                    'max:255',
+                    $this->method() == 'PUT' ? new TenantUnique('users', $this->employee->user->id)  : new TenantUnique('users')
+                ],
+                'password' => ['sometimes', 'required', 'string', 'min:6', 'max:16', 'confirmed'],
 
-        ];
+                'cep' => ['required'],
+                'neighborthood' => ['required', 'string', 'max:100'],
+                'address' => ['required', 'string', 'max:100'],
+                'number' => ['required', 'string', 'max:9'],
+                'state' => ['required', 'string'],
+                'city' => ['required', 'string'],
+
+            ];
+
+            // if($this->method() == 'PUT'){
+            //     $rules['email'] = ['required', 'string', 'email', 'min:3', 'max:255', new TenantUnique('users', $this->employee->user->id)];
+            // }
+
+            return $rules;
     }
 
     public function messages()

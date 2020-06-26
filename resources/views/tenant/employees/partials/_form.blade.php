@@ -18,6 +18,23 @@
             </div>
         </div>
 
+        <div class="col-md-6">
+            <div class="form-group  label-floating {{ $errors->has('email') ? 'has-danger' : '' }}">
+                <label class="bmd-label-floating" for="email">Email de login </label> <span
+                    style="color:#f5365c ">*</span>
+                <input type="text" name="email" id="email"
+                    class="form-control  {{ $errors->has('email') ? 'has-danger' : '' }}"
+                    placeholder="E-mail para efetuar login no sistema"
+                    value="{{ isset($employee) && $employee->user != null && !old('email') != null ? $employee->user->email  : old('email')  }}"
+                    autofocus>
+                @if($errors->has('email'))
+                <span class="invalid-feedback" style="display: block;" role="alert">
+                    <strong>{{$errors->first('email')}}</strong>
+                </span>
+                @endif
+            </div>
+        </div>
+
         <div class="col-md-4">
             <div class="form-group   label-floating {{ $errors->has('function') ? 'has-danger' : '' }}">
                 <label class="bmd-label-floating" for="function">Função</label> <span style="color:#f5365c ">*</span>
@@ -89,7 +106,25 @@
 
     <h4 class="">Endereço</h4>
     <br>
+
+
+
     <div class="row">
+        <div class="col-md-2">
+            <div class="form-group  label-floating {{ $errors->has('cep') ? 'has-danger' : '' }}">
+                <label class="bmd-label-floating" for="cep">CEP </label> <span style="color:#f5365c ">*</span>
+                <input type="text" name="cep" id="cep"
+                    class="form-control  {{ $errors->has('cep') ? 'has-danger' : '' }}" placeholder="Cep"
+                    value="{{ isset($employee) && $employee->person->address != null && !old('cep') != null ? $employee->person->address->cep  : old('cep')  }}"
+                    autofocus>
+                @if($errors->has('cep'))
+                <span class="invalid-feedback" style="display: block;" role="alert">
+                    <strong>{{$errors->first('cep')}}</strong>
+                </span>
+                @endif
+            </div>
+        </div>
+        
         <div class="col-md-3">
             <div class="form-group  label-floating {{ $errors->has('city') ? 'has-danger' : '' }}">
                 <label class="bmd-label-floating" for="city">Cidade </label> <span style="color:#f5365c ">*</span>
@@ -167,20 +202,7 @@
             </div>
         </div>
 
-        <div class="col-md-2">
-            <div class="form-group  label-floating {{ $errors->has('cep') ? 'has-danger' : '' }}">
-                <label class="bmd-label-floating" for="cep">CEP </label> <span style="color:#f5365c ">*</span>
-                <input type="text" name="cep" id="cep"
-                    class="form-control  {{ $errors->has('cep') ? 'has-danger' : '' }}" placeholder="Cep"
-                    value="{{ isset($employee) && $employee->person->address != null && !old('cep') != null ? $employee->person->address->cep  : old('cep')  }}"
-                    autofocus>
-                @if($errors->has('cep'))
-                <span class="invalid-feedback" style="display: block;" role="alert">
-                    <strong>{{$errors->first('cep')}}</strong>
-                </span>
-                @endif
-            </div>
-        </div>
+
 
 
 
@@ -188,54 +210,28 @@
 
     </div>
 
-    <br>
 
-    <hr>
-    <h4 class="">Dados de login</h4>
-    <br>
 
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group  label-floating {{ $errors->has('email') ? 'has-danger' : '' }}">
-                <label class="bmd-label-floating" for="email">Email de login </label> <span
-                    style="color:#f5365c ">*</span>
-                <input type="text" name="email" id="email"
-                    class="form-control  {{ $errors->has('email') ? 'has-danger' : '' }}"
-                    placeholder="E-mail para efetuar login no sistema"
-                    value="{{ isset($employee) && $employee->user != null && !old('email') != null ? $employee->user->email  : old('email')  }}"
-                    autofocus>
-                @if($errors->has('email'))
-                <span class="invalid-feedback" style="display: block;" role="alert">
-                    <strong>{{$errors->first('email')}}</strong>
-                </span>
-                @endif
-            </div>
-        </div>
+    <script>
+        const cep = document.getElementById('cep');
 
-        <div class="col-md-3">
-            <div class="form-group  label-floating {{ $errors->has('password') ? 'has-danger' : '' }}">
-                <label class="bmd-label-floating" for="password">Senha </label> <span style="color:#f5365c ">*</span>
-                <input type="password" name="password" id="password"
-                    class="form-control  {{ $errors->has('password') ? 'has-danger' : '' }}"
-                    placeholder="Carga horária de Trabalho"
-                    {{-- value="{{ isset($employee) && $employee->user != null && !old('password') != null ? $employee->user->password  : old('password')  }}"
-                    --}} autofocus>
-                @if($errors->has('password'))
-                <span class="invalid-feedback" style="display: block;" role="alert">
-                    <strong>{{$errors->first('password')}}</strong>
-                </span>
-                @endif
-            </div>
-        </div>
+        cep.addEventListener('blur', loadCep);
 
-        <div class="col-md-3">
-            <div class="form-group  label-floating">
-                <label class="bmd-label-floating" for="password_confirmation">Confirme a Senha </label> <span
-                    style="color:#f5365c ">*</span>
-                <input placeholder="Confirme sua senha" id="password-confirm" type="password" class="form-control"
-                    name="password_confirmation" autocomplete="new-password">
+        function loadCep(){
+            fetch('https://viacep.com.br/ws/'+cep.value+'/json/unicode/')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                document.getElementById('address').value = data.logradouro;
+                document.getElementById('state').value = data.uf;
+                document.getElementById('city').value = data.localidade;
+                document.getElementById('neighborthood').value = data.bairro;
+                // console.log(data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+        }
 
-            </div>
-
-        </div>
-    </div>
+    </script>

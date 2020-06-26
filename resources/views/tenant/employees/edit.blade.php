@@ -25,6 +25,15 @@
                     <button type="submit" class="btn btn-success mt-4">Salvar</button>
                 </div>
             </form>
+
+            <form method="POST" action="{{route('user.change.password', $employee->user)}}">
+                @method('PUT')
+                @csrf
+                @include('tenant.employees.partials._password')
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success mt-4">Salvar Senha</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
