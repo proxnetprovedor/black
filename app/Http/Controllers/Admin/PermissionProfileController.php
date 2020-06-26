@@ -22,7 +22,7 @@ class PermissionProfileController extends Controller
         }
 
 
-        $permissions = Permission::latest()->get();
+        $permissions = Permission::orderBy('name', 'ASC')->get();
 
         return view('admin.profiles.permissions.permissions', compact('profile', 'permissions'));
     }
@@ -33,6 +33,7 @@ class PermissionProfileController extends Controller
 
         $profile->permissions()->sync($permissions);
 
-        return redirect()->route('profiles.index')->with('success', 'Permissões sincronizadas com sucesso !');
+        return redirect()->back()->with('success', 'Permissões sincronizadas com sucesso');
+        // return redirect()->route('profiles.index')->with('success', 'Permissões sincronizadas com sucesso !');
     }
 }

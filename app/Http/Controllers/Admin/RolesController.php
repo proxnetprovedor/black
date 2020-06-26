@@ -83,6 +83,7 @@ class RolesController extends Controller
         // dd($permissions);
         $role->permissions()->sync($permissions);
 
+        // return redirect()-back()->with('success', 'Perfil de acesso atualizado com sucesso');
         return redirect()->route('roles.index')->with('success', 'Perfil de acesso atualizado com sucesso !');
     }
 
