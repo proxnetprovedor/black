@@ -141,6 +141,12 @@
                                 <span class="sidebar-normal"> Mapa de Rede </span>
                             </a>
                         </li>
+                        <li class="nav-item {{ Request::is('tenant/internet-plans') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('internet-plans.index') }}">
+                                <span class="sidebar-mini"> PP </span>
+                                <span class="sidebar-normal"> Planos de Internet </span>
+                            </a>
+                        </li>
 
                     </ul>
 

@@ -116,6 +116,7 @@ Route::prefix('tenant')->namespace('Tenant')->middleware('auth')->group(
 		Route::resource('ctos', 'CtosController');
 		Route::get('ctoslocalizacao', 'CtosController@localizacao');
 		Route::resource('instalations', 'InstalationController');
+		Route::resource('internet-plans', 'InternetPlanController');
 		Route::get('dashboard', 'InfraController@index')->name('tenant.infra.dashboard');
 
 		/**
