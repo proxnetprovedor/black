@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
                 ->each(function (App\Models\Tenant $tenant) {
                     //$this->call(UsersSeeder::class);
                     factory(User::class, 50)->create(['tenant_id' => $tenant->id]);
-                    factory(App\Models\Employer::class, 50)->create(['tenant_id' => $tenant->id]);
+                    factory(App\Models\Employee::class, 50)->create(['tenant_id' => $tenant->id]);
                     //factory(App\Models\InternetPlanServer::class, 50)->create();
                     factory(App\Models\Server::class, 100)->create(['tenant_id' => $tenant->id]);
                     factory(App\Models\InternetPlan::class, 100)->create(['tenant_id' => $tenant->id]);
