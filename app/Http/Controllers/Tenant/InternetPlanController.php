@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Tenant;
 
-use App\InternetPlan;
+use App\Models\InternetPlan;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class InternetPlanController extends Controller
 {
@@ -14,7 +15,8 @@ class InternetPlanController extends Controller
      */
     public function index()
     {
-        //
+        $internetPlans = InternetPlan::latest()->paginate(15);
+        return view('tenant.internet-plan.index', compact('internetPlans'));
     }
 
     /**
@@ -24,7 +26,7 @@ class InternetPlanController extends Controller
      */
     public function create()
     {
-        //
+        return view('tenant.internet-plan.create');
     }
 
     /**
@@ -35,7 +37,10 @@ class InternetPlanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+        $iPlan = InternetPlan::create($request->all());
+        return redirect()->route('internet-plans.index')
+            ->with('success', 'Plano de Internet ' . $iPlan->value . 'cadastrado com sucesso !');
     }
 
     /**
@@ -57,7 +62,8 @@ class InternetPlanController extends Controller
      */
     public function edit(InternetPlan $internetPlan)
     {
-        //
+        //dd($internetPlan);
+        return view('tenant.internet-plan.edit', compact('internetPlan'));
     }
 
     /**
@@ -69,7 +75,9 @@ class InternetPlanController extends Controller
      */
     public function update(Request $request, InternetPlan $internetPlan)
     {
-        //
+        $internetPlan->update($request->all());
+        return redirect()->route('internet-plans.index')
+            ->with('success', 'Plano ' . $internetPlan->price . ' atualizado com sucesso !');
     }
 
     /**
