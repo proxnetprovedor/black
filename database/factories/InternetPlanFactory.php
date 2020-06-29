@@ -11,6 +11,7 @@ $factory->define(InternetPlan::class, function (Faker $faker) {
     $tenant = Tenant::all()->random(1);
     return [
         'id' => Uuid::uuid4()->toString(),
+        'name' => $faker->word,
         'is_ppoe' => $faker->randomElement($array = array (false, true)),
         'is_hotpost' => $faker->randomElement($array = array (false, true)),
 

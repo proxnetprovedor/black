@@ -19,7 +19,7 @@
         
         @include('layouts.components._card-header', 
         [
-          'icon'=>'dns', 'tittle'=>"INSTALAÇÕES", 
+          'icon'=>'dns', 'tittle'=>"PLANOS DE INTERNET", 
           'button'=>['active'=>true, 'tittle'=>'Novo', 'route'=>route('internet-plans.create')]
         ])
         
@@ -28,6 +28,7 @@
             <table class="table">
                   <thead>
                     <tr style="">
+                      <th class="text-right">Nome</th>
                       <th class="text-right">Preço</th>
                       <th class="text-right">Download</th>
                       <th class="text-right">Upload</th>
@@ -39,6 +40,7 @@
                 <tbody>
                 @foreach ($internetPlans as $item)
                 <tr>
+                    <td class="text-right">{{$item->name}}</td>
                     <td class="text-right">{{$item->price}}</td>
                     <td class="text-right">{{$item->download_rate}}</td>
                     <td class="text-right">{{$item->upload_rate}}</td>
