@@ -123,6 +123,11 @@ Route::prefix('tenant')->namespace('Tenant')->middleware('auth')->group(
 		 * Colaboradores de um dado Provedor
 		 */
 		Route::resource('employees', 'EmployeeController');
+		/**
+		 * Users Resource
+		 */
+		Route::put('/users/{user}/password/change', 'UserTenantController@changePassword')->name('user.change.password');
+
 		Route::resource('costumers', 'CostumerController');
 	}
 );
