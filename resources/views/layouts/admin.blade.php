@@ -31,11 +31,15 @@
       @include('layouts.components.footer')
     </div>
   </div>
+
+  
   {{-- @include('layouts.components.sidebar-config') --}}
   @include('layouts.components.js-plugins')
+  
 </body>
 
 @yield('scripts_after_body')
+
 
 
 </html>
