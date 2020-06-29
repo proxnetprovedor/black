@@ -14,9 +14,9 @@
         </ol>
     </nav>
     <div class="card">
-        @include('layouts.components._card-header', 
+        @include('layouts.components._card-header',
         [
-        'icon'=>'assignment', 'tittle'=>"Editar $role->name", 
+        'icon'=>'assignment', 'tittle'=>"Editar $role->name",
         'button'=>['active'=>true, 'tittle'=>'Voltar', 'route'=>route('roles.index')]
         ])
         <div class="card-body">
@@ -24,7 +24,7 @@
                 @csrf
                 @method('PUT')
                 @include('admin.roles.partials._form')
-                <div>
+                <div class="card-footer d-flex justify-content-center">
                     <button class="btn btn-success mt-4" type="submit">Salvar</button>
                 </div>
             </form>

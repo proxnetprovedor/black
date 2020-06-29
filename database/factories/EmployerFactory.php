@@ -7,7 +7,7 @@ namespace App\Models;
 use Faker\Generator as Faker;
 use Ramsey\Uuid\Uuid;
 
-$factory->define(Employer::class, function (Faker $faker) {
+$factory->define(Employee::class, function (Faker $faker) {
     $user = User::all()->first()->id;
     $tenant = Tenant::all()->random(1);
     //dd($tenant[0]->id);

@@ -100,7 +100,8 @@
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse @if( Request::is('tenant/*') && !(Request::is('tenant/employees')) ) show @else @endif" id="infra">
+                <div class="collapse @if( Request::is('tenant/*') && !(Request::is('tenant/employees')) ) show @else @endif"
+                    id="infra">
 
                     <ul class="nav">
                         <li class="nav-item {{ Request::is('tenant/dashboard') ? 'active' : '' }}">
@@ -141,13 +142,17 @@
                                 <span class="sidebar-normal"> Mapa de Rede </span>
                             </a>
                         </li>
-
+                        <li class="nav-item {{ Request::is('tenant/internet-plans') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('internet-plans.index') }}">
+                                <span class="sidebar-mini"> PP </span>
+                                <span class="sidebar-normal"> Planos de Internet </span>
+                            </a>
+                        </li>
 
                     </ul>
 
                 </div>
             </li>
-
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#empresa" aria-expanded="true">
                     <i class="material-icons">business</i>
@@ -162,10 +167,21 @@
                                 <span class="sidebar-mini"> C.O </span>
                                 <span class="sidebar-normal"> Colaboradores </span>
                             </a>
+
                         </li>
+                        <li class="nav-item {{ Request::is('tenant/costumers') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('costumers.index') }}" aria-expanded="true">
+                                <i class="material-icons">assignment_ind</i>
+                                <p>Clientes
+                                </p>
+                            </a>
+                        </li>
+
                     </ul>
                 </div>
-            </li>
+
+
+
         </ul>
     </div>
 </div>

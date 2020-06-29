@@ -17,6 +17,7 @@ class InternetPlan extends BaseModel
     protected $table = 'providers.internet_plans';
     
     protected $fillable = [
+        'name',
         'price',
         'download_rate',
         'upload_rate', 

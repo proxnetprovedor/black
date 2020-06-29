@@ -15,6 +15,7 @@ class CreateInternetPlansTable extends Migration
     {
         Schema::create('providers.internet_plans', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('name', 100)->nullable();
             $table->double('price', 8, 2)->nullable()->default(100.00);
             $table->double('download_rate', 5, 2)->nullable()->default(100.00);
             $table->double('upload_rate', 5, 2)->nullable()->default(100.00);

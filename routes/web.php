@@ -116,18 +116,14 @@ Route::prefix('tenant')->namespace('Tenant')->middleware('auth')->group(
 		Route::resource('ctos', 'CtosController');
 		Route::get('ctoslocalizacao', 'CtosController@localizacao');
 		Route::resource('instalations', 'InstalationController');
+		Route::resource('internet-plans', 'InternetPlanController');
 		Route::get('dashboard', 'InfraController@index')->name('tenant.infra.dashboard');
 
 		/**
 		 * Colaboradores de um dado Provedor
 		 */
 		Route::resource('employees', 'EmployeeController');
-
-
-		/**
-		 * Users Resource
-		 */
-		Route::put('/users/{user}/password/change', 'UserTenantController@changePassword')->name('user.change.password');
+		Route::resource('costumers', 'CostumerController');
 	}
 );
 Route::get('f/maps/clientes', 'tenant\MapsController@clientes');

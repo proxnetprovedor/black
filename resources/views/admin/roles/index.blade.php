@@ -13,7 +13,7 @@
             <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
         </ol>
     </nav>
-    
+
     <div class="card">
         @include('layouts.components._card-header',
         [
@@ -45,9 +45,14 @@
                                 {{ $role->name ?? '' }}
                             </td>
                             <td>
-                                @foreach($role->permissions()->pluck('name') as $permission)
-                                <span class="badge badge-info">{{ $permission }}</span>
-                                @endforeach
+                                <div class="row">
+                                    @foreach($role->permissions()->pluck('name') as $permission)
+                                    <div class="col-md-4">
+                                        <span class="badge badge-info">{{ $permission }}</span>
+                                    </div>
+                                    @endforeach
+                                </div>
+
                             </td>
 
                             <td>
@@ -61,21 +66,6 @@
                                         <a class="dropdown-item" href="{{route('roles.edit', $role)}}">Editar</a>
 
                                         <a class="dropdown-item" href="{{route('roles.show', $role)}}">Visualizar</a>
-
-                                        {{-- <form id="form" action="{{route('roles.destroy', $role->id)}}"
-                                        method="POST"
-                                        onsubmit="return confirm('Você realmente deseja deleta o perfil de acesso ' .
-                                        $role->name . ' ?');">
-
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                                        <a class="dropdown-item" href="#" type="submit"
-                                            onclick="document.getElementById('form'').submit();">
-                                            Deletar
-                                        </a>
-
-                                        </form> --}}
                                     </div>
                                 </div>
                             </td>
