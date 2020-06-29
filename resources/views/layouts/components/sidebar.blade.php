@@ -15,7 +15,8 @@
             <div class="user-info">
                 <a data-toggle="collapse" href="#collapseExample" class="username">
                     <span>
-                        {{ Str::limit(Auth::user()->name, 12, '..') }} | {{ Str::limit(Auth::user()->tenant->name, 15, '...') }}
+                        {{ Str::limit(Auth::user()->name, 12, '..') }} |
+                        {{ Str::limit(Auth::user()->tenant->name, 15, '...') }}
                         <b class="caret"></b>
                     </span>
                 </a>
@@ -99,7 +100,7 @@
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse @if( Request::is('tenant/*') ) show @else @endif" id="infra">
+                <div class="collapse @if( Request::is('tenant/*') && !(Request::is('tenant/employees')) ) show @else @endif" id="infra">
 
                     <ul class="nav">
                         <li class="nav-item {{ Request::is('tenant/dashboard') ? 'active' : '' }}">
@@ -144,6 +145,25 @@
 
                     </ul>
 
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#empresa" aria-expanded="true">
+                    <i class="material-icons">business</i>
+                    <p>Empresa
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse @if( Request::is('tenant/employees') ) show @else @endif" id="empresa">
+                    <ul class="nav">
+                        <li class="nav-item {{ Request::is('tenant/employees') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('employees.index') }}" aria-selected="true">
+                                <span class="sidebar-mini"> C.O </span>
+                                <span class="sidebar-normal"> Colaboradores </span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </li>
         </ul>

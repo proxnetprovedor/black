@@ -52,7 +52,7 @@
                                 </span>
                             </td>
 
-                          
+
 
                             <td>
                                 <a href="#">
@@ -60,7 +60,7 @@
                                 </a>
                             </td>
 
-                         
+
                             <td>
                                 <div class="dropdown">
                                     <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
@@ -68,9 +68,20 @@
                                         <i class="material-icons">more_vert</i>
                                     </a>
                                     <div class="dropdown-menu  dropdown-menu-arrow" style="">
-                                        <a class="dropdown-item" href="{{route('employees.edit', $employee)}}">Editar</a>
-                                        <a class="dropdown-item" href="{{route('employees.show', $employee)}}">Visualizar</a>
+                                        <a class="dropdown-item"
+                                            href="{{route('employees.edit', $employee)}}">Editar</a>
+                                        {{-- <a class="dropdown-item"
+                                            href="{{route('employees.show', $employee)}}">Visualizar</a> --}}
+                                        <a class="dropdown-item" href="#"
+                                            onclick="deleteEmployee({{$employee}})">Deletar</a>
+
                                     </div>
+                                    <form id="{{$employee->id}}" action="{{route('employees.destroy', $employee)}}"
+                                        method="POST">
+                                        @csrf
+                                        @method('DELETE')
+
+                                    </form>
                                 </div>
                             </td>
                             @empty
@@ -93,3 +104,14 @@
     </div>
 </div>
 @endsection
+
+
+<script>
+    function deleteEmployee(employee){
+        if(confirm('Você realmente deseja deletar o colaborador '+employee.name+' ?'))
+        {
+            form = document.getElementById(employee.id);
+            form.submit();
+        } 
+    }
+</script>

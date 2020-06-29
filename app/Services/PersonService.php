@@ -27,7 +27,19 @@ class PersonService
         $attributes['addressable_type'] = Person::class;
         $attributes['addressable_id'] = $person->id;
         
-        $address = Address::create($attributes);
+        Address::create($attributes);
+
+        return $person;
+    }
+
+    public function update(Person $person, $attributes)
+    {
+
+        $person->update($attributes);
+
+        $person->address->update($attributes);
+
+        $person->save();
 
         return $person;
     }

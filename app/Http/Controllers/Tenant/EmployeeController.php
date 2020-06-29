@@ -93,7 +93,15 @@ class EmployeeController extends Controller
      */
     public function update(StoreUpdateEmployeeRequest $request, Employee $employee)
     {
-        dd($employee);
+
+        $employee = DB::transaction(function () use ($employee, $request) {
+
+            $employeeService = app(EmployeeService::class);
+
+            return $employeeService->update($employee, $request->all());
+        });
+
+        return redirect()->route('employees.edit', $employee)->with('success', 'Colaborador ' . $employee->name . ' editado com sucesso !');
     }
 
     /**
@@ -104,6 +112,8 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+        $employee->delete();
+
+        return redirect()->route('employees.index')->with('success', 'Colaborador  ' . $employee->name . ' removido com sucesso !');
     }
 }

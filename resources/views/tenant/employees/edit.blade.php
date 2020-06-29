@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+
 <div class="col-md-12">
     <nav aria-label="breadcrumb" role="navigation">
         <ol class="breadcrumb">
