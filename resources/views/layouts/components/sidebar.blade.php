@@ -100,7 +100,7 @@
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse @if( Request::is('tenant/*') && !(Request::is('tenant/employees')) ) show @else @endif"
+                <div class="collapse @if( Request::is('tenant/*') && !(Request::is('tenant/employees')) && !(Request::is('tenant/costumers'))  ) show @else @endif"
                     id="infra">
 
                     <ul class="nav">
@@ -160,7 +160,8 @@
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse @if( Request::is('tenant/employees') ) show @else @endif" id="empresa">
+                <div class="collapse @if( Request::is('tenant/employees') || Request::is('tenant/costumers') ) show @else @endif"
+                    id="empresa">
                     <ul class="nav">
                         <li class="nav-item {{ Request::is('tenant/employees') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('employees.index') }}" aria-selected="true">
@@ -171,16 +172,15 @@
                         </li>
                         <li class="nav-item {{ Request::is('tenant/costumers') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('costumers.index') }}" aria-expanded="true">
-                                <i class="material-icons">assignment_ind</i>
-                                <p>Clientes
-                                </p>
+                                <span class="sidebar-mini"> C.I </span>
+                                <span class="sidebar-normal"> Clientes </span>
                             </a>
                         </li>
 
                     </ul>
                 </div>
 
-
+            </li>
 
         </ul>
     </div>

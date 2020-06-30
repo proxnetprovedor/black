@@ -33,4 +33,8 @@ class Person extends BaseModel
     {
         return $this->morphOne(Address::class, 'addressable');
     }
+    public function costumer()
+    {
+        return $this->hasOne(Costumer::class);
+    }
 }

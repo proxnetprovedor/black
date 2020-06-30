@@ -5,9 +5,19 @@ namespace App\Http\Controllers\Tenant;
 use App\Models\Costumer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\PersonService;
+use Carbon\Carbon;
+use Carbon\Traits\Date;
+use PersonSeeder;
 
 class CostumerController extends Controller
 {
+
+    public function formatDate($str)
+    {
+        $date = str_replace('/', '-', $str);
+        return date('Y-m-d', strtotime($date));
+    }
     /**
      * Display a listing of the resource.
      *
@@ -35,9 +45,17 @@ class CostumerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, PersonService $person)
     {
-        //
+        $attributes = $request->all();
+
+        $person = $person->store($attributes);
+
+        $attributes['birth'] = $this->formatDate($attributes['birth']);
+        $attributes['person_id'] = $person->id;
+        // dd($attributes['person_id']);
+        $costumer = Costumer::create($attributes);
+        return redirect(route('costumers.edit', $costumer->id))->with(['success' => 'Cliente registrado com sucesso!']);
     }
 
     /**
@@ -59,7 +77,7 @@ class CostumerController extends Controller
      */
     public function edit(Costumer $costumer)
     {
-        //dd($costumer->address);
+        // dd($costumer->person->address->cep);
         return view('tenant.costumers.edit', compact('costumer'));
     }
 
@@ -70,9 +88,15 @@ class CostumerController extends Controller
      * @param  \App\Models\Costumer  $costumer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Costumer $costumer)
+    public function update(Request $request, Costumer $costumer, PersonService $person)
     {
-        //
+        $attributes = $request->all();
+
+        $attributes['birth'] = $this->formatDate($attributes['birth']);
+        $costumer->update($attributes);
+        $person->update($costumer->person, $attributes);
+
+        return redirect()->back()->with(['success' => 'Cliente atualizado com sucesso!']);
     }
 
     /**
@@ -83,6 +107,10 @@ class CostumerController extends Controller
      */
     public function destroy(Costumer $costumer)
     {
-        //
+        $costumer->person->address->delete();
+        $costumer->person->delete();
+        $costumer->delete();
+        //    dd($costumer->person->address);
+        return redirect(route('costumers.index'))->with(['success' => 'Cliente excluído com sucesso']);
     }
 }

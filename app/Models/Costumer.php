@@ -33,7 +33,7 @@ class Costumer extends BaseModel
         'deleted_by',
         'tenant_id',
     ];
-    protected $dates = ['created_at', 'updated_at', 'deleted_at',];
+    protected $dates = ['birth', 'created_at', 'updated_at', 'deleted_at',];
 
     public function person()
     {

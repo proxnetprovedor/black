@@ -35,41 +35,44 @@
                   <div class="ripple-container"></div>
                 </a>
               </li>
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a class="nav-link" href="#primary" data-toggle="tab">
                   <i class="material-icons">cloud</i>Circuito Primário
                   <div class="ripple-container"></div>
                 </a>
-              </li>
+              </li> --}}
             </ul>
           </div>
         </div>
       </div>
       <div class="card-body">
+        {!! Form::open(['route' => 'costumers.store']) !!}
+        {!! Form::token() !!}
         <div class="tab-content">
 
           {{-- Dados Pessoais --}}
           <div class="tab-pane active" id="personal">
-            {!! Form::open() !!}
-            {!! Form::token() !!}
 
             @include('tenant.costumers.partials._form_personal')
+            {{-- <button type="submit" class="btn btn-block btn-success">Salvar</button> --}}
 
-            {!! Form::close() !!}
+            {{-- {!! Form::close() !!} --}}
           </div>
 
           {{-- Endereço --}}
           <div class="tab-pane" id="address">
-            {!! Form::open() !!}
-            {!! Form::token() !!}
+            {{-- {!! Form::open(['route' => 'costumers.store']) !!}
+            {!! Form::token() !!} --}}
             @include('tenant.costumers.partials._form_address')
-            {!! Form::close() !!}
+
           </div>
 
           {{-- Circuito Primario --}}
-          <div class="tab-pane" id="primary">
-          </div>
+          {{-- <div class="tab-pane" id="primary">
+          </div> --}}
         </div>
+        <button type="submit" class="btn btn-block btn-success">Salvar</button>
+        {!! Form::close() !!}
       </div>
 
       <!--  end card  -->

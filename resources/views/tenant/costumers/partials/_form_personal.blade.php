@@ -1,7 +1,32 @@
 <div class="row col-md-12">
-  <div class="col-md-5">
+
+  <div class="col-md-12 col-sm-4 text-center">
+    {{-- <h4 class="title">Alterar logo</h4> --}}
+    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+      <div class="fileinput-new thumbnail img-circle">
+        <img
+          src="//localhost:3000/storage/https://images.vexels.com/media/users/3/142887/isolated/preview/fc58c5ffb8c2e33fc3e15a2453189825-logotipo-da-empresa-de-log--stica-crescente-by-vexels.png"
+          alt="...">
+      </div>
+      <div class="fileinput-preview fileinput-exists thumbnail img-circle" style=""></div>
+      <div>
+        <span class="btn btn-round btn-rose btn-file">
+          <span class="fileinput-new">Escolher Foto</span>
+          <span class="fileinput-exists">Escolher outra Foto</span>
+          <input type="hidden"><input type="file" name="logo">
+          <div class="ripple-container"></div>
+        </span>
+        <br>
+        <a href="#" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i
+            class="fa fa-times"></i> Cancelar</a>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-6">
     <div class="form-group">
-      <select class="form-control selectpicker" data-style="btn btn-link">
+      <select class="form-control selectpicker mt-3" data-style="btn btn-link" name="type_person">
         <option disabled selected>Tipo de Pessoa</option>
         <option>Pessoa Física</option>
         <option>Pessoa Jurídica</option>
@@ -9,11 +34,18 @@
     </div>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-3">
     <div class="form-group">
       {!! Form::label('cpf_cnpj', 'CPF | CNPJ', ['class'=> 'bmd-label-floating']) !!}
       {!! Form::text('cpf_cnpj', isset($costumer) && $costumer->person->cpf_cnpj && !old('cpf_cnpj') != null ?
-      $costumer->person->cpf_cnpj : old('cpf_cnpj') , ['class'=>'form-control', 'id'=>'cpf_cnpj']) !!}
+      $costumer->person->cpf_cnpj : old('cpf_cnpj') , ['class'=>'form-control mt-4', 'id'=>'cpf_cnpj']) !!}
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="form-group">
+      {!! Form::label('documento', 'RG', ['class'=> 'bmd-label-floating']) !!}
+      {!! Form::text('documento', isset($costumer) && $costumer->person->documento && !old('documento') != null ?
+      $costumer->person->documento : old('documento') , ['class'=>'form-control mt-4', 'id'=>'documento']) !!}
     </div>
   </div>
 
@@ -21,49 +53,84 @@
     <div class="form-group">
       {!! Form::label('name', 'Nome', ['class'=> 'bmd-label-floating']) !!}
       {!! Form::text('name', isset($costumer) && $costumer->name && !old('name') != null ? $costumer->name : old('name')
-      , ['class'=>'form-control', 'id'=>'name']) !!}
+      , ['class'=>'form-control mt-4', 'id'=>'name']) !!}
     </div>
   </div>
 
   <div class="col-md-4">
-    {{-- <div class="form-group">
-      {!! Form::label('birth', 'Nascimento', ['class'=> 'bmd-label-floating']) !!}
-      {!! Form::date('birth', isset($costumer) && $costumer->birth && !old('birth') != null ? $costumer->birth :
-      old('birth') , ['class'=>'form-control', 'id'=>'birth']) !!}
-    </div> --}}
-
     <div class="form-group">
       <label class="label-control">Data de Nascimento</label>
-      <input type="text" class="form-control datetimepicker" value="21/06/2018" />
+      <input type="text" class="form-control datetimepicker mt-4"
+        value="{{ isset($costumer) && $costumer->birth && !old('birth') != null ? date('d/m/Y', strtotime($costumer->birth)) : old('birth') }}"
+        name="birth" />
     </div>
+  </div>
 
+  <div class="col-md-6">
+    <div class="form-group">
+      <select class="form-control selectpicker text-uppercase mt-3" data-style="btn btn-link" name="civil_state">
+        @if(isset($costumer) && $costumer->civil_state && !old('civil_state') != null)
+        <option value="casado" selected>{{ $costumer->civil_state }}</option>
+        @else
+        <option disabled selected>Estado Civil</option>
+        @endif
+        <option value="casado">Casado(a)</option>
+        <option value="solteiro">Solteiro(a)</option>
+        <option value="viuvo">Viuvo(a)</option>
+        <option value="união estavel">União Estável</option>
+        <option value="divorciado">Divorciado</option>
+      </select>
+    </div>
   </div>
 
   <div class="col-md-6">
     <div class="form-group">
       {!! Form::label('email', 'E-mail', ['class'=> 'bmd-label-floating']) !!}
       {!! Form::email('email', isset($costumer) && $costumer->email && !old('email') != null ? $costumer->email :
-      old('email') , ['class'=>'form-control', 'id'=>'email']) !!}
+      old('email') , ['class'=>'form-control mt-4', 'id'=>'email']) !!}
     </div>
   </div>
   <div class="col-md-6">
     <div class="form-group">
       {!! Form::label('phone', 'Telefone', ['class'=> 'bmd-label-floating']) !!}
       {!! Form::text('phone', isset($costumer) && $costumer->phone && !old('phone') != null ? $costumer->phone :
-      old('phone') , ['class'=>'form-control', 'id'=>'phone']) !!}
+      old('phone') , ['class'=>'form-control mt-4', 'id'=>'phone']) !!}
     </div>
   </div>
 
-  <div class="col-md-5">
+
+  <div class="col-md-3">
     <div class="form-group">
-      <select class="form-control" title="Single Select" name="civil_state" id="civil_state">
-        <option class="form-control" disabled selected>Estado Civil</option>
-        <option class="form-control" value="2">Solteiro(a)</option>
-        <option class="form-control" value="3">Casado(a)</option>
-        <option class="form-control" value="3">Viuvo(a)</option>
-        <option class="form-control" value="3">Divorciado(a)</option>
-        <option class="form-control" value="3">Separado(a)</option>
-      </select>
+      {!! Form::label('insc_estadual', 'Inscrição Estadual', ['class'=> 'bmd-label-floating']) !!}
+      {!! Form::text('insc_estadual', isset($costumer) && $costumer->person->insc_estadual && !old('insc_estadual') !=
+      null ? $costumer->person->insc_estadual :
+      old('insc_estadual') , ['class'=>'form-control mt-4', 'id'=>'insc_estadual']) !!}
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="form-group">
+      {!! Form::label('insc_municipal', 'Inscrição Municipal', ['class'=> 'bmd-label-floating']) !!}
+      {!! Form::text('insc_municipal', isset($costumer) && $costumer->person->insc_municipal && !old('insc_municipal')
+      != null ? $costumer->person->insc_municipal :
+      old('insc_municipal') , ['class'=>'form-control mt-4', 'id'=>'insc_municipal']) !!}
+    </div>
+  </div>
+
+
+  <div class="col-md-4">
+    <div class="form-group">
+      {!! Form::label('pay_day', 'Dia para Pagamento', ['class'=> 'bmd-label-floating']) !!}
+      {!! Form::number('pay_day', isset($costumer) && $costumer->pay_day && !old('pay_day') != null ? $costumer->pay_day
+      :
+      old('pay_day') , ['class'=>'form-control mt-4', 'id'=>'pay_day']) !!}
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="form-group">
+      {!! Form::label('description', 'Descrição', ['class'=> 'bmd-label-floating']) !!}
+      {!! Form::text('description', isset($costumer) && $costumer->description && !old('description') != null ?
+      $costumer->description :
+      old('description') , ['class'=>'form-control mt-4', 'id'=>'description']) !!}
     </div>
   </div>
 </div>

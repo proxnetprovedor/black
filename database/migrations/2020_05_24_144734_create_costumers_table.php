@@ -21,7 +21,7 @@ class CreateCostumersTable extends Migration
             $table->date('birth')->format('d-m-Y')->nullable();
             $table->string('lat', 200)->nullable();
             $table->string('lng', 200)->nullable();
-            $table->enum('civil_state', ['casado', 'solteiro', 'viuvo', 'união estavel'])->nullable();
+            $table->enum('civil_state', ['casado', 'solteiro', 'viuvo', 'união estavel', 'divorciado'])->nullable();
             $table->string('description', 200)->nullable()->default('text');
             $table->smallInteger('pay_day')->nullable()->default(05);
 
