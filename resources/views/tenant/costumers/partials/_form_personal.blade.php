@@ -3,22 +3,21 @@
   <div class="col-md-12 col-sm-4 text-center">
     {{-- <h4 class="title">Alterar logo</h4> --}}
     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-      <div class="fileinput-new thumbnail img-circle">
+      <div class="fileinput-new thumbnail img-raised">
+
         <img
-          src="//localhost:3000/storage/https://images.vexels.com/media/users/3/142887/isolated/preview/fc58c5ffb8c2e33fc3e15a2453189825-logotipo-da-empresa-de-log--stica-crescente-by-vexels.png"
-          alt="...">
+          src="{{ isset($costumer) && $costumer->img && !old('img') ? url('storage/'.$costumer->img) : 'http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png'}} "
+          rel="nofollow" alt="Imagem do Cliente">
       </div>
-      <div class="fileinput-preview fileinput-exists thumbnail img-circle" style=""></div>
+      <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
       <div>
-        <span class="btn btn-round btn-rose btn-file">
-          <span class="fileinput-new">Escolher Foto</span>
-          <span class="fileinput-exists">Escolher outra Foto</span>
-          <input type="hidden"><input type="file" name="logo">
-          <div class="ripple-container"></div>
+        <span class="btn btn-raised btn-round btn-default btn-file">
+          <span class="fileinput-new">Selecionar Foto</span>
+          <span class="fileinput-exists">Mudar</span>
+          <input type="file" name="img" value="" />
         </span>
-        <br>
-        <a href="#" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i
-            class="fa fa-times"></i> Cancelar</a>
+        <a href="javascript:;" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i
+            class="fa fa-times"></i> Remover</a>
       </div>
     </div>
   </div>

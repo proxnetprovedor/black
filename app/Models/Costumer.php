@@ -27,6 +27,7 @@ class Costumer extends BaseModel
         'description',
         'pay_day',
         'person_id',
+        'img',
         
         'created_by',
         'updated_by',

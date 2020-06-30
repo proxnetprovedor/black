@@ -46,33 +46,39 @@
         </div>
       </div>
       <div class="card-body">
-        {!! Form::open(['route' => 'costumers.store']) !!}
-        {!! Form::token() !!}
-        <div class="tab-content">
+        <form action="{{ route('costumers.store') }}" method="post" enctype="multipart/form-data">
+          @csrf
+          @method('post')
+          {{-- {!! Form::open(['route' => 'costumers.store', '']) !!} --}}
+          {{-- {!! Form::token() !!} --}}
+          <div class="tab-content">
 
-          {{-- Dados Pessoais --}}
-          <div class="tab-pane active" id="personal">
+            {{-- Dados Pessoais --}}
+            <div class="tab-pane active" id="personal">
 
-            @include('tenant.costumers.partials._form_personal')
-            {{-- <button type="submit" class="btn btn-block btn-success">Salvar</button> --}}
+              @include('tenant.costumers.partials._form_personal')
+              {{-- <button type="submit" class="btn btn-block btn-success">Salvar</button> --}}
 
-            {{-- {!! Form::close() !!} --}}
-          </div>
+              {{-- {!! Form::close() !!} --}}
+            </div>
 
-          {{-- Endereço --}}
-          <div class="tab-pane" id="address">
-            {{-- {!! Form::open(['route' => 'costumers.store']) !!}
+            {{-- Endereço --}}
+            <div class="tab-pane" id="address">
+              {{-- {!! Form::open(['route' => 'costumers.store']) !!}
             {!! Form::token() !!} --}}
-            @include('tenant.costumers.partials._form_address')
+              @include('tenant.costumers.partials._form_address')
 
-          </div>
+            </div>
 
-          {{-- Circuito Primario --}}
-          {{-- <div class="tab-pane" id="primary">
+            {{-- Circuito Primario --}}
+            {{-- <div class="tab-pane" id="primary">
           </div> --}}
-        </div>
-        <button type="submit" class="btn btn-block btn-success">Salvar</button>
-        {!! Form::close() !!}
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-block btn-success">Salvar</button>
+          </div>
+        </form>
+        {{-- {!! Form::close() !!} --}}
       </div>
 
       <!--  end card  -->

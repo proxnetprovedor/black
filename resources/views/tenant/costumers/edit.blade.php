@@ -19,7 +19,8 @@
     <div class="card">
       <div class="card-header card-header-tabs card-header-rose">
         <div class="d-flex justify-content-end">
-          <a rel="tooltip" class="btn btn-success btn-link btn-sm" data-original-title="Novo Cliente" href="/tenant/costumers/create">
+          <a rel="tooltip" class="btn btn-success btn-link btn-sm" data-original-title="Novo Cliente"
+            href="/tenant/costumers/create">
             <i class="material-icons text-white">add</i>
             <div class="ripple-container"></div>
           </a>
@@ -53,7 +54,7 @@
       </div>
       <div class="card-body">
         {{-- {!! Form::open(['route'=> 'costumers.update, '. $costumer->id]) !!} --}}
-        <form action="{{ route('costumers.update', $costumer->id) }}" method="post">
+        <form action="{{ route('costumers.update', $costumer->id) }}" method="post" enctype="multipart/form-data">
           {{-- {!! Form::token() !!} --}}
           @csrf
           @method('put')
@@ -76,7 +77,9 @@
 
 
           </div>
-          <button type="submit" class="btn btn-block btn-success">Salvar</button>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-block btn-success">Salvar</button>
+          </div>
         </form>
         {{-- {!! Form::close() !!} --}}
       </div>
