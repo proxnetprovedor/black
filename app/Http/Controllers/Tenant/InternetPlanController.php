@@ -17,7 +17,7 @@ class InternetPlanController extends Controller
     public function index()
     {
         abort_if(Gate::denies('planos-de-internet visualizar'), 403);
-        
+
         $internetPlans = InternetPlan::latest()->paginate(15);
         return view('tenant.internet-plan.index', compact('internetPlans'));
     }
@@ -99,7 +99,13 @@ class InternetPlanController extends Controller
      */
     public function destroy(InternetPlan $internetPlan)
     {
-        //
         abort_if(Gate::denies('planos-de-internet deletar'), 403);
+
+        //dd("es");
+        //$cto->instalations()->delete();
+        $internetPlan->delete();
+
+        return redirect()->route('internet-plans.index')
+            ->with('success', 'Plano ' . $internetPlan->name . ' excluído com sucesso !');
     }
 }
