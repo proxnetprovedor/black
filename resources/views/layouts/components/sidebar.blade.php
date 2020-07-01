@@ -24,19 +24,19 @@
                     <ul class="nav">
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('tenant.profile.show', auth()->user()->tenant_id)}}">
-                                <span class="sidebar-mini"> MP </span>
+                                <span class="sidebar-mini"> M.P </span>
                                 <span class="sidebar-normal"> Meu Perfil </span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <span class="sidebar-mini"> EP </span>
                                 <span class="sidebar-normal"> Editar Perfil </span>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link" href="#">
-                                <span class="sidebar-mini"> S </span>
+                                <span class="sidebar-mini"> CON </span>
                                 <span class="sidebar-normal"> Configurações </span>
                             </a>
                         </li>
@@ -77,14 +77,14 @@
                         <li class="nav-item {{ Request::is('admin/profiles') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('profiles.index') }}">
                                 <span class="sidebar-mini"> P.P </span>
-                                <span class="sidebar-normal"> Perfil de acesso (provedores) </span>
+                                <span class="sidebar-normal"> Perfil de acesso de provedores </span>
                             </a>
                         </li>
                         @endcan
                         <li class="nav-item {{ Request::is('admin/roles') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('roles.index') }}" aria-selected="true">
                                 <span class="sidebar-mini"> P.U </span>
-                                <span class="sidebar-normal"> Perfil de acesso (usuários) </span>
+                                <span class="sidebar-normal"> Perfil de acesso de usuários </span>
                             </a>
                         </li>
 

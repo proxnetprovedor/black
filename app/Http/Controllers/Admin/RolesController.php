@@ -48,7 +48,7 @@ class RolesController extends Controller
         $role = Role::create($request->except('permission'));
 
         $permissions = $request->input('permission') ? $request->input('permission') : [];
-        
+
         $role->permissions()->sync($permissions);
 
         return redirect()->route('roles.index')->with('success', 'Perfil de acesso criado com sucesso !');
@@ -77,10 +77,17 @@ class RolesController extends Controller
      */
     public function update(UpdateRolesRequest $request, Role $role)
     {
+        // somente super admin pode editar o perfil de administrador, porém seu nome não pode ser alterado
+        if ($role->name == Role::ADMIN && !(auth()->user()->isAdmin())) {
+            abort(403, 'O perfil de Administrador não pode ser editado !');
+        }
 
-        // dd($role);
+        $role->name == Role::ADMIN  ?  $request->request->remove('name')  : '';
+
         $role->update($request->except('permission'));
+
         $permissions = $request->input('permission') ? $request->input('permission') : [];
+
         $role->permissions()->sync($permissions);
 
         return redirect()->route('roles.edit', [$role->id])->with('success', 'Perfil de acesso atualizado com sucesso');
@@ -104,6 +111,10 @@ class RolesController extends Controller
     public function destroy(Role $role)
     {
 
+        if ($role->name == Role::ADMIN ) {
+            abort(403, 'O perfil de Administrador não pode ser DELETADO !');
+        }
+
         $role->delete();
 
         return redirect()->route('roles.index')->with('success', 'Perfil de acesso deletado com sucesso !');
@@ -120,5 +131,4 @@ class RolesController extends Controller
 
         return response()->noContent();
     }
-
 }

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Plan;
+use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 
 /*
@@ -51,10 +52,16 @@ class TenantService
     {
         $data = $this->data;
 
-        return $tenant->users()->create([
+        $user =  $tenant->users()->create([
             'name' =>  $data['name'],
             'email' =>  $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $admin = Role::where('name', Role::ADMIN)->first();
+
+        $user->roles()->attach($admin);
+
+        return $user;
     }
 }
