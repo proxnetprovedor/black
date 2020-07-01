@@ -88,6 +88,11 @@ class InternetPlanController extends Controller
      */
     public function destroy(InternetPlan $internetPlan)
     {
-        //
+        //dd("es");
+        //$cto->instalations()->delete();
+        $internetPlan->delete();
+        
+        return redirect()->route('internet-plans.index')
+            ->with('success', 'Plano ' . $internetPlan->name . ' excluído com sucesso !');
     }
 }

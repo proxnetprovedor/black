@@ -57,11 +57,14 @@
                       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                         <a class="dropdown-item" href="{{route('internet-plans.show', $item->id)}}">Detalhes</a>
                         <a class="dropdown-item" href="{{route('internet-plans.edit', $item->id)}}">Editar</a>
-                        <a class="dropdown-item" href="">Excluir</a>
+                        <button class="dropdown-item" data-toggle="modal" data-model="{{$item}}"
+                          data-target="#deleteModal{{{$item->id}}}">Excluir
+                        </button>
                       </div>
                       
                     </td>
-                  </tr>  
+                  </tr>
+                  @include ('layouts.modals.delete' , ['item' => $item, 'id' => $item->id, 'route'=>'internet-plans.destroy'])
                 @endforeach
                 </tbody>
               </table>
