@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Tenant;
 use App\Models\InternetPlan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
 class InternetPlanController extends Controller
 {
@@ -15,6 +16,8 @@ class InternetPlanController extends Controller
      */
     public function index()
     {
+        abort_if(Gate::denies('planos-de-internet visualizar'), 403);
+        
         $internetPlans = InternetPlan::latest()->paginate(15);
         return view('tenant.internet-plan.index', compact('internetPlans'));
     }
@@ -26,6 +29,8 @@ class InternetPlanController extends Controller
      */
     public function create()
     {
+        abort_if(Gate::denies('planos-de-internet criar'), 403);
+
         return view('tenant.internet-plan.create');
     }
 
@@ -37,6 +42,8 @@ class InternetPlanController extends Controller
      */
     public function store(Request $request)
     {
+        abort_if(Gate::denies('planos-de-internet criar'), 403);
+
         //dd($request->all());
         $iPlan = InternetPlan::create($request->all());
         return redirect()->route('internet-plans.index')
@@ -63,6 +70,8 @@ class InternetPlanController extends Controller
     public function edit(InternetPlan $internetPlan)
     {
         //dd($internetPlan);
+        abort_if(Gate::denies('planos-de-internet editar'), 403);
+
         return view('tenant.internet-plan.edit', compact('internetPlan'));
     }
 
@@ -75,6 +84,8 @@ class InternetPlanController extends Controller
      */
     public function update(Request $request, InternetPlan $internetPlan)
     {
+        abort_if(Gate::denies('planos-de-internet editar'), 403);
+
         $internetPlan->update($request->all());
         return redirect()->route('internet-plans.index')
             ->with('success', 'Plano ' . $internetPlan->price . ' atualizado com sucesso !');
@@ -89,5 +100,6 @@ class InternetPlanController extends Controller
     public function destroy(InternetPlan $internetPlan)
     {
         //
+        abort_if(Gate::denies('planos-de-internet deletar'), 403);
     }
 }

@@ -56,7 +56,7 @@ class RegisterController extends Controller
                 'email' => ['required', 'string', 'email', 'min:3', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:6', 'max:16', 'confirmed'],
                 'empresa' => ['required', 'unique:pgsql.providers.tenants,name', 'string', 'min:3', 'max:255',],
-                'cnpj' => ['required', 'unique:pgsql.providers.tenants', 'numeric', 'digits:14','cnpj'],
+                'cnpj' => ['required', 'unique:pgsql.providers.tenants', 'numeric', 'digits:14', 'cnpj'],
             ],
         );
     }
@@ -69,8 +69,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $plan = session('plan');
 
-        if (!$plan = session('plan')) {
+        if (!$plan) {
+            redirect()->route('site.home');
+        }
+
+        if (is_null($plan)) {
             redirect()->route('site.home');
         }
 

@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class TenantPlanController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:isSuperAdmin');
+    }
+    
     public function show(Tenant $tenant)
     {
         if (!($tenant->id === auth()->user()->tenant_id)) {

@@ -6,6 +6,7 @@ use App\Models\Costumer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\PersonService;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage as FacadesStorage;
 
 class CostumerController extends Controller
@@ -19,6 +20,8 @@ class CostumerController extends Controller
 
     public function index()
     {
+        abort_if(Gate::denies('clientes visualizar'), 403);
+
         $costumers = Costumer::latest()->paginate(15);
         return view('tenant.costumers.index', compact('costumers'));
     }
@@ -26,11 +29,15 @@ class CostumerController extends Controller
 
     public function create()
     {
+        abort_if(Gate::denies('clientes criar'), 403);
+
         return view('tenant.costumers.create');
     }
 
     public function store(Request $request, PersonService $person)
     {
+        abort_if(Gate::denies('clientes criar'), 403);
+
         $attributes = $request->all();
         $path = '';
         if (isset($attributes['img'])) {
@@ -50,12 +57,16 @@ class CostumerController extends Controller
 
     public function edit(Costumer $costumer)
     {
+        abort_if(Gate::denies('clientes editar'), 403);
+
         return view('tenant.costumers.edit', compact('costumer'));
     }
 
 
     public function update(Request $request, Costumer $costumer, PersonService $person)
     {
+        abort_if(Gate::denies('clientes editar'), 403);
+
         $attributes = $request->all();
         $existImg = FacadesStorage::exists($costumer->img);
         $path = '';
@@ -79,6 +90,8 @@ class CostumerController extends Controller
 
     public function destroy(Costumer $costumer)
     {
+        abort_if(Gate::denies('clientes deletar'), 403);
+
         if (isset($costumer->img)) {
             FacadesStorage::delete($costumer->img);
         }

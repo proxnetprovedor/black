@@ -11,6 +11,7 @@ use App\Services\PersonService;
 use App\Tenant\ManagerTenant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -23,6 +24,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
+        abort_if(Gate::denies('colaboradores visualizar'), 403);
+
         $employees = Employee::latest()->paginate();
 
         return view('tenant.employees.index', compact('employees'));
@@ -35,6 +38,8 @@ class EmployeeController extends Controller
      */
     public function create()
     {
+        abort_if(Gate::denies('colaboradores criar'), 403);
+
         return view('tenant.employees.create');
     }
 
@@ -46,6 +51,7 @@ class EmployeeController extends Controller
      */
     public function store(StoreUpdateEmployeeRequest $request)
     {
+        abort_if(Gate::denies('colaboradores criar'), 403);
 
         $employee = DB::transaction(function () use ($request) {
 
@@ -79,7 +85,7 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        // dd($employee->person->address);
+        abort_if(Gate::denies('colaboradores editar'), 403);
 
         return view('tenant.employees.edit', compact('employee'));
     }
@@ -93,6 +99,7 @@ class EmployeeController extends Controller
      */
     public function update(StoreUpdateEmployeeRequest $request, Employee $employee)
     {
+        abort_if(Gate::denies('colaboradores editar'), 403);
 
         $employee = DB::transaction(function () use ($employee, $request) {
 
@@ -112,6 +119,8 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
+        abort_if(Gate::denies('colaboradores deletar'), 403);
+
         $employee->delete();
 
         return redirect()->route('employees.index')->with('success', 'Colaborador  ' . $employee->name . ' removido com sucesso !');

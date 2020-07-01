@@ -19,6 +19,7 @@ class RolesController extends Controller
      */
     public function index()
     {
+        abort_if(Gate::denies('perfis-de-usuario visualizar'), 403);
 
         $roles = Role::latest()->get();
 
@@ -32,6 +33,8 @@ class RolesController extends Controller
      */
     public function create()
     {
+        abort_if(Gate::denies('perfis-de-usuario criar'), 403);
+
         $permissions = Permission::latest()->get();
 
         return view('admin.roles.create', compact('permissions'));
@@ -45,6 +48,8 @@ class RolesController extends Controller
      */
     public function store(StoreRolesRequest $request)
     {
+        abort_if(Gate::denies('perfis-de-usuario criar'), 403);
+
         $role = Role::create($request->except('permission'));
 
         $permissions = $request->input('permission') ? $request->input('permission') : [];
@@ -63,6 +68,8 @@ class RolesController extends Controller
      */
     public function edit(Role $role)
     {
+        abort_if(Gate::denies('perfis-de-usuario editar'), 403);
+
         $permissions = Permission::orderBy('name', 'ASC')->get();
 
         return view('admin.roles.edit', compact('role', 'permissions'));
@@ -77,6 +84,8 @@ class RolesController extends Controller
      */
     public function update(UpdateRolesRequest $request, Role $role)
     {
+        abort_if(Gate::denies('perfis-de-usuario editar'), 403);
+
         // somente super admin pode editar o perfil de administrador, porém seu nome não pode ser alterado
         if ($role->name == Role::ADMIN && !(auth()->user()->isAdmin())) {
             abort(403, 'O perfil de Administrador não pode ser editado !');
@@ -95,6 +104,7 @@ class RolesController extends Controller
 
     public function show(Role $role)
     {
+        abort_if(Gate::denies('perfis-de-usuario visualizar'), 403);
 
         $role->load('permissions');
 
@@ -110,6 +120,7 @@ class RolesController extends Controller
      */
     public function destroy(Role $role)
     {
+        abort_if(Gate::denies('perfis-de-usuario deletar'), 403);
 
         if ($role->name == Role::ADMIN ) {
             abort(403, 'O perfil de Administrador não pode ser DELETADO !');
