@@ -66,6 +66,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(
 		 */
 		Route::resource('users', 'UserController');
 		// Route::delete('users_mass_destroy', 'UsersController@massDestroy')->name('users.mass_destroy');
+		
 
 		/**
 		 * Routes Providers Plans
@@ -127,6 +128,8 @@ Route::prefix('tenant')->namespace('Tenant')->middleware('auth')->group(
 		 * Users Resource
 		 */
 		Route::put('/users/{user}/password/change', 'UserTenantController@changePassword')->name('user.change.password');
+		Route::get('users/{user}/roles', 'UserRoleController@roles')->name('user.roles');
+		Route::post('users/{user}/roles', 'UserRoleController@syncRoleUser')->name('user.roles.sync');
 
 		Route::resource('costumers', 'CostumerController');
 	}

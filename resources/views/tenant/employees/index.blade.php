@@ -28,7 +28,7 @@
                             <th>Função</th>
                             <th>Salário</th>
                             <th>Carga Horária</th>
-                            <th>Detalhes</th>
+                            <th>Perfil de acesso</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -55,8 +55,8 @@
 
 
                             <td>
-                                <a href="#">
-                                    <i class="fa fa-pencil"> Detalhes</i>
+                                <a href="{{ route('user.roles', $employee->user) }}">
+                                    <i class="fa fa-sitemap"> Perfil</i>
                                 </a>
                             </td>
 

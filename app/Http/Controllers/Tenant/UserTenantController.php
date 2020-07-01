@@ -14,7 +14,6 @@ class UserTenantController extends Controller
     
     public function changePassword (User $user, Request $request)
     {
-        // dd($user);
         $validator = Validator::make(
             [
                 'password' => $request->input('password'),
