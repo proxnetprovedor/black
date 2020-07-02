@@ -6,20 +6,22 @@ use App\Models\Costumer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\PersonService;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage as FacadesStorage;
 
 class CostumerController extends Controller
 {
 
-    // public function formatDate($str)
-    // {
-    //     $date = str_replace('/', '-', $str);
-    //     return date('Y-m-d', strtotime($date));
-    // }
+    public function formatDate($str)
+    {
+        $date = str_replace('/', '-', $str);
+        return date('Y-m-d', strtotime($date));
+    }
 
     public function index()
     {
+        abort_if(Gate::denies('clientes visualizar'), 403);
+
         $costumers = Costumer::latest()->paginate(15);
         return view('tenant.costumers.index', compact('costumers'));
     }
@@ -27,11 +29,15 @@ class CostumerController extends Controller
 
     public function create()
     {
+        abort_if(Gate::denies('clientes criar'), 403);
+
         return view('tenant.costumers.create');
     }
 
     public function store(Request $request, PersonService $person)
     {
+        abort_if(Gate::denies('clientes criar'), 403);
+
         $attributes = $request->all();
         $path = '';
         if (isset($attributes['img'])) {
@@ -40,7 +46,7 @@ class CostumerController extends Controller
 
         $person = $person->store($attributes);
 
-        $attributes['birth'] = Carbon::make($attributes['birth'])->format('Y-m-d');
+        $attributes['birth'] = $this->formatDate($attributes['birth']);
         $attributes['img'] = $path;
         $attributes['person_id'] = $person->id;
         // dd($attributes['person_id']);
@@ -51,12 +57,16 @@ class CostumerController extends Controller
 
     public function edit(Costumer $costumer)
     {
+        abort_if(Gate::denies('clientes editar'), 403);
+
         return view('tenant.costumers.edit', compact('costumer'));
     }
 
 
     public function update(Request $request, Costumer $costumer, PersonService $person)
     {
+        abort_if(Gate::denies('clientes editar'), 403);
+
         $attributes = $request->all();
         $existImg = FacadesStorage::exists($costumer->img);
         $path = '';
@@ -70,8 +80,7 @@ class CostumerController extends Controller
         }
 
         $attributes['img'] = $path;
-        // $attributes['birth'] = $this->formatDate($attributes['birth']);
-        $attributes['birth'] = Carbon::make($attributes['birth'])->format('Y-m-d');
+        $attributes['birth'] = $this->formatDate($attributes['birth']);
         $costumer->update($attributes);
         $person->update($costumer->person, $attributes);
 
@@ -81,6 +90,8 @@ class CostumerController extends Controller
 
     public function destroy(Costumer $costumer)
     {
+        abort_if(Gate::denies('clientes deletar'), 403);
+
         if (isset($costumer->img)) {
             FacadesStorage::delete($costumer->img);
         }
