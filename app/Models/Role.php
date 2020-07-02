@@ -19,6 +19,9 @@ class Role extends Model
 
     protected $keyType = 'string';
 
+
+    const ADMIN = 'Administrador';
+
     /**
      * Get Permissions
      */

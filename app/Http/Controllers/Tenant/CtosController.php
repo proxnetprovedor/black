@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Instalation;
 use App\Models\Subscription;
 use Auth;
+use Illuminate\Support\Facades\Gate;
 
 class CtosController extends Controller
 {
@@ -18,6 +19,7 @@ class CtosController extends Controller
      */
     public function index()
     {
+        abort_if(Gate::denies('ctos visualizar'), 403);
 
         $ctos = Ctos::latest()->paginate(15);
         return view('tenant.ctos.index', compact('ctos'));
@@ -40,6 +42,8 @@ class CtosController extends Controller
      */
     public function create()
     {
+        abort_if(Gate::denies('ctos criar'), 403);
+
         return view('tenant.ctos.create');
     }
 
@@ -51,6 +55,8 @@ class CtosController extends Controller
      */
     public function store(Request $request)
     {
+        abort_if(Gate::denies('ctos criar'), 403);
+
         $cto = Ctos::create($request->all());
         return redirect()->route('ctos.index')
             ->with('success', 'CTO ' . $cto->name . 'cadastrado com sucesso !');
@@ -64,6 +70,8 @@ class CtosController extends Controller
      */
     public function show(Ctos $cto)
     {
+        abort_if(Gate::denies('ctos visualizar'), 403);
+
         //    dd($cto->with(Subscription::all())->with(Instalation::all())->get());
         return view('tenant.ctos.show', compact('cto'));
     }
@@ -76,6 +84,8 @@ class CtosController extends Controller
      */
     public function edit(Ctos $cto)
     {
+        abort_if(Gate::denies('ctos editar'), 403);
+
         return view('tenant.ctos.edit', compact('cto'));
     }
 
@@ -88,6 +98,8 @@ class CtosController extends Controller
      */
     public function update(Request $request, Ctos $cto)
     {
+        abort_if(Gate::denies('ctos editar'), 403);
+
         $cto->update($request->all());
         return redirect()->route('ctos.index')
             ->with('success', 'CTO ' . $cto->name . ' atualizado com sucesso !');
@@ -101,6 +113,7 @@ class CtosController extends Controller
      */
     public function destroy(Ctos $cto)
     {
+        abort_if(Gate::denies('ctos deletar'), 403);
         // dd($cto);
         $cto->instalations()->delete();
         $cto->delete();

@@ -6,6 +6,7 @@ use App\Models\Instalation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
+use Illuminate\Support\Facades\Gate;
 
 class InstalationController extends Controller
 {
@@ -16,7 +17,8 @@ class InstalationController extends Controller
      */
     public function index()
     {
-       
+        abort_if(Gate::denies('instalacoes visualizar'), 403);
+
         $instalations = Instalation::latest()->paginate(15);
 
         return view('tenant.instalations.index', compact('instalations'));
@@ -29,6 +31,8 @@ class InstalationController extends Controller
      */
     public function create()
     {
+        abort_if(Gate::denies('instalacoes criar'), 403);
+
         return view('tenant.instalations.create');
     }
 
@@ -40,6 +44,8 @@ class InstalationController extends Controller
      */
     public function store(Request $request)
     {
+        abort_if(Gate::denies('instalacoes criar'), 403);
+
         $instalation = Instalation::create($request->all());
         return redirect()->route('instalations.index')
             ->with('succes', 'Intalação ' . $instalation->ssd . 'cadastrado com sucesso !');
@@ -53,6 +59,8 @@ class InstalationController extends Controller
      */
     public function show(Instalation $instalation)
     {
+        abort_if(Gate::denies('instalacoes visualizar'), 403);
+
         return view('tenant.instalations.show', compact('instalation'));
     }
 
@@ -64,6 +72,8 @@ class InstalationController extends Controller
      */
     public function edit(Instalation $instalation)
     {
+        abort_if(Gate::denies('instalacoes editar'), 403);
+
         return view('tenant.instalations.edit', compact('instalation'));
     }
 
@@ -76,6 +86,8 @@ class InstalationController extends Controller
      */
     public function update(Request $request, Instalation $instalation)
     {
+        abort_if(Gate::denies('instalacoes editar'), 403);
+
         $instalation->update($request->all());
         return redirect()->route('instalations.index')
             ->with('succes', 'Instalação ' . $instalation->ssid . 'atualizado com sucesso !');
@@ -90,5 +102,6 @@ class InstalationController extends Controller
     public function destroy(Instalation $instalation)
     {
         //
+        abort_if(Gate::denies('instalacoes deletar'), 403);
     }
 }

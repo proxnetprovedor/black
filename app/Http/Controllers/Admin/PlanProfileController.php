@@ -9,9 +9,14 @@ use Illuminate\Http\Request;
 
 class PlanProfileController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:isSuperAdmin');
+    }
+
     public function plans(Profile $profile)
     {
-       
+
         if (!$profile) {
             return redirect()->back();
         }
@@ -33,7 +38,7 @@ class PlanProfileController extends Controller
 
     public function profiles(Plan $plan)
     {
-       
+
         if (!$plan) {
             return redirect()->back();
         }
@@ -52,5 +57,4 @@ class PlanProfileController extends Controller
 
         return redirect()->route('plans.index')->with('success', 'Perfil de acesso sincronizados com sucesso !');
     }
-
 }

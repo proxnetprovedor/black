@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Employee;
+use App\Models\User;
 use App\Tenant\ManagerTenant;
 use Illuminate\Support\Facades\Hash;
 
@@ -43,9 +44,13 @@ class EmployeeService
     public function update(Employee $employee, $attributes)
     {
         $personService = app(PersonService::class);
-
+        // person e address
         $personService->update($employee->person, $attributes);
 
+        // user do employee
+        $this->updateUser($employee->user, $attributes);
+
+        // employee
         $employee->update($attributes);
 
         $employee->save();
@@ -66,5 +71,14 @@ class EmployeeService
             'email' =>  $attributes['email'],
             'password' => Hash::make($attributes['password']),
         ]);
+    }
+
+    public function updateUser(User $user, $attributes)
+    {
+        $user->update($attributes);
+
+        $user->save();
+
+        return $user;
     }
 }

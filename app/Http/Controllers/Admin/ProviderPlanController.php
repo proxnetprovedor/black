@@ -16,7 +16,9 @@ class ProviderPlanController extends Controller
     {
         $this->repository = $provider;
         $this->plan = $plan;
+        $this->middleware('can:isSuperAdmin');
     }
+
 
     public function index($urlPlan)
     {

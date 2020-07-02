@@ -68,10 +68,10 @@ class AuthServiceProvider extends ServiceProvider
         /**
          * Antes de definir as permissões acima, checa se o user é superAdmin
          */
-        // Gate::before(function (User $user) {
-        //     if ($user->isAdmin()) {
-        //         return true;
-        //     }
-        // });
+        Gate::before(function (User $user) {
+            if ($user->isAdmin()) {
+                return true;
+            }
+        });
     }
 }

@@ -24,19 +24,19 @@
                     <ul class="nav">
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('tenant.profile.show', auth()->user()->tenant_id)}}">
-                                <span class="sidebar-mini"> MP </span>
+                                <span class="sidebar-mini"> M.P </span>
                                 <span class="sidebar-normal"> Meu Perfil </span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <span class="sidebar-mini"> EP </span>
                                 <span class="sidebar-normal"> Editar Perfil </span>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link" href="#">
-                                <span class="sidebar-mini"> S </span>
+                                <span class="sidebar-mini"> CON </span>
                                 <span class="sidebar-normal"> Configurações </span>
                             </a>
                         </li>
@@ -77,16 +77,19 @@
                         <li class="nav-item {{ Request::is('admin/profiles') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('profiles.index') }}">
                                 <span class="sidebar-mini"> P.P </span>
-                                <span class="sidebar-normal"> Perfil de acesso (provedores) </span>
+                                <span class="sidebar-normal"> Perfil de acesso de provedores </span>
                             </a>
                         </li>
                         @endcan
+                        @can('perfis-de-usuario visualizar')
+
                         <li class="nav-item {{ Request::is('admin/roles') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('roles.index') }}" aria-selected="true">
                                 <span class="sidebar-mini"> P.U </span>
-                                <span class="sidebar-normal"> Perfil de acesso (usuários) </span>
+                                <span class="sidebar-normal"> Perfil de acesso de usuários </span>
                             </a>
                         </li>
+                        @endcan
 
 
                     </ul>
@@ -110,44 +113,53 @@
                                 <span class="sidebar-normal"> Dashboard</span>
                             </a>
                         </li>
+                        @can('servidores visualizar')
                         <li class="nav-item {{ Request::is('tenant/servers') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('servers.index') }}">
                                 <span class="sidebar-mini"> S </span>
                                 <span class="sidebar-normal"> Servidores </span>
                             </a>
                         </li>
+                        @endcan
+                        @can('instalacoes visualizar')
                         <li class="nav-item {{ Request::is('tenant/instalations') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('instalations.index') }}">
                                 <span class="sidebar-mini"> S </span>
                                 <span class="sidebar-normal"> Instalações </span>
                             </a>
                         </li>
-
+                        @endcan
+                        @can('ctos visualizar')
                         <li class="nav-item {{ Request::is('tenant/ctos') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('ctos.index') }}">
                                 <span class="sidebar-mini"> PP </span>
                                 <span class="sidebar-normal"> CTO </span>
                             </a>
                         </li>
-
+                        @endcan
                         <li class="nav-item ">
                             <a class="nav-link" href="#">
                                 <span class="sidebar-mini"> PA </span>
                                 <span class="sidebar-normal"> CEO </span>
                             </a>
                         </li>
+
                         <li class="nav-item ">
                             <a class="nav-link" href="#">
                                 <span class="sidebar-mini"> PA </span>
                                 <span class="sidebar-normal"> Mapa de Rede </span>
                             </a>
                         </li>
+                        @can('planos-de-internet visualizar')
+
                         <li class="nav-item {{ Request::is('tenant/internet-plans') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('internet-plans.index') }}">
                                 <span class="sidebar-mini"> PP </span>
                                 <span class="sidebar-normal"> Planos de Internet </span>
                             </a>
                         </li>
+
+                        @endcan
 
                     </ul>
 
@@ -163,6 +175,8 @@
                 <div class="collapse @if( Request::is('tenant/employees') || Request::is('tenant/costumers') ) show @else @endif"
                     id="empresa">
                     <ul class="nav">
+                        @can('colaboradores visualizar')
+
                         <li class="nav-item {{ Request::is('tenant/employees') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('employees.index') }}" aria-selected="true">
                                 <span class="sidebar-mini"> C.O </span>
@@ -170,13 +184,15 @@
                             </a>
 
                         </li>
+                        @endcan
+                        @can('clientes visualizar')
                         <li class="nav-item {{ Request::is('tenant/costumers') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('costumers.index') }}" aria-expanded="true">
                                 <span class="sidebar-mini"> C.I </span>
                                 <span class="sidebar-normal"> Clientes </span>
                             </a>
                         </li>
-
+                        @endcan
                     </ul>
                 </div>
 
