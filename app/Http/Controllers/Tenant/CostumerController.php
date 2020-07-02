@@ -6,16 +6,17 @@ use App\Models\Costumer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\PersonService;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage as FacadesStorage;
 
 class CostumerController extends Controller
 {
 
-    public function formatDate($str)
-    {
-        $date = str_replace('/', '-', $str);
-        return date('Y-m-d', strtotime($date));
-    }
+    // public function formatDate($str)
+    // {
+    //     $date = str_replace('/', '-', $str);
+    //     return date('Y-m-d', strtotime($date));
+    // }
 
     public function index()
     {
@@ -39,7 +40,7 @@ class CostumerController extends Controller
 
         $person = $person->store($attributes);
 
-        $attributes['birth'] = $this->formatDate($attributes['birth']);
+        $attributes['birth'] = Carbon::make($attributes['birth'])->format('Y-m-d');
         $attributes['img'] = $path;
         $attributes['person_id'] = $person->id;
         // dd($attributes['person_id']);
@@ -69,7 +70,8 @@ class CostumerController extends Controller
         }
 
         $attributes['img'] = $path;
-        $attributes['birth'] = $this->formatDate($attributes['birth']);
+        // $attributes['birth'] = $this->formatDate($attributes['birth']);
+        $attributes['birth'] = Carbon::make($attributes['birth'])->format('Y-m-d');
         $costumer->update($attributes);
         $person->update($costumer->person, $attributes);
 

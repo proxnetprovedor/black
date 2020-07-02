@@ -86,3 +86,28 @@
   </div>
 
 </div>
+
+
+<script>
+  const cep = document.getElementById('cep');
+
+  cep.addEventListener('blur', loadCep);
+
+  function loadCep(){
+      fetch('https://viacep.com.br/ws/'+cep.value+'/json/unicode/')
+      .then(function (response) {
+          return response.json();
+      })
+      .then(function (data) {
+          document.getElementById('address').value = data.logradouro;
+          document.getElementById('state').value = data.uf;
+          document.getElementById('city').value = data.localidade;
+          document.getElementById('neighborthood').value = data.bairro;
+          // console.log(data);
+      })
+      .catch(function (err) {
+          console.log(err);
+      });
+  }
+
+</script>
