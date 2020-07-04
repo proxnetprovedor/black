@@ -54,7 +54,8 @@
       </div>
       <div class="card-body">
         {{-- {!! Form::open(['route'=> 'costumers.update, '. $costumer->id]) !!} --}}
-        <form action="{{ route('costumers.update', $costumer->id) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('costumers.update', $costumer->id) }}" method="post" enctype="multipart/form-data"
+          id="editCostumer">
           {{-- {!! Form::token() !!} --}}
           @csrf
           @method('put')
@@ -110,6 +111,80 @@
       }
     });
 
-  </script>
+
+    $("#editCostumer").validate({
+      debug: true,
+      rules: {
+        cpf_cnpj: {
+          required: true
+        },
+        documento: {
+          required: true
+        },
+        name: {
+          required: true,
+        },
+        phone: {
+          required: true,
+        },
+        birth: {
+          required: true,
+        },
+        address: {
+          required: true,
+        },
+        number: {
+          required: true,
+        },
+        neighborthood: {
+          required: true,
+        },
+        city: {
+          required: true,
+        },
+        state: {
+          required: true,
+        },
+        insc_estadual: {
+          required: true,
+        },
+        insc_municipal: {
+          required: true,
+        },
+      },
+      submitHandler: (form) => form.submit()
+    });
+
+  //   $('#phone').mask('(00) 0000-00009');
+  //   $('#phone').blur( (event) => {
+  //     if($(this).val().length == 15){ // Celular com 9 dígitos + 2 dígitos DDD e 4 da máscara
+  //         $('#phone').mask('(00) 00000-0009');
+  //     } else {
+  //       $('#phone').mask('(00) 0000-00009');
+  //     }
+  //  });
+
+    // $('#cpf_cnpj').mask('000.000.000-00');
+    // $('#cpf_cnpj').blur( (event) => {
+    //   if($(this).val().length == 14){ 
+    //       $('#cpf_cnpj').mask('000.000.000-00');
+    //   } else {
+    //     // 42.318.949/0001-84
+    //     $('#cpf_cnpj').mask('00.000.000/0000-00');
+    //   }     
+    // });
+
+  //  $("input.phone").focusout(function() {
+    // $("#cpf_cnpj").focusout(function() {
+    //     var phone, element;
+    //     element = $(this);
+    //     element.unmask();
+    //     phone = element.val().replace(/\D/g, '');
+    //     if (phone.length > 10) {
+    //         element.mask("(99) 99999-9999");
+    //     } else {
+    //         element.mask("(99) 9999-9999?9");
+    //     }
+    // }).trigger('focusout');
 
   @endsection

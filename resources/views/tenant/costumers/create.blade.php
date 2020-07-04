@@ -46,7 +46,7 @@
         </div>
       </div>
       <div class="card-body">
-        <form action="{{ route('costumers.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('costumers.store') }}" method="post" enctype="multipart/form-data" id="createCostumer">
           @csrf
           @method('post')
           {{-- {!! Form::open(['route' => 'costumers.store', '']) !!} --}}
@@ -104,6 +104,49 @@
       }
     });
 
+
+    $("#editCostumer").validate({
+      debug: true,
+      rules: {
+        cpf_cnpj: {
+          required: true
+        },
+        documento: {
+          required: true
+        },
+        name: {
+          required: true,
+        },
+        phone: {
+          required: true,
+        },
+        birth: {
+          required: true,
+        },
+        address: {
+          required: true,
+        },
+        number: {
+          required: true,
+        },
+        neighborthood: {
+          required: true,
+        },
+        city: {
+          required: true,
+        },
+        state: {
+          required: true,
+        },
+        insc_estadual: {
+          required: true,
+        },
+        insc_municipal: {
+          required: true,
+        },
+      },
+      submitHandler: (form) => form.submit()
+    });
   </script>
 
   @endsection

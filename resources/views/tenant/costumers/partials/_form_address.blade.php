@@ -6,34 +6,49 @@
       $costumer->person->cpf_cnpj : old('cep') , ['class'=>'form-control mt-4', 'id'=>'cep']) !!}
     </div>
   </div>
+
   <div class="col-md-6">
     <div class="form-group">
-      {!! Form::label('address', 'Endereço', ['class'=> 'bmd-label-floating']) !!}
+      <label for="address" class="bmd-label-floating">
+        Endereço
+        <span class="text-danger">*</span>
+      </label>
       {!! Form::text('address', isset($costumer) && $costumer->person->address->address && !old('address') != null ?
-      $costumer->person->address->address : old('address') , ['class'=>'form-control mt-4', 'id'=>'address']) !!}
+      $costumer->person->address->address : old('address') , ['class'=>'form-control mt-4', 'id'=>'addressField']) !!}
     </div>
   </div>
+
   <div class="col-md-3">
     <div class="form-group">
-      {!! Form::label('number', 'Nº', ['class'=> 'bmd-label-floating']) !!}
+      <label for="number" class="bmd-label-floating">
+        Nº
+        <span class="text-danger">*</span>
+      </label>
       {!! Form::text('number', isset($costumer) && $costumer->person->address->number && !old('number') != null ?
       $costumer->person->address->number : old('number') , ['class'=>'form-control mt-4', 'id'=>'number']) !!}
     </div>
   </div>
+
   <div class="col-md-5">
     <div class="form-group">
       {!! Form::label('complement', 'Complemento', ['class'=> 'bmd-label-floating']) !!}
-      {!! Form::text('complement', isset($costumer) && $costumer->person->address->complement && !old('complement') != null ?
-      $costumer->person->address->complement : old('complement') , ['class'=>'form-control mt-4', 'id'=>'complement']) !!}
+      {!! Form::text('complement', isset($costumer) && $costumer->person->address->complement && !old('complement') !=
+      null ? $costumer->person->address->complement : old('complement'),
+      ['class'=>'form-control mt-4', 'id'=>'complement'])
+      !!}
     </div>
   </div>
+
   <div class="col-md-3">
     <div class="form-group">
       {!! Form::label('condominium', 'Condominio', ['class'=> 'bmd-label-floating']) !!}
-      {!! Form::text('condominium', isset($costumer) && $costumer->person->address->condominium && !old('condominium') != null ?
-      $costumer->person->address->complement : old('condominium') , ['class'=>'form-control mt-4', 'id'=>'condominium']) !!}
+      {!! Form::text('condominium', isset($costumer) && $costumer->person->address->condominium && !old('condominium')
+      != null ? $costumer->person->address->condominium : old('condominium') , ['class'=>'form-control mt-4',
+      'id'=>'condominium'])
+      !!}
     </div>
   </div>
+
   <div class="col-md-2">
     <div class="form-group">
       {!! Form::label('block', 'Bloco', ['class'=> 'bmd-label-floating']) !!}
@@ -41,35 +56,53 @@
       $costumer->person->address->block : old('block') , ['class'=>'form-control mt-4', 'id'=>'block']) !!}
     </div>
   </div>
+
   <div class="col-md-2">
     <div class="form-group">
       {!! Form::label('apartment', 'Ap', ['class'=> 'bmd-label-floating']) !!}
-      {!! Form::text('apartment', isset($costumer) && $costumer->person->address->apartment && !old('apartment') != null ?
-      $costumer->person->address->apartment : old('apartment') , ['class'=>'form-control mt-4', 'id'=>'apartment']) !!}
+      {!! Form::text('apartment', isset($costumer) && $costumer->person->address->apartment && !old('apartment') !=
+      null ? $costumer->person->address->apartment : old('apartment') , ['class'=>'form-control mt-4',
+      'id'=>'apartment'])
+      !!}
     </div>
   </div>
+
   <div class="col-md-4">
     <div class="form-group">
-      {!! Form::label('neighborthood', 'Bairro', ['class'=> 'bmd-label-floating']) !!}
-      {!! Form::text('neighborthood', isset($costumer) && $costumer->person->address->neighborthood && !old('neighborthood') !=
-      null ? $costumer->person->address->neighborthood : old('neighborthood') , ['class'=>'form-control mt-4',
-      'id'=>'neighborthood']) !!}
+      <label for="neighborthood" class="bmd-label-floating">
+        Bairro
+        <span class="text-danger">*</span>
+      </label>
+      {!! Form::text('neighborthood', isset($costumer) && $costumer->person->address->neighborthood &&
+      !old('neighborthood') != null ? $costumer->person->address->neighborthood : old('neighborthood') ,
+      ['class'=>'form-control mt-4', 'id'=>'neighborthood'])
+      !!}
     </div>
   </div>
+
   <div class="col-md-4">
     <div class="form-group">
-      {!! Form::label('city', 'Cidade', ['class'=> 'bmd-label-floating']) !!}
+      <label for="city" class="bmd-label-floating">
+        Cidade
+        <span class="text-danger">*</span>
+      </label>
       {!! Form::text('city', isset($costumer) && $costumer->person->address->city && !old('city') != null ?
-      $costumer->person->address->city : old('city') , ['class'=>'form-control mt-4', 'id'=>'city']) !!}
+       $costumer->person->address->city : old('city'), ['class'=>'form-control mt-4', 'id'=>'city'])
+      !!}
     </div>
   </div>
+
   <div class="col-md-4">
     <div class="form-group">
-      {!! Form::label('state', 'Estado', ['class'=> 'bmd-label-floating']) !!}
+      <label for="state" class="bmd-label-floating">
+        Estado
+        <span class="text-danger">*</span>
+      </label>
       {!! Form::text('state', isset($costumer) && $costumer->person->address->state && !old('state') != null ?
-      $costumer->person->address->state : old('state') , ['class'=>'form-control mt-4', 'id'=>'state']) !!}
+      $costumer->person->address->state : old('state'), ['class'=>'form-control mt-4', 'id'=>'state']) !!}
     </div>
   </div>
+
   <div class="col-md-3">
     <div class="form-group">
       {!! Form::label('lat', 'Latitude', ['class'=> 'bmd-label-floating']) !!}
@@ -77,6 +110,7 @@
       old('lat') , ['class'=>'form-control mt-4', 'id'=>'lat']) !!}
     </div>
   </div>
+
   <div class="col-md-3">
     <div class="form-group">
       {!! Form::label('lng', 'Longitude', ['class'=> 'bmd-label-floating']) !!}
@@ -99,11 +133,10 @@
           return response.json();
       })
       .then(function (data) {
-          document.getElementById('address').value = data.logradouro;
+          document.getElementById('addressField').value = data.logradouro;
           document.getElementById('state').value = data.uf;
           document.getElementById('city').value = data.localidade;
           document.getElementById('neighborthood').value = data.bairro;
-          // console.log(data);
       })
       .catch(function (err) {
           console.log(err);
