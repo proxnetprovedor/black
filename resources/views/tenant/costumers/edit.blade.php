@@ -92,10 +92,11 @@
   @include('tenant.costumers.modals.confirm_delete_modal')
 
   @endsection
-  @section('scripts_after_body')
 
-  <script>
-    $('.datetimepicker').datetimepicker({
+
+  @section('scripts_after_body')
+<script>
+  $('.datetimepicker').datetimepicker({
       format: 'DD/MM/YYYY',
       locale: moment.locale('pt-br'),
       icons: {
@@ -155,36 +156,29 @@
       submitHandler: (form) => form.submit()
     });
 
-  //   $('#phone').mask('(00) 0000-00009');
-  //   $('#phone').blur( (event) => {
-  //     if($(this).val().length == 15){ // Celular com 9 dígitos + 2 dígitos DDD e 4 da máscara
-  //         $('#phone').mask('(00) 00000-0009');
-  //     } else {
-  //       $('#phone').mask('(00) 0000-00009');
-  //     }
-  //  });
+    var behavior = function (val) {
+      return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+    },
+    options = {
+        onKeyPress: function (val, e, field, options) {
+            field.mask(behavior.apply({}, arguments), options);
+        }
+    };
 
-    // $('#cpf_cnpj').mask('000.000.000-00');
-    // $('#cpf_cnpj').blur( (event) => {
-    //   if($(this).val().length == 14){ 
-    //       $('#cpf_cnpj').mask('000.000.000-00');
-    //   } else {
-    //     // 42.318.949/0001-84
-    //     $('#cpf_cnpj').mask('00.000.000/0000-00');
-    //   }     
-    // });
+    $('#phone').mask(behavior, options);
 
-  //  $("input.phone").focusout(function() {
-    // $("#cpf_cnpj").focusout(function() {
-    //     var phone, element;
-    //     element = $(this);
-    //     element.unmask();
-    //     phone = element.val().replace(/\D/g, '');
-    //     if (phone.length > 10) {
-    //         element.mask("(99) 99999-9999");
-    //     } else {
-    //         element.mask("(99) 9999-9999?9");
-    //     }
-    // }).trigger('focusout');
 
+  var cpfOrCnpj = function (val) {
+   return val.replace(/\D/g, '').length > 11 ? '00.000.000/0000-00' : '000.000.000-009';
+    },
+    cpfOptions = {
+      onKeyPress: function(val, e, field, options) {
+          field.mask(cpfOrCnpj.apply({}, arguments), options);
+      }
+    };
+    $('#cpf_cnpj').mask(cpfOrCnpj, cpfOptions);
+</script>
+      
   @endsection
+
+ 

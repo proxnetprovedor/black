@@ -43,10 +43,12 @@ mix.scripts(
 mix.scripts(
     [
         "resources/assets/js/plugins/jquery.validate.min.js",
+        "resources/assets/js/plugins/jquery.validate.pt-br.js",
         "resources/assets/js/plugins/jquery.bootstrap-wizard.js",
         "resources/assets/js/plugins/bootstrap-selectpicker.js",
         "resources/assets/js/plugins/bootstrap-datetimepicker.min.js",
         "resources/assets/js/plugins/jquery.dataTables.min.js",
+        "resources/assets/js/plugins/jquery.mask.min.js",
 
 
     ],
