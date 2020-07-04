@@ -72,8 +72,8 @@
 
 
           </div>
-          <div class="card-footer">
-            <button type="submit" class="btn btn-block btn-success">Salvar</button>
+          <div class="card-footer d-flex justify-content-center">
+            <button type="submit" class="btn btn-success">Salvar</button>
           </div>
         </form>
       </div>

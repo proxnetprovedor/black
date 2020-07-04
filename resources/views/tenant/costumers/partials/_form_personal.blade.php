@@ -3,12 +3,12 @@
   <div class="col-md-6 col-sm-4 text-center">
     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
       <div class="fileinput-new thumbnail img-raised">
-        @if(isset( $costumer))
+        @if(isset( $costumer->img))
         <img src="{{ isset($costumer) && $costumer->img && !old('img') ? url('storage/'.$costumer->img) : ''}} "
           rel="nofollow" alt="Imagem do Cliente">
         @else
         <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" rel="nofollow"
-          alt="Imagem do Cliente" height="200">
+          alt="Imagem do Cliente" height="200" style="width: 200px;">
         @endif
       </div>
       <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
@@ -42,7 +42,7 @@
           <span class="text-danger">*</span>
         </label>
         {!! Form::text('cpf_cnpj', isset($costumer) && $costumer->person->cpf_cnpj && !old('cpf_cnpj') != null ?
-        $costumer->person->cpf_cnpj : old('cpf_cnpj') , ['class'=>'form-control mt-4 cpf_cnpj', 'required'])
+        $costumer->person->cpf_cnpj : old('cpf_cnpj') , ['class'=>'form-control mt-4 cpf_cnpj-mask', 'required'])
         !!}
       </div>
     </div>
@@ -115,7 +115,7 @@
         <span class="text-danger">*</span>
       </label>
       {!! Form::text('phone', isset($costumer) && $costumer->phone && !old('phone') != null ? $costumer->phone :
-      old('phone') , ['class'=>'form-control mt-4 phone']) !!}
+      old('phone') , ['class'=>'form-control mt-4 phone-mask']) !!}
     </div>
   </div>
 

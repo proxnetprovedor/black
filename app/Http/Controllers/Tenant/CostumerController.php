@@ -7,17 +7,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateCostumer;
 use App\Services\PersonService;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage as FacadesStorage;
 
 class CostumerController extends Controller
 {
-
-    public function formatDate($str)
-    {
-        $date = str_replace('/', '-', $str);
-        return date('Y-m-d', strtotime($date));
-    }
 
     public function index()
     {
@@ -35,22 +30,25 @@ class CostumerController extends Controller
         return view('tenant.costumers.create');
     }
 
-    public function store(Request $request, PersonService $person)
+    public function store(StoreUpdateCostumer $request, PersonService $person)
     {
         abort_if(Gate::denies('clientes criar'), 403);
 
         $attributes = $request->all();
         $path = '';
+
         if (isset($attributes['img'])) {
             $path = $request->file('img')->store('costumers');
+            $attributes['img'] = $path;
         }
+
+        if( empty($request->img)) $attributes = $request->except('img');
+            
 
         $person = $person->store($attributes);
 
-        $attributes['birth'] = $this->formatDate($attributes['birth']);
-        $attributes['img'] = $path;
+        $attributes['birth'] = Carbon::make($request->birth)->format('Y-m-d');
         $attributes['person_id'] = $person->id;
-        // dd($attributes['person_id']);
         $costumer = Costumer::create($attributes);
         return redirect(route('costumers.edit', $costumer->id))->with(['success' => 'Cliente registrado com sucesso!']);
     }
@@ -69,19 +67,17 @@ class CostumerController extends Controller
         abort_if(Gate::denies('clientes editar'), 403);
 
         $attributes = $request->all();
-        $existImg = FacadesStorage::exists($costumer->img);
         $path = '';
 
-        if (isset($attributes['img']) && $existImg) {
+        if (isset($attributes['img'])) {
             FacadesStorage::delete($costumer->img);
 
             $path = $request->file('img')->store('costumers');
-        } else {
-            $path = $request->file('img')->store('costumers');
+            $attributes['img'] = $path;
         }
-
-        $attributes['img'] = $path;
-        $attributes['birth'] = $this->formatDate($attributes['birth']);
+        if (empty($request->img)) $attributes = $request->except('img');
+           
+        $attributes['birth'] = Carbon::make($request->birth)->format('Y-m-d');
         $costumer->update($attributes);
         $person->update($costumer->person, $attributes);
 

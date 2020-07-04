@@ -71,7 +71,7 @@
             <div class="form-group  label-floating {{ $errors->has('cpf_cnpj') ? 'has-danger' : '' }}">
                 <label class="bmd-label-floating" for="cpf_cnpj">CPF </label> <span style="color:#f5365c ">*</span>
                 <input type="text" name="cpf_cnpj" id="cpf_cnpj"
-                    class="form-control  {{ $errors->has('cpf_cnpj') ? 'has-danger' : '' }}" placeholder="CPF"
+                    class="form-control cpf_cnpj-mask  {{ $errors->has('cpf_cnpj') ? 'has-danger' : '' }}" placeholder="CPF"
                     value="{{ isset($employee) && $employee->person != null && !old('cpf_cnpj') != null ? $employee->person->cpf_cnpj  : old('cpf_cnpj')  }}"
                     autofocus>
                 @if($errors->has('cpf_cnpj'))

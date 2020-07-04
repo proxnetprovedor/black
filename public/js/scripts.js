@@ -24,6 +24,9 @@ $(".formValidation").validate({
         documento: {
             required: true
         },
+        cep: {
+            required: true
+        },
         name: {
             required: true,
         },
@@ -57,7 +60,7 @@ $(".formValidation").validate({
     },
     submitHandler: (form) => form.submit()
 });
-
+// mask phone
 var behavior = function(val) {
         return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
     },
@@ -67,9 +70,9 @@ var behavior = function(val) {
         }
     };
 
-$('.phone').mask(behavior, options);
+$('.phone-mask').mask(behavior, options);
 
-
+// mask cpf|cnpj
 var cpfOrCnpj = function(val) {
         return val.replace(/\D/g, '').length > 11 ? '00.000.000/0000-00' : '000.000.000-009';
     },
@@ -78,4 +81,4 @@ var cpfOrCnpj = function(val) {
             field.mask(cpfOrCnpj.apply({}, arguments), options);
         }
     };
-$('.cpf_cnpj').mask(cpfOrCnpj, cpfOptions);
+$('.cpf_cnpj-mask').mask(cpfOrCnpj, cpfOptions);

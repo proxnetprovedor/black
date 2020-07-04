@@ -15,9 +15,9 @@ class CreateCostumersTable extends Migration
     {
         Schema::create('subscription.costumers', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('img')->nullable();
+            $table->mediumText('img')->nullable();
             $table->string('name', 200)->nullable();
-            $table->string('phone', 11)->nullable()->default('95999999999');
+            $table->string('phone', 15)->nullable()->default('95999999999');
             $table->string('email', 100);
             $table->date('birth')->format('d-m-Y')->nullable();
             $table->string('lat', 200)->nullable();

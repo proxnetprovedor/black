@@ -34,35 +34,36 @@
                   <div class="ripple-container"></div>
                 </a>
               </li>
-             
+
             </ul>
           </div>
         </div>
       </div>
       <div class="card-body">
-        <form action="{{ route('costumers.store') }}" method="post" enctype="multipart/form-data" class="formValidation">
+        <form action="{{ route('costumers.store') }}" method="post" enctype="multipart/form-data"
+          class="formValidation">
           @csrf
           @method('post')
-         
+
           <div class="tab-content">
 
             {{-- Dados Pessoais --}}
             <div class="tab-pane active" id="personal">
 
               @include('tenant.costumers.partials._form_personal')
-              
+
             </div>
 
             {{-- Endereço --}}
             <div class="tab-pane" id="address">
-             
+
               @include('tenant.costumers.partials._form_address')
 
             </div>
 
           </div>
-          <div class="card-footer">
-            <button type="submit" class="btn btn-block btn-success">Salvar</button>
+          <div class="card-footer d-flex justify-content-center">
+            <button type="submit" class="btn btn-success ">Salvar</button>
           </div>
         </form>
       </div>

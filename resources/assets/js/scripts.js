@@ -24,6 +24,9 @@ $(".formValidation").validate({
         documento: {
             required: true
         },
+        cep: {
+            required: true
+        },
         name: {
             required: true,
         },
@@ -67,7 +70,7 @@ var behavior = function(val) {
         }
     };
 
-$('.phone').mask(behavior, options);
+$('.phone-mask').mask(behavior, options);
 
 // mask cpf|cnpj
 var cpfOrCnpj = function(val) {
@@ -78,4 +81,4 @@ var cpfOrCnpj = function(val) {
             field.mask(cpfOrCnpj.apply({}, arguments), options);
         }
     };
-$('.cpf_cnpj').mask(cpfOrCnpj, cpfOptions);
+$('.cpf_cnpj-mask').mask(cpfOrCnpj, cpfOptions);

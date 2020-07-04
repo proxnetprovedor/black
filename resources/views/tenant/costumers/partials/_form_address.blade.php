@@ -1,9 +1,12 @@
 <div class="row col-md-12">
   <div class="col-md-3">
     <div class="form-group">
-      {!! Form::label('cep', 'CEP', ['class'=> 'bmd-label-floating']) !!}
-      {!! Form::text('cep', isset($costumer) && $costumer->person->cep && !old('cep') != null ?
-      $costumer->person->cep : old('cep') , ['class'=>'form-control mt-4', 'id'=>'cep']) !!}
+      <label for="cep" class="bmd-label-floating">
+        CEP
+        <span class="text-danger">*</span>
+      </label>
+      {!! Form::text('cep', isset($costumer) && $costumer->person->address->cep && !old('cep') != null ?
+      $costumer->person->address->cep : old('cep') , ['class'=>'form-control mt-4', 'id'=>'cep']) !!}
     </div>
   </div>
 

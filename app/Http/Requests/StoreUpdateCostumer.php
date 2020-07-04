@@ -25,8 +25,9 @@ class StoreUpdateCostumer extends FormRequest
     public function rules()
     {
         return [
-            'img' => ['image', 'mimetypes:jpg,png','max.file:50000'],
+            'img' => ['image', 'mimes:jpg,jpeg,png,bmp,tiff','max:50000'],
             'cpf_cnpj' => ['required', 'max:18', new CPF()],
+            'cep' => ['required'],
             'documento' => ['required'],
             'name' => ['required'],
             'birth' => ['required'],
