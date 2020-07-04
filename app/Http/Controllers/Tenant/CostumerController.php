@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Tenant;
 use App\Models\Costumer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdateCostumer;
 use App\Services\PersonService;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage as FacadesStorage;
@@ -63,7 +64,7 @@ class CostumerController extends Controller
     }
 
 
-    public function update(Request $request, Costumer $costumer, PersonService $person)
+    public function update(StoreUpdateCostumer $request, Costumer $costumer, PersonService $person)
     {
         abort_if(Gate::denies('clientes editar'), 403);
 
