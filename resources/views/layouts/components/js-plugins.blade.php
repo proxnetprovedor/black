@@ -3,6 +3,7 @@
 <script src="{{ mix('js/plugins-form2.js') }}"></script>
 <script src="{{ mix('js/plugins-notify.js') }}"></script>
 <script src="{{ mix('js/material.js') }}"></script>
+<script src="{{ mix('js/scripts.js') }}"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 

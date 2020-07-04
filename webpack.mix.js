@@ -80,6 +80,12 @@ mix.scripts(
     "public/js/material.js"
 );
 
+mix.scripts(
+    [
+        "resources/assets/js/scripts.js",
+    ],
+    "public/js/scripts.js"
+);
 
 
 

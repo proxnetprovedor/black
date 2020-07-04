@@ -42,7 +42,7 @@
           <span class="text-danger">*</span>
         </label>
         {!! Form::text('cpf_cnpj', isset($costumer) && $costumer->person->cpf_cnpj && !old('cpf_cnpj') != null ?
-        $costumer->person->cpf_cnpj : old('cpf_cnpj') , ['class'=>'form-control mt-4', 'id'=>'cpf_cnpj', 'required'])
+        $costumer->person->cpf_cnpj : old('cpf_cnpj') , ['class'=>'form-control mt-4 cpf_cnpj', 'required'])
         !!}
       </div>
     </div>
@@ -115,7 +115,7 @@
         <span class="text-danger">*</span>
       </label>
       {!! Form::text('phone', isset($costumer) && $costumer->phone && !old('phone') != null ? $costumer->phone :
-      old('phone') , ['class'=>'form-control mt-4', 'id'=>'phone']) !!}
+      old('phone') , ['class'=>'form-control mt-4 phone']) !!}
     </div>
   </div>
 

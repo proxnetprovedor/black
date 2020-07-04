@@ -2,8 +2,8 @@
   <div class="col-md-3">
     <div class="form-group">
       {!! Form::label('cep', 'CEP', ['class'=> 'bmd-label-floating']) !!}
-      {!! Form::text('cep', isset($costumer) && $costumer->person->cpf_cnpj && !old('cep') != null ?
-      $costumer->person->cpf_cnpj : old('cep') , ['class'=>'form-control mt-4', 'id'=>'cep']) !!}
+      {!! Form::text('cep', isset($costumer) && $costumer->person->cep && !old('cep') != null ?
+      $costumer->person->cep : old('cep') , ['class'=>'form-control mt-4', 'id'=>'cep']) !!}
     </div>
   </div>
 

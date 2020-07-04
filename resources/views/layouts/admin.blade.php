@@ -41,5 +41,4 @@
 @yield('scripts_after_body')
 
 
-
 </html>
