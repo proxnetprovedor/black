@@ -5,8 +5,7 @@
         CEP
         <span class="text-danger">*</span>
       </label>
-      {!! Form::text('cep', isset($costumer) && $costumer->person->address->cep && !old('cep') != null ?
-      $costumer->person->address->cep : old('cep') , ['class'=>'form-control mt-4', 'id'=>'cep']) !!}
+      {!! Form::text('cep', isset($costumer) && $costumer->person->address->cep && !old('cep') != null ? $costumer->person->address->cep : old('cep') , ['class'=>'form-control mt-4', 'id'=>'cep']) !!}
     </div>
   </div>
 
