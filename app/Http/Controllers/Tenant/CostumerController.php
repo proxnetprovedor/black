@@ -30,25 +30,26 @@ class CostumerController extends Controller
         return view('tenant.costumers.create');
     }
 
-    public function store(StoreUpdateCostumer $request, PersonService $person)
+    public function store(Request $request, PersonService $person)
     {
         abort_if(Gate::denies('clientes criar'), 403);
 
         $attributes = $request->all();
         $path = '';
-
-        $attributes['cep']        = preg_replace('/[^0-9]/', '', $attributes['cep']);
-        $attributes['cpf_cnpj'] = preg_replace('/[^0-9]/', '', $attributes['cpf_cnpj']);
-        $attributes['phone'] = preg_replace('/[^0-9]/', '', $attributes['phone']);
-
+        
+        
+        
         if (isset($attributes['img'])) {
             $path = $request->file('img')->store('costumers');
             $attributes['img'] = $path;
         }
 
         if( empty($request->img)) $attributes = $request->except('img');
-            
+        $attributes['cep']        = preg_replace('/[^0-9]/', '', $attributes['cep']);
+        $attributes['cpf_cnpj'] = preg_replace('/[^0-9]/', '', $attributes['cpf_cnpj']);
+        $attributes['phone'] = preg_replace('/[^0-9]/', '', $attributes['phone']);
 
+        //dd($attributes['phone']);
         $person = $person->store($attributes);
 
         $attributes['birth'] = Carbon::make($request->birth)->format('Y-m-d');
