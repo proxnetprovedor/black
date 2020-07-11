@@ -30,21 +30,26 @@ class CostumerController extends Controller
         return view('tenant.costumers.create');
     }
 
-    public function store(StoreUpdateCostumer $request, PersonService $person)
+    public function store(Request $request, PersonService $person)
     {
         abort_if(Gate::denies('clientes criar'), 403);
 
         $attributes = $request->all();
         $path = '';
-
+        
+        
+        
         if (isset($attributes['img'])) {
             $path = $request->file('img')->store('costumers');
             $attributes['img'] = $path;
         }
 
         if( empty($request->img)) $attributes = $request->except('img');
-            
+        $attributes['cep']        = preg_replace('/[^0-9]/', '', $attributes['cep']);
+        $attributes['cpf_cnpj'] = preg_replace('/[^0-9]/', '', $attributes['cpf_cnpj']);
+        $attributes['phone'] = preg_replace('/[^0-9]/', '', $attributes['phone']);
 
+        //dd($attributes['phone']);
         $person = $person->store($attributes);
 
         $attributes['birth'] = Carbon::make($request->birth)->format('Y-m-d');
@@ -62,13 +67,17 @@ class CostumerController extends Controller
     }
 
 
-    public function update(StoreUpdateCostumer $request, Costumer $costumer, PersonService $person)
+    public function update(Request $request, Costumer $costumer, PersonService $person)
     {
         abort_if(Gate::denies('clientes editar'), 403);
 
         $attributes = $request->all();
         $path = '';
-
+        
+        $attributes['cep']        = preg_replace('/[^0-9]/', '', $attributes['cep']);
+        $attributes['cpf_cnpj'] = preg_replace('/[^0-9]/', '', $attributes['cpf_cnpj']);
+        $attributes['phone'] = preg_replace('/[^0-9]/', '', $attributes['phone']);
+        dd($attributes);
         if (isset($attributes['img'])) {
             FacadesStorage::delete($costumer->img);
 
@@ -80,7 +89,7 @@ class CostumerController extends Controller
         $attributes['birth'] = Carbon::make($request->birth)->format('Y-m-d');
         $costumer->update($attributes);
         $person->update($costumer->person, $attributes);
-
+        
         return redirect()->back()->with(['success' => 'Cliente atualizado com sucesso']);
     }
 

@@ -28,16 +28,16 @@ class StoreUpdateCostumer extends FormRequest
             'img' => ['image', 'mimes:jpg,jpeg,png,bmp,tiff','max:50000'],
             'cpf_cnpj' => ['required', 'max:18', new CPF()],
             'cep' => ['required'],
-            'documento' => ['required'],
+            //'documento' => ['required'],
             'name' => ['required'],
-            'birth' => ['required'],
+            //'birth' => ['required'],
             'address' => ['required'],
             'number' => ['required'],
             'neighborthood' => ['required'],
             'city' => ['required'],
             'state' => ['required'],
-            'insc_estadual' => ['required'],
-            'insc_municipal' => ['required'],
+            //'insc_estadual' => ['required'],
+            //'insc_municipal' => ['required'],
         ];
     }
 

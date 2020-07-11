@@ -27,10 +27,13 @@
   <div class="col-md-6">
     <div class="col-md-12">
       <div class="form-group">
-        <select class="form-control selectpicker mt-3" data-style="btn btn-link" name="type_person">
-          <option disabled selected>Tipo de Pessoa</option>
-          <option>Pessoa Física</option>
-          <option>Pessoa Jurídica</option>
+        {{-- {{ ($empresa->juridica == true) ? 'selected' : '' }} --}}
+        {{-- {{ ($empresa->juridica == false) ? 'selected' : '' }} --}}
+        <select class="form-control selectpicker mt-3 selec-pessoa" data-style="btn btn-link" name="type_person" id="type_person" required>
+          {{-- <option disabled selected>Tipo de Pessoa</option> --}}
+          <option value="false" selected> Pessoa Física </option>
+          <option value="true"> Pessoa Jurídica </option>
+          
         </select>
       </div>
     </div>
@@ -47,7 +50,7 @@
       </div>
     </div>
 
-    <div class="col-md-12">
+    <div class="col-md-12 dados-pf">
       <div class="form-group">
         <label for="documento" class="bmd-label-floating">
           RG
@@ -71,7 +74,7 @@
     </div>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-4 dados-pf">
     <div class="form-group">
       <label class="label-control">Data de Nascimento</label>
       <input type="text" class="form-control datetimepicker mt-4"
@@ -80,7 +83,7 @@
     </div>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-6 dados-pf">
     <div class="form-group">
       <select class="form-control selectpicker text-uppercase mt-3" data-style="btn btn-link" name="civil_state">
         @if(isset($costumer) && $costumer->civil_state && !old('civil_state') != null)
@@ -120,7 +123,7 @@
   </div>
 
 
-  <div class="col-md-3">
+  <div class="col-md-3 dados-pj">
     <div class="form-group">
       <label for="insc_estadual" class="bmd-label-floating">
         Inscrição Estadual
@@ -132,7 +135,7 @@
     </div>
   </div>
 
-  <div class="col-md-3">
+  <div class="col-md-3 dados-pj">
     <div class="form-group">
       <label for="insc_municipal" class="bmd-label-floating">
         Inscrição Municipal
@@ -166,3 +169,24 @@
   </div>
 
 </div>
+@section('scripts_after_body')
+<script>
+    $(document).ready(function(){
+        $('.dados-pj').hide();
+        //$('.dados-pf').hide();
+        $('.selec-pessoa').change(function(){
+          // console.log($('button[data-id="type_person"]')[0].title);
+            if($('button[data-id="type_person"]')[0].title == 'Pessoa Física') {
+                console.log('PF')
+                $('.dados-pf').show();
+                $('.dados-pj').hide();
+            } else {
+              console.log('PJ')
+                $('.dados-pj').show();
+                $('.dados-pf').hide();
+            }
+
+        });
+    });
+</script>
+@endsection

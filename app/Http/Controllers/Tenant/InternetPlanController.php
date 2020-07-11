@@ -6,6 +6,7 @@ use App\Models\InternetPlan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\StoreUpdateInternetPlan;
 
 class InternetPlanController extends Controller
 {
@@ -39,8 +40,9 @@ class InternetPlanController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * StoreUpdateInternetPlan
      */
-    public function store(Request $request)
+    public function store(StoreUpdateInternetPlan $request)
     {
         abort_if(Gate::denies('planos-de-internet criar'), 403);
 
@@ -58,7 +60,9 @@ class InternetPlanController extends Controller
      */
     public function show(InternetPlan $internetPlan)
     {
-        //
+        abort_if(Gate::denies('planos de internet visualizar'), 403);
+
+        return view('tenant.internet-plan.show', compact('internetPlan'));
     }
 
     /**

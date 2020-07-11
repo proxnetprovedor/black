@@ -5,60 +5,33 @@
 
 @section('content')
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-6 col-md-12">
+<div class="container-fluid mt--6">
+    @include('_flash_messages')
+    <div class="col-md-12">
       <nav aria-label="breadcrumb" role="navigation">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{route('tenant.infra.dashboard')}}">Dashboard</a></li>
-          <li class="breadcrumb-item"><a href="{{route('instalations.index')}}">Instalações</a></li>
-          <li class="breadcrumb-item active"><a href="#">{{$instalation->ssid}}</a></li>
+          <li class="breadcrumb-item"><a href="{{route('internet-plans.index')}}">Planos de Internet</a></li>
+          <li class="breadcrumb-item active"><a href="#">{{$internetPlan->price}}</a></li>
         </ol>
       </nav>
       <div class="card">
-          @include('layouts.components._card-header',
-          [
-          'icon'=>'home', 'tittle'=>"INSTALAÇÃO $instalation->ssid" ,
-          'button'=>['active'=>true, 'tittle'=>'voltar', 'route'=>route('instalations.index')]
-          ])
-    
-          <div class="card-body">
-            <div class="table-responsive">
-              
-            </div>
-          </div>
-      </div>
-    </div>
-    <div class="col-lg-6 col-md-12">
-      <div class="card">
-        @include('layouts.components._card-header',
+        @include('layouts.components._card-header', 
         [
-        'icon'=>'home', 'tittle'=>"PLANOS DE INTERNET",
-        'button'=>['active'=>true, 'tittle'=>'Novo', 'route'=>route('tenants.create')]
+          'icon'=>'dns', 'tittle'=>"EDITAR PLANO", 
+          'button'=>['active'=>true, 'tittle'=>'Voltar', 'route'=>route('internet-plans.index')]
         ])
-
         <div class="card-body">
-          <div class="table-responsive">
-            <table class="table">
-              <thead>
-                <tr style="">
-                  <th>Nome</th>
-                  <th>Preço</th>
-                  <th>Donwload</th>
-                  <th>Upload</th>
-                  <th class="disabled-sorting text-right">Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                
-              </tbody>
-            </table>
-          </div>
+          <form action="{{route('internet-plans.update', $internetPlan)}}" method="POST" enctype="multipart/form-data">
+            {!! Form::token() !!}
+            @method('PUT')
+            @include('tenant.internet-plan.partials._form')
+            
+          </form>
+            
         </div>
-      </div>
+        
+        <!--  end card  -->
     </div>
-  </div>
-  
-      
 </div>
 @endsection
