@@ -40,4 +40,16 @@ class StoreUpdateCostumer extends FormRequest
             'insc_municipal' => ['required'],
         ];
     }
+
+
+    public function messages()
+    {
+        return [
+            'number.required' => 'O campo número é obrigatório.',
+            'neighborthood.required' => 'O campo bairro é obrigatório.',
+            'cpf_cnpj.required' => 'O campo CPF|CNPJ é obrigatório.',
+            'img.image' => 'O campo foto deve conter um arquivo do tipo imagem.',
+            'img.mimes' => 'O campo foto deve conter um arquivo do tipo: jpg, jpeg, png, bmp, tiff.',
+        ];
+    }
 }
