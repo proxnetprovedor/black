@@ -50,11 +50,12 @@ class PlanController extends Controller
      */
     public function store(StoreUpdatePlan $request)
     {
+        //dd($request);
         $plan = $this->repository->create($request->except('profile'));
 
         $profiles = $request->input('profile') ? $request->input('profile') : [];
 
-        $plan->sync($profiles);
+        //$plan->sync($profiles);
 
         return redirect()->route('plans.index')->with('succes', 'Plano ' . $plan->name . 'cadastrado com sucesso !');
     }

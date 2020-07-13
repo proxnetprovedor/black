@@ -1,53 +1,29 @@
-<div class="pl-lg-4">
-    <div class="row">
-        @csrf
-        <div class="col-md-6">
-            <div class="form-group  label-floating {{ $errors->has('name') ? 'has-danger' : '' }}">
-                <label class="bmd-label-floating" for="name">Nome </label> <span style="color:#f5365c ">*</span>
-                <input type="text" name="name" id="name"
-                    class="form-control  {{ $errors->has('name') ? 'has-danger' : '' }}" placeholder="Nome"
-                    value="{{ isset($plan) && $plan->name && !old('name') != null ? $plan->name  : old('name')  }}"
-                    autofocus>
-                @if($errors->has('name'))
-                <span class="invalid-feedback" style="display: block;" role="alert">
-                    <strong>{{$errors->first('name')}}</strong>
-                </span>
-                @endif
+
+    <div class="row col-md-12" >
+        <div class="col-md-12">
+            <div class="form-group">
+                {!! Form::label('name', 'Nome', ['class'=> 'bmd-label-floating']) !!}
+                {!! Form::text('name', isset($plan) && $plan->name && !old('name') != null ? $plan->name  : old('name') , ['class'=>'form-control', 'id'=>'name', 'required']) !!}
             </div>
         </div>
-
-        <div class="col-md-4">
-            <div class="form-group   label-floating {{ $errors->has('description') ? 'has-danger' : '' }}">
-                <label class="bmd-label-floating" for="description">Descrição</label> <span
-                    style="color:#f5365c ">*</span>
-                <input type="text" name="description" id="description"
-                    class="form-control  {{ $errors->has('description') ? 'has-danger' : '' }}" placeholder="Descrição"
-                    value="{{ isset($plan) && $plan->description && !old('description') != null ? $plan->description  : old('description')  }}"
-                    v-mask="'###.###.###-##'">
-                @if($errors->has('description'))
-                <span class="invalid-feedback" style="display: block;" role="alert">
-                    <strong>{{$errors->first('description')}}</strong>
-                </span>
-                @endif
+        <div class="col-md-12">
+            <div class="form-group">
+                {!! Form::label('description', 'Descrição', ['class'=> 'bmd-label-floating']) !!}
+                {!! Form::text('description', isset($plan) && $plan->description && !old('description') != null ? $plan->description  : old('description') , ['class'=>'form-control', 'id'=>'description', 'required']) !!}
             </div>
         </div>
-
-
-        <div class="col-md-6">
-            <div class="form-group  label-floating {{ $errors->has('price') ? 'has-danger' : '' }}">
-                <label class="bmd-label-floating" for="price">Preço </label> <span style="color:#f5365c ">*</span>
-                <input type="text" name="price" id="price"
-                    class="form-control  {{ $errors->has('price') ? 'has-danger' : '' }}" placeholder="preço"
-                    value="{{ isset($plan) && $plan->price && !old('price') != null ? $plan->price  : old('price')  }}"
-                    autofocus>
-                @if($errors->has('price'))
-                <span class="invalid-feedback" style="display: block;" role="alert">
-                    <strong>{{$errors->first('price')}}</strong>
-                </span>
-                @endif
+        <div class="col-md-12">
+            <div class="form-group">
+                {!! Form::label('url', 'URL', ['class'=> 'bmd-label-floating']) !!}
+                {!! Form::text('url', isset($plan) && $plan->url && !old('url') != null ? $plan->url  : old('url') , ['class'=>'form-control', 'id'=>'url', 'required']) !!}
             </div>
         </div>
-
+        <div class="col-md-12">
+            <div class="form-group">
+                {!! Form::label('price', 'Preço', ['class'=> 'bmd-label-floating']) !!}
+                {!! Form::text('price', isset($plan) && $plan->price && !old('price') != null ? $plan->price  : old('price') , ['class'=>'form-control', 'id'=>'price', 'required']) !!}
+            </div>
+        </div>
         <div class="col-md-12">
 
 
@@ -69,10 +45,4 @@
 
             </div>
         </div>
-
-
-
-
     </div>
-
-</div>

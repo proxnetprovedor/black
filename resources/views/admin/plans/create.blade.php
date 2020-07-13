@@ -23,6 +23,7 @@
 
         <div class="card-body">
             <form method="POST" action="{{route('plans.store')}}" autocomplete="off" enctype="multipart/form-data">
+                {!! Form::token() !!}
                 @include('admin.plans.partials._form')
                 <div class="text-center">
                     <button type="submit" class="btn btn-success mt-4">Salvar</button>
