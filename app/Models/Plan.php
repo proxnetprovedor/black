@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\DetailPlan;
+use App\Observers\PlanObserver;
 use App\Traits\Blameable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -22,6 +23,13 @@ class Plan extends BaseModel
         'created_at', 'updated_at', 'deleted_at',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+
+        static::observe(PlanObserver::class);
+    }
     // public function providers()
     // {
     //     return $this->

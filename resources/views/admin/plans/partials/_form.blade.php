@@ -1,24 +1,24 @@
 
     <div class="row col-md-12" >
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('name', 'Nome', ['class'=> 'bmd-label-floating']) !!}
                 {!! Form::text('name', isset($plan) && $plan->name && !old('name') != null ? $plan->name  : old('name') , ['class'=>'form-control', 'id'=>'name', 'required']) !!}
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('description', 'Descrição', ['class'=> 'bmd-label-floating']) !!}
                 {!! Form::text('description', isset($plan) && $plan->description && !old('description') != null ? $plan->description  : old('description') , ['class'=>'form-control', 'id'=>'description', 'required']) !!}
             </div>
         </div>
-        <div class="col-md-12">
+        {{-- <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('url', 'URL', ['class'=> 'bmd-label-floating']) !!}
                 {!! Form::text('url', isset($plan) && $plan->url && !old('url') != null ? $plan->url  : old('url') , ['class'=>'form-control', 'id'=>'url', 'required']) !!}
             </div>
-        </div>
-        <div class="col-md-12">
+        </div> --}}
+        <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('price', 'Preço', ['class'=> 'bmd-label-floating']) !!}
                 {!! Form::text('price', isset($plan) && $plan->price && !old('price') != null ? $plan->price  : old('price') , ['class'=>'form-control', 'id'=>'price', 'required']) !!}

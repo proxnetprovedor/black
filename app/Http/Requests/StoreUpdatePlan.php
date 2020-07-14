@@ -33,12 +33,12 @@ class StoreUpdatePlan extends FormRequest
                "max:255|",
                $this->method() == 'PUT' ? "unique:pgsql.acl_plans.plans,name,{$this->plan->id}"  : 'unique:pgsql.acl_plans.plans,name'
             ],
-            'url' => [
-                "required",
-               "min:3",
-               "max:255|",
-               $this->method() == 'PUT' ? "unique:pgsql.acl_plans.plans,url,{$this->plan->id}"  : 'unique:pgsql.acl_plans.plans,url'
-            ],
+            // 'url' => [
+            //     "required",
+            //    "min:3",
+            //    "max:255|",
+            //    $this->method() == 'PUT' ? "unique:pgsql.acl_plans.plans,url,{$this->plan->id}"  : 'unique:pgsql.acl_plans.plans,url'
+            // ],
             'description' => 'nullable|min:3|max:255',
             'price' => "required|regex:/^\d+(\.\d{1,2})?$/",
         ];
