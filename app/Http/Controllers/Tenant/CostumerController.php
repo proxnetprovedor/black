@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Tenant;
 
+use App\Events\CleanDatasEvent;
 use App\Models\Costumer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreUpdateCostumer;
+use App\Http\Requests\StoreUpdateCostumerRequest;
 use App\Services\PersonService;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage as FacadesStorage;
 
@@ -30,31 +30,30 @@ class CostumerController extends Controller
         return view('tenant.costumers.create');
     }
 
-    public function store(Request $request, PersonService $person)
+    public function store(StoreUpdateCostumerRequest $request, PersonService $person)
     {
         abort_if(Gate::denies('clientes criar'), 403);
 
         $attributes = $request->all();
         $path = '';
-        
-        
-        
+
         if (isset($attributes['img'])) {
             $path = $request->file('img')->store('costumers');
             $attributes['img'] = $path;
         }
 
-        if( empty($request->img)) $attributes = $request->except('img');
+        if (empty($request->img)) $attributes = $request->except('img');
+
         $attributes['cep']        = preg_replace('/[^0-9]/', '', $attributes['cep']);
         $attributes['cpf_cnpj'] = preg_replace('/[^0-9]/', '', $attributes['cpf_cnpj']);
         $attributes['phone'] = preg_replace('/[^0-9]/', '', $attributes['phone']);
+        $attributes['birth'] = empty($request->birth) ? null : changeDateFormate($request->birth, 'Y-m-d');
 
-        //dd($attributes['phone']);
         $person = $person->store($attributes);
-
-        $attributes['birth'] = Carbon::make($request->birth)->format('Y-m-d');
         $attributes['person_id'] = $person->id;
+
         $costumer = Costumer::create($attributes);
+
         return redirect(route('costumers.edit', $costumer->id))->with(['success' => 'Cliente registrado com sucesso!']);
     }
 
@@ -67,17 +66,13 @@ class CostumerController extends Controller
     }
 
 
-    public function update(Request $request, Costumer $costumer, PersonService $person)
+    public function update(StoreUpdateCostumerRequest $request, Costumer $costumer, PersonService $person)
     {
         abort_if(Gate::denies('clientes editar'), 403);
 
         $attributes = $request->all();
         $path = '';
-        
-        $attributes['cep']        = preg_replace('/[^0-9]/', '', $attributes['cep']);
-        $attributes['cpf_cnpj'] = preg_replace('/[^0-9]/', '', $attributes['cpf_cnpj']);
-        $attributes['phone'] = preg_replace('/[^0-9]/', '', $attributes['phone']);
-        dd($attributes);
+
         if (isset($attributes['img'])) {
             FacadesStorage::delete($costumer->img);
 
@@ -85,11 +80,17 @@ class CostumerController extends Controller
             $attributes['img'] = $path;
         }
         if (empty($request->img)) $attributes = $request->except('img');
-           
-        $attributes['birth'] = Carbon::make($request->birth)->format('Y-m-d');
+
+        $attributes['cep']        = preg_replace('/[^0-9]/', '', $attributes['cep']);
+        $attributes['cpf_cnpj'] = preg_replace('/[^0-9]/', '', $attributes['cpf_cnpj']);
+        $attributes['phone'] = preg_replace('/[^0-9]/', '', $attributes['phone']);
+        $attributes['birth'] = empty($request->birth) ? null : changeDateFormate($request->birth, 'Y-m-d');
+
         $costumer->update($attributes);
         $person->update($costumer->person, $attributes);
-        
+
+        event( new CleanDatasEvent($costumer, $request));
+
         return redirect()->back()->with(['success' => 'Cliente atualizado com sucesso']);
     }
 

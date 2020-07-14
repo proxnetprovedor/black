@@ -21,9 +21,6 @@ $(".formValidation").validate({
         cpf_cnpj: {
             required: true
         },
-        documento: {
-            required: true
-        },
         cep: {
             required: true
         },
@@ -31,9 +28,6 @@ $(".formValidation").validate({
             required: true,
         },
         phone: {
-            required: true,
-        },
-        birth: {
             required: true,
         },
         address: {
@@ -49,12 +43,6 @@ $(".formValidation").validate({
             required: true,
         },
         state: {
-            required: true,
-        },
-        insc_estadual: {
-            required: true,
-        },
-        insc_municipal: {
             required: true,
         },
     },

@@ -41,7 +41,7 @@
                 <td class="text-left">{{$costumer->name}}</td>
                 <td class="text-left">{{$costumer->phone}}</td>
                 <td class="text-left">{{$costumer->email}}</td>
-                <td class="text-left">{{$costumer->birth->format('d/m/Y')}}</td>
+                <td class="text-left">{{ isset($costumer->birth) ? $costumer->birth->format('d/m/Y') : ''}}</td>
                 <td class="td-actions text-right">
                   <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">

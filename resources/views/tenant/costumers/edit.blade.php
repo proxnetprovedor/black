@@ -84,3 +84,5 @@
   @include('tenant.costumers.modals.confirm_delete_modal')
 
   @endsection
+
+  

@@ -27,13 +27,15 @@
   <div class="col-md-6">
     <div class="col-md-12">
       <div class="form-group">
-        {{-- {{ ($empresa->juridica == true) ? 'selected' : '' }} --}}
-        {{-- {{ ($empresa->juridica == false) ? 'selected' : '' }} --}}
-        <select class="form-control selectpicker mt-3 selec-pessoa" data-style="btn btn-link" name="type_person" id="type_person" required>
-          {{-- <option disabled selected>Tipo de Pessoa</option> --}}
-          <option value="false" selected> Pessoa Física </option>
-          <option value="true"> Pessoa Jurídica </option>
-          
+        <select class="form-control selectpicker mt-3 selec-pessoa" data-style="btn btn-link" name="type_person"
+          id="type_person">
+          @if( isset($costumer) && strlen($costumer->person->cpf_cnpj) > 11 )
+          <option value="pj" selected> Pessoa Jurídica </option>
+          <option value="pf"> Pessoa Física </option>
+          @else
+          <option value="pf" selected> Pessoa Física </option>
+          <option value="pj"> Pessoa Jurídica </option>
+          @endif
         </select>
       </div>
     </div>
@@ -45,7 +47,8 @@
           <span class="text-danger">*</span>
         </label>
         {!! Form::text('cpf_cnpj', isset($costumer) && $costumer->person->cpf_cnpj && !old('cpf_cnpj') != null ?
-        $costumer->person->cpf_cnpj : old('cpf_cnpj') , ['class'=>'form-control mt-4 cpf_cnpj-mask', 'required'])
+        $costumer->person->cpf_cnpj : old('cpf_cnpj') , ['class'=>'form-control mt-4 cpf_cnpj-mask', 'required',
+        'id'=>'cpf_cnpj'])
         !!}
       </div>
     </div>
@@ -54,14 +57,14 @@
       <div class="form-group">
         <label for="documento" class="bmd-label-floating">
           RG
-          <span class="text-danger">*</span>
         </label>
         {!! Form::text('documento', isset($costumer) && $costumer->person->documento && !old('documento') != null ?
-        $costumer->person->documento : old('documento') , ['class'=>'form-control mt-4', 'id'=>'documento', 'required'])
+        $costumer->person->documento : old('documento') , ['class'=>'form-control mt-4', 'id'=>'documento'])
         !!}
       </div>
     </div>
   </div>
+
 
   <div class="col-md-8">
     <div class="form-group">
@@ -74,18 +77,21 @@
     </div>
   </div>
 
+
   <div class="col-md-4 dados-pf">
     <div class="form-group">
       <label class="label-control">Data de Nascimento</label>
       <input type="text" class="form-control datetimepicker mt-4"
         value="{{ isset($costumer) && $costumer->birth && !old('birth') != null ? date('d/m/Y', strtotime($costumer->birth)) : old('birth') }}"
-        name="birth" />
+        name="birth" id="birth" />
     </div>
   </div>
 
+
   <div class="col-md-6 dados-pf">
     <div class="form-group">
-      <select class="form-control selectpicker text-uppercase mt-3" data-style="btn btn-link" name="civil_state">
+      <select class="form-control selectpicker text-uppercase mt-3" data-style="btn btn-link" name="civil_state"
+        id="civil_state">
         @if(isset($costumer) && $costumer->civil_state && !old('civil_state') != null)
         <option value="casado" selected>{{ $costumer->civil_state }}</option>
         @else
@@ -131,7 +137,7 @@
       </label>
       {!! Form::text('insc_estadual', isset($costumer) && $costumer->person->insc_estadual && !old('insc_estadual') !=
       null ? $costumer->person->insc_estadual :
-      old('insc_estadual') , ['class'=>'form-control mt-4', 'id'=>'insc_estadual']) !!}
+      old('insc_estadual') , ['class'=>'form-control mt-4', 'id'=>'insc_estadual', 'required']) !!}
     </div>
   </div>
 
@@ -143,7 +149,7 @@
       </label>
       {!! Form::text('insc_municipal', isset($costumer) && $costumer->person->insc_municipal && !old('insc_municipal')
       != null ? $costumer->person->insc_municipal :
-      old('insc_municipal') , ['class'=>'form-control mt-4', 'id'=>'insc_municipal']) !!}
+      old('insc_municipal') , ['class'=>'form-control mt-4', 'id'=>'insc_municipal', 'required']) !!}
     </div>
   </div>
 
@@ -153,9 +159,8 @@
         Dia para Pagamento
         <span class="text-danger">*</span>
       </label>
-      {!! Form::number('pay_day', isset($costumer) && $costumer->pay_day && !old('pay_day') != null ? $costumer->pay_day
-      :
-      old('pay_day') , ['class'=>'form-control mt-4', 'id'=>'pay_day']) !!}
+      {!! Form::number('pay_day', isset($costumer) && $costumer->pay_day && !old('pay_day') !=
+      null ? $costumer->pay_day :old('pay_day') , ['class'=>'form-control mt-4', 'id'=>'pay_day', 'required']) !!}
     </div>
   </div>
 
@@ -169,24 +174,31 @@
   </div>
 
 </div>
-@section('scripts_after_body')
+@section('scripts_after_body') --}}
 <script>
-    $(document).ready(function(){
+  $(document).ready(function(){
         $('.dados-pj').hide();
-        //$('.dados-pf').hide();
         $('.selec-pessoa').change(function(){
-          // console.log($('button[data-id="type_person"]')[0].title);
-            if($('button[data-id="type_person"]')[0].title == 'Pessoa Física') {
-                console.log('PF')
-                $('.dados-pf').show();
-                $('.dados-pj').hide();
-            } else {
-              console.log('PJ')
-                $('.dados-pj').show();
-                $('.dados-pf').hide();
-            }
-
+          if($('button[data-id="type_person"]')[0].title == 'Pessoa Física') {
+              $('.dados-pf').show();
+              $('.dados-pj').hide();
+          } else {
+              $('.dados-pj').show();
+              $('.dados-pf').hide();
+          }
         });
     });
+
+    window.onload = function (){
+      let cpf_cnpj = $('#cpf_cnpj').val().split('').length;
+      if(cpf_cnpj > 14){
+        $('.dados-pj').show();
+        $('.dados-pf').hide();
+      }
+      if(cpf_cnpj < 14 ){
+        $('.dados-pf').show();
+        $('.dados-pj').hide();
+      }
+    }
 </script>
 @endsection
