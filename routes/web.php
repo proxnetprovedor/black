@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Costumer;
 use App\Models\Tenant;
 use Illuminate\Support\Facades\Route;
 
@@ -66,7 +67,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(
 		 */
 		Route::resource('users', 'UserController');
 		// Route::delete('users_mass_destroy', 'UsersController@massDestroy')->name('users.mass_destroy');
-		
+
 
 		/**
 		 * Routes Providers Plans
@@ -110,6 +111,16 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(
 	}
 );
 
+Route::prefix('api/tenant')->group(
+	function () {
+		Route::get('costumers/pages', function () {
+			return response()->json(['pages' => Costumer::latest()->paginate(6)]);
+		});
+		Route::get('costumers', function () {
+			return response()->json(Costumer::all());
+		});
+	}
+);
 
 Route::prefix('tenant')->namespace('Tenant')->middleware('auth')->group(
 	function () {

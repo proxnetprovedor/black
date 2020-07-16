@@ -18,8 +18,8 @@ class CostumerController extends Controller
     {
         abort_if(Gate::denies('clientes visualizar'), 403);
 
-        $costumers = Costumer::latest()->paginate(15);
-        return view('tenant.costumers.index', compact('costumers'));
+        // $costumers = Costumer::latest()->paginate(15);
+        return view('tenant.costumers.index');
     }
 
 
