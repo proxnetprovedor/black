@@ -34,7 +34,7 @@ mix.scripts(
 
         "resources/assets/js/plugins/perfect-scrollbar.jquery.min.js",
         "resources/assets/js/plugins/moment.min.js",
-        "resources/assets/js/plugins/ptBR.js",
+      //  "resources/assets/js/plugins/ptBR.js",
 
     ],
     "public/js/plugins-core.js"
