@@ -130,7 +130,6 @@ Route::prefix('tenant')->namespace('Tenant')->middleware('auth')->group(
 		Route::resource('internet-plans', 'InternetPlanController');
 		Route::get('dashboard', 'InfraController@index')->name('tenant.infra.dashboard');
 
-        /* colocar aqui as rotas de informacoes dos servidores para o ajax */
         Route::get('servers/{server}/info', 'ServerController@info')->name('servers.info');
 
 		/**
@@ -148,9 +147,9 @@ Route::prefix('tenant')->namespace('Tenant')->middleware('auth')->group(
 		Route::resource('costumers', 'CostumerController');
 	}
 );
-Route::get('f/maps/clientes', 'tenant\MapsController@clientes');
-Route::get('f/maps/servers', 'tenant\MapsController@servers');
-Route::get('f/maps/costumers', 'tenant\MapsController@costumers');
+// Route::get('f/maps/clientes', 'tenant\MapsController@clientes');
+// Route::get('f/maps/servers', 'tenant\MapsController@servers');
+// Route::get('f/maps/costumers', 'tenant\MapsController@costumers');
 
 //Route::group(['prefix' => 'f'], function () {
 //});

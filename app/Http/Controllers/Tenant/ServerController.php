@@ -140,6 +140,19 @@ class ServerController extends Controller
         //$addRequest->setArgument('proplist', 'version,cpu,cpu-frequency,cpu-load,uptime,free-memory,free-hdd-space,total-hdd-space,total-memory,board-name,cpu-count,');
         $responses = $client->sendSync($addRequest);
         $response = $responses[0];
+
+        $addRequest = new RouterOS\Request('/ppp/active/print');
+        //$addRequest->setArgument('proplist', 'version,cpu,cpu-frequency,cpu-load,uptime,free-memory,free-hdd-space,total-hdd-space,total-memory,board-name,cpu-count,');
+        $responses = $client->sendSync($addRequest);
+
+        $ppp_actives = 0;
+        foreach ($responses as $each) {
+            if ( $each->getType() === RouterOS\Response::TYPE_FINAL) {
+                continue;
+            }
+            $ppp_actives++;
+        }
+
         return json_encode([
             'uptime' => $response->getProperty('uptime'),
             'version' => $response->getProperty('version'),
@@ -156,6 +169,7 @@ class ServerController extends Controller
             'architecture-name' => $response->getProperty('architecture-name'),
             'board-name' => $response->getProperty('board-name'),
             'platform' => $response->getProperty('platform'),
+            'ppp_actives' => $ppp_actives,
         ]);
     }
 }

@@ -88,8 +88,10 @@
         url: '{{route('servers.info' , ['server' => $item->id])}}',
         success: function (data) {
           data = JSON.parse(data);
+          let user = data['ppp_actives'] == 1 ? 'usu&aacute;rio' : 'usu&aacute;rios';
           document.getElementById('server{{$item->id}}').innerHTML =
-            '<b>' + '{{ $item->name }}' + '</b> - ' + data['board-name'] + '<br/>' +
+            '<b>' + '{{ $item->name }}' + '</b> - ' + data['board-name'] +
+            ' - ' + data['ppp_actives'] + ' ' + user + ' conectados <br/>' +
             data['cpu'] + ' - ' + data['cpu-frequency'] + ' MHz - ' + data['cpu-count'] +
             ' Cores Versão: ' + data['version'];
           document.getElementById('uptime{{$item->id}}').innerHTML =
@@ -102,7 +104,7 @@
             data['free-hdd-space'] + " de " + data['total-hdd-space'] + "<br>" +
             "<i class='fa fa-fw fa-microchip'></i> RAM Livre: " +
             data['free-memory'] + " de " + data['total-memory'];
-          console.log(data);
+          //console.log(data);
         },
         error: function (data,err,err2){
           console.log(data,err,err2);
