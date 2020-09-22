@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.2.5",
         "caouecs/laravel-lang": "~6.0",
+        "doctrine/dbal": "^2.11",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "geekcom/validator-docs": "^3.4",
@@ -18,7 +19,9 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "laravelcollective/html": "^6.1",
-        "spatie/laravel-model-status": "^1.10"
+        "pear2/net_routeros": "*@beta",
+        "spatie/laravel-model-status": "^1.10",
+        "spatie/laravel-permission": "3.13.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",
