@@ -30,12 +30,8 @@ Route::prefix('admin')->namespace('Auth')->group(
 	}
 );
 
-
 Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(
 	function () {
-
-
-
 		/**
 		 * Home Dashboard
 		 */
@@ -68,12 +64,10 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(
 		Route::resource('users', 'UserController');
 		// Route::delete('users_mass_destroy', 'UsersController@massDestroy')->name('users.mass_destroy');
 
-
 		/**
 		 * Routes Providers Plans
 		 * 
 		 */
-
 		Route::get('plans/{url}/providers', 'ProviderPlanController@index')->name('providers.plan.index');
 
 		/**
@@ -95,7 +89,6 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(
 		// Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 		// Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 
-
 		/**
 		 * Profile (Perfil) do tenant
 		 */
@@ -104,6 +97,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(
 
 		Route::get('/tenant/{tenant}/plan', 'TenantPlanController@show')->name('tenant.plan.show');
 		Route::put('/tenant/{tenant}/plan/{plan}', 'TenantPlanController@update')->name('tenant.plan.update');
+
 		/**
 		 * Routes Tenants
 		 */
@@ -122,6 +116,11 @@ Route::prefix('api/tenant')->group(
 	}
 );
 
+/**
+ * rotas de informacoes dos servidores para o ajax
+ */
+//Route::get('/info', 'ServerController@info');
+
 Route::prefix('tenant')->namespace('Tenant')->middleware('auth')->group(
 	function () {
 		Route::resource('servers', 'ServerController');
@@ -131,10 +130,14 @@ Route::prefix('tenant')->namespace('Tenant')->middleware('auth')->group(
 		Route::resource('internet-plans', 'InternetPlanController');
 		Route::get('dashboard', 'InfraController@index')->name('tenant.infra.dashboard');
 
+        /* colocar aqui as rotas de informacoes dos servidores para o ajax */
+        Route::get('servers/{server}/info', 'ServerController@info')->name('servers.info');
+
 		/**
 		 * Colaboradores de um dado Provedor
 		 */
 		Route::resource('employees', 'EmployeeController');
+
 		/**
 		 * Users Resource
 		 */
@@ -150,7 +153,6 @@ Route::get('f/maps/servers', 'tenant\MapsController@servers');
 Route::get('f/maps/costumers', 'tenant\MapsController@costumers');
 
 //Route::group(['prefix' => 'f'], function () {
-
 //});
 
 // Auth::routes();

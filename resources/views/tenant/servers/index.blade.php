@@ -27,22 +27,21 @@
           <table class="table">
             <thead>
               <tr>
-                <th>Name</th>
-                <th>IP</th>
-                <th>Porta</th>
-                <th class="text-right">Login</th>
-                <th class="text-right">Interface</th>
-                <th class="text-right">Actions</th>
+                <!--class="text-right"-->
+                <th>SERVIDOR</th>
+                <th>IP : PORTA</th>
+                <th>UPTIME E CPU</th>
+                <th>ARMAZENAMENTO</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
               @foreach ($servers as $item)
               <tr>
-                <td>{{$item->name}}</td>
-                <td class="text-right">{{$item->ip_address}}</td>
-                <td>{{$item->port}}</td>
-                <td class="text-right">{{$item->login}}</td>
-                <td class="text-right">{{$item->login}}</td>
+                <td id="server{{$item->id}}">{{$item->name}}</td>
+                <td>{{$item->ip_address}}:{{$item->port}}</td>
+                <td id="uptime{{$item->id}}">...</td>
+                <td id="armazenamento{{$item->id}}">...</td>
                 <td class="td-actions text-right">
                   <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
@@ -83,5 +82,32 @@
       let form = $(`#form-delete-${id}`)
       return form.submit();
     }
+    @foreach ($servers as $item)
+      $.ajax({
+        type: "GET",
+        url: '{{route('servers.info' , ['server' => $item->id])}}',
+        success: function (data) {
+          data = JSON.parse(data);
+          document.getElementById('server{{$item->id}}').innerHTML =
+            '<b>' + '{{ $item->name }}' + '</b> - ' + data['board-name'] + '<br/>' +
+            data['cpu'] + ' - ' + data['cpu-frequency'] + ' MHz - ' + data['cpu-count'] +
+            ' Cores Versão: ' + data['version'];
+          document.getElementById('uptime{{$item->id}}').innerHTML =
+            "<i class='fa fa-fw fa-clock-o'></i>" + data['uptime'] +
+            "<br>" +
+            "<i class='fa fa-fw fa-snowflake-o'></i> CPU: " + data['cpu-load'] +
+            "%";
+          document.getElementById('armazenamento{{$item->id}}').innerHTML =
+            "<i class='fa fa-fw fa-database'></i> HDD Livre: " +
+            data['free-hdd-space'] + " de " + data['total-hdd-space'] + "<br>" +
+            "<i class='fa fa-fw fa-microchip'></i> RAM Livre: " +
+            data['free-memory'] + " de " + data['total-memory'];
+          console.log(data);
+        },
+        error: function (data,err,err2){
+          console.log(data,err,err2);
+        },
+      })
+    @endforeach
   </script>
   @endsection

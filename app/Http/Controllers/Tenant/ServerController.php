@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Tenant;
 
+use Auth;
+use App\Http\Controllers\Controller;
 use App\Models\Server;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Auth;
 use Illuminate\Support\Facades\Gate;
+use PEAR2\Net\RouterOS;
 
 class ServerController extends Controller
 {
@@ -39,7 +40,7 @@ class ServerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -54,7 +55,7 @@ class ServerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Server  $server
+     * @param \App\Models\Server $server
      * @return \Illuminate\Http\Response
      */
     public function show(Server $server)
@@ -70,7 +71,7 @@ class ServerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Server  $server
+     * @param \App\Models\Server $server
      * @return \Illuminate\Http\Response
      */
     public function edit(Server $server)
@@ -83,8 +84,8 @@ class ServerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Server  $server
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Server $server
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Server $server)
@@ -97,10 +98,11 @@ class ServerController extends Controller
         return redirect()->route('servers.index')
             ->with('success', 'Servidor ' . $server->name . 'atualizado com sucesso !');
     }
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Server  $server
+     * @param \App\Models\Server $server
      * @return \Illuminate\Http\Response
      */
     public function destroy(Server $server)
@@ -111,5 +113,49 @@ class ServerController extends Controller
         $server->delete();
         return redirect()->route('servers.index')
             ->with('success', 'Servidor ' . $server->name . ' excluído com sucesso !');
+    }
+
+    /**
+     * Get info direct of server.
+     *
+     * @param int $info
+     * @return array
+     */
+    public function info($id)
+    {
+        //return json_encode(['id' => $id]);
+        $server = Server::find($id);
+        if (!($server->tenant_id === auth()->user()->tenant_id)) {
+            abort(403);
+        }
+
+        try {
+            $client = new RouterOS\Client($server->ip_address, $server->login, $server->password);
+        } catch (Exception $e) {
+            die('Unable to connect to the router.');
+            //Inspect $e if you want to know details about the failure.
+        }
+
+        $addRequest = new RouterOS\Request('/system/resource/print');
+        //$addRequest->setArgument('proplist', 'version,cpu,cpu-frequency,cpu-load,uptime,free-memory,free-hdd-space,total-hdd-space,total-memory,board-name,cpu-count,');
+        $responses = $client->sendSync($addRequest);
+        $response = $responses[0];
+        return json_encode([
+            'uptime' => $response->getProperty('uptime'),
+            'version' => $response->getProperty('version'),
+            'build-time' => $response->getProperty('build-time'),
+            'factory-software' => $response->getProperty('factory-software'),
+            'free-memory' => $response->getProperty('free-memory'),
+            'total-memory' => $response->getProperty('total-memory'),
+            'cpu' => $response->getProperty('cpu'),
+            'cpu-count' => $response->getProperty('cpu-count'),
+            'cpu-frequency' => $response->getProperty('cpu-frequency'),
+            'cpu-load' => $response->getProperty('cpu-load'),
+            'free-hdd-space' => $response->getProperty('free-hdd-space'),
+            'total-hdd-space' => $response->getProperty('total-hdd-space'),
+            'architecture-name' => $response->getProperty('architecture-name'),
+            'board-name' => $response->getProperty('board-name'),
+            'platform' => $response->getProperty('platform'),
+        ]);
     }
 }
