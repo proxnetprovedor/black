@@ -40,7 +40,7 @@
                 <tbody>
                 @foreach ($internetPlans as $item)
                 <tr>
-                    <td class="text-right">{{$item->name}}</td>
+                    <td class="text-right">{{$item->name}} - {{$item->server_id}}</td>
                     <td class="text-right">{{$item->price}}</td>
                     <td class="text-right">{{$item->download_rate}}</td>
                     <td class="text-right">{{$item->upload_rate}}</td>

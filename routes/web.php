@@ -131,6 +131,7 @@ Route::prefix('tenant')->namespace('Tenant')->middleware('auth')->group(
 		Route::get('dashboard', 'InfraController@index')->name('tenant.infra.dashboard');
 
         Route::get('servers/{server}/info', 'ServerController@info')->name('servers.info');
+        Route::get('servers/{server}/profiles', 'ServerController@profiles')->name('servers.profiles');
 
 		/**
 		 * Colaboradores de um dado Provedor

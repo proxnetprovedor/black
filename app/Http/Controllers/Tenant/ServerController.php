@@ -48,7 +48,7 @@ class ServerController extends Controller
         abort_if(Gate::denies('servidores criar'), 403);
 
         $server = Server::create($request->all());
-        return redirect()->route('ctos.index')
+        return redirect()->route('servers.index')
             ->with('success', 'Servidor ' . $server->name . 'cadastrado com sucesso !');
     }
 
@@ -123,10 +123,11 @@ class ServerController extends Controller
      */
     public function info($id)
     {
-        //return json_encode(['id' => $id]);
+        abort_if(Gate::denies('servidores visualizar'), 403);
+
         $server = Server::find($id);
         if (!($server->tenant_id === auth()->user()->tenant_id)) {
-            abort(403);
+           abort(403);
         }
 
         try {
@@ -171,5 +172,43 @@ class ServerController extends Controller
             'platform' => $response->getProperty('platform'),
             'ppp_actives' => $ppp_actives,
         ]);
+    }
+
+    /**
+     * Print on screen profiles returned of server.
+     *
+     * @param int $info
+     * @return array
+     */
+    public function profiles($id)
+    {
+        $server = Server::find($id);
+        if (!($server->tenant_id === auth()->user()->tenant_id)) {
+            abort(403);
+        }
+
+        try {
+            $client = new RouterOS\Client($server->ip_address, $server->login, $server->password);
+        } catch (Exception $e) {
+            die('Unable to connect to the router.');
+            //Inspect $e if you want to know details about the failure.
+        }
+
+        //$addRequest = new RouterOS\Request('/ppp/secret/print');
+        //$addRequest = new RouterOS\Request('/ppp/active/print');
+        //$addRequest = new RouterOS\Request('/ppp/profile/print');
+        //$addRequest = new RouterOS\Request('/ppp/profile/remove');
+        //$addRequest->setArgument('.id', '*30');
+        //$addRequest->setArgument('name', 'Especial - BlackRoute');
+        //$addRequest->setArgument('rate-limit', '60000k/100000k');
+        $responses = $client->sendSync($addRequest);
+        foreach ($responses as $each) {
+            echo '<pre>';
+            //var_dump($each->getProperty('name'));
+            var_dump($each);
+            echo '<pre>';
+        }
+
+        return 0;
     }
 }

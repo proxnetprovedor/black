@@ -10,7 +10,8 @@ return [
         'alexandrogonsanv2@outlook.com',
         'satedilly@outlook.com',
         'alexandrogonsan@outlook.com',
-        'alexandrogonsan@gmail.com'
+        'alexandrogonsan@gmail.com',
+        'fabianotomeprox@proxnet.page'
     ],
 
 ];
