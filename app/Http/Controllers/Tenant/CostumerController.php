@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Tenant;
 
 use App\Events\CleanDatasEvent;
-use App\Models\Costumer;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateCostumerRequest;
+use App\Models\Costumer;
+use App\Models\InternetPlan;
 use App\Services\PersonService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage as FacadesStorage;
 
@@ -29,7 +30,9 @@ class CostumerController extends Controller
     {
         abort_if(Gate::denies('clientes criar'), 403);
 
-        return view('tenant.costumers.create');
+        $internetPlans = InternetPlan::where('tenant_id', auth()->user()->tenant_id)->get();
+
+        return view('tenant.costumers.create', compact('internetPlans'));
     }
 
     public function store(StoreUpdateCostumerRequest $request, PersonService $person)
@@ -64,7 +67,9 @@ class CostumerController extends Controller
     {
         abort_if(Gate::denies('clientes editar'), 403);
 
-        return view('tenant.costumers.edit', compact('costumer'));
+        $internetPlans = InternetPlan::where('tenant_id', auth()->user()->tenant_id)->get();
+
+        return view('tenant.costumers.edit', compact('costumer', 'internetPlans'));
     }
 
 

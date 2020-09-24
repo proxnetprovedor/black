@@ -121,6 +121,12 @@
                             </a>
                         </li>
                         @endcan
+                        <li class="nav-item {{ Request::is('tenant/servers') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('servers.index') }}">
+                                <span class="sidebar-mini"> S </span>
+                                <span class="sidebar-normal"> Servidores </span>
+                            </a>
+                        </li>
                         @can('instalacoes visualizar')
                         <li class="nav-item {{ Request::is('tenant/instalations') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('instalations.index') }}">

@@ -19,25 +19,9 @@
     @include('_flash_messages')
     <div class="card">
       <div class="card-header card-header-tabs card-header-rose">
-        <div class="nav-tabs-navigation">
-          <div class="nav-tabs-wrapper">
-            <ul class="nav nav-tabs" data-tabs="tabs">
-              <li class="nav-item">
-                <a class="nav-link active" href="#personal" data-toggle="tab">
-                  <i class="material-icons">personal</i> Dados Pessoais
-                  <div class="ripple-container"></div>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#address" data-toggle="tab">
-                  <i class="material-icons">code</i> Endereço
-                  <div class="ripple-container"></div>
-                </a>
-              </li>
 
-            </ul>
-          </div>
-        </div>
+        @include('tenant.costumers.partials._form_nav_tabs_navigation')
+
       </div>
       <div class="card-body">
         <form action="{{ route('costumers.store') }}" method="post" enctype="multipart/form-data"
@@ -45,23 +29,7 @@
           @csrf
           @method('post')
 
-          <div class="tab-content">
-
-            {{-- Dados Pessoais --}}
-            <div class="tab-pane active" id="personal">
-
-              @include('tenant.costumers.partials._form_personal')
-
-            </div>
-
-            {{-- Endereço --}}
-            <div class="tab-pane" id="address">
-
-              @include('tenant.costumers.partials._form_address')
-
-            </div>
-
-          </div>
+          @include('tenant.costumers.partials._form_tab_content')
           <div class="card-footer d-flex justify-content-center">
             <button type="submit" class="btn btn-success ">Salvar</button>
           </div>
