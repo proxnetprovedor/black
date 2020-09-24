@@ -31,7 +31,7 @@ class CreateEmployeesTable extends Migration
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');
             $table->foreign('deleted_by')->references('id')->on('users');
-            
+
             $table->foreign('person_id')->references('id')->on('people')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('tenant_id')->references('id')->on('providers.tenants')->onDelete('cascade');
