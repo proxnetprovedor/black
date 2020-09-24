@@ -11,7 +11,8 @@ return [
         'satedilly@outlook.com',
         'alexandrogonsan@outlook.com',
         'alexandrogonsan@gmail.com',
-        'fabianotomeprox@proxnet.page'
+        'fabianotomeprox@proxnet.page',
+        'alexandrogonsan@email.com'
     ],
 
 ];
